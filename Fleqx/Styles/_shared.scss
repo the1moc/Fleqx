@@ -1,0 +1,64 @@
+﻿input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+	-webkit-box-shadow: 0 0 0px 1000px #FFFFFF inset;
+}
+
+.modal {
+	.modal-header {
+		background-color: $modal-header-background-color;
+		color: $modal-header-color;
+
+		.modal-title {
+			position: absolute;
+		}
+	}
+}
+
+.login-panel {
+	max-width: 75%;
+	margin-top: 1%;
+	background-color: $panel-background-color;
+
+	.panel-heading {
+		background-color: transparent !important;
+		color: $panel-heading-color !important;
+	}
+}
+
+.form {
+	max-width: 100%;
+	background-color: $form-background-color;
+	outline: 0;
+
+	.form-button {
+		margin-top: 1%;
+		margin-bottom: 1%;
+		width: 95%;
+		background-color: $button-background-color;
+		color: $button-color;
+		border-radius: 5px;
+
+		&:hover {
+			background-color: $button-hover-background-color;
+			color: $button-hover-color;
+			border-style: solid;
+			border-color: $button-hover-color;
+		}
+	}
+}
+
+.standard-button {
+	background-color: $button-background-color;
+	color: $button-color;
+	border-radius: 5px;
+	border: none;
+	font-size: 20px;
+	outline: 0;
+
+	&:hover {
+		background-color: $button-hover-background-color;
+		color: $button-hover-color;
+	}
+}

@@ -1,0 +1,21 @@
+@import "../Styles/_variables.scss";
+@import "../Views/Home/Styles/_signup.scss";
+@import "../Views/Security/Styles/_login";
+@import "../Views/Announcement/Styles/_announcement.scss";
+@import "../Views/Announcement/Styles/_announcementForm.scss";
+@import "../Views/Chat/Styles/_chat.scss";
+@import "../Views/Shared/Styles/_homeLayout.scss";
+@import "../Views/Task/Styles/_tasks.scss";
+@import "../Styles/_shared.scss";
+
+/* Login */
+
+body {
+	background-color: #deecf9;
+	position: relative;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	min-height: 100%;
+		&::-webkit-scrollbar {
+			width: 0;
+	}
+}

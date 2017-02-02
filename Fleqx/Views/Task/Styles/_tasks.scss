@@ -1,0 +1,55 @@
+﻿.tasks-container {
+	text-align: center;
+	.main-title {
+		margin: 0 0 5px 0;
+		background-color: #0078d7;
+		color: #FFFFFF;
+	}
+
+	h2 {
+		background-color: $task-section-heading-color;
+		color: #FFFFFF;
+		margin: 0 0 10px 0 !important;
+		padding: 5px;
+	}
+
+	p {
+		margin: 0;
+		padding: 5px;
+	}
+
+
+	.open-container {
+		background-color: $open;
+		float: left;
+		width: 33%;
+		padding-bottom: 10px;
+	}
+
+	.active-container {
+		background-color: $active;
+		display: inline-block;
+		width: 33%;
+		padding-bottom: 10px;
+	}
+
+	.closed-container {
+		background-color: $closed;
+		float: right;
+		width: 33%;
+		padding-bottom: 10px;
+	}
+
+	.open, .active, .closed {
+		margin: 0 auto 0 auto;
+		background-color: $task-background-color;
+		width: 80%;
+		border-radius: 5px;
+		padding: 5px;
+
+		&:hover {
+			background-color: $task-background-hover-color;
+			color: $task-hover-color;
+		}
+	}
+}

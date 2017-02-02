@@ -1,0 +1,29 @@
+﻿.login-panel {
+	.panel-heading {
+		font-weight: normal;
+		font-size: 40px;
+	}
+
+	.login-form {
+		position: relative;
+		height: auto;
+		padding-bottom: 5px;
+
+		.input-group {
+			margin-left: 1%;
+			margin-right: 1%;
+		}
+
+		.login-label {
+			color: #000000;
+			font-size: 20px;
+			margin-top: 1%;
+			margin-left: 1%;
+			font-weight: normal;
+		}
+
+		.form-button {
+			font-size: 24px;
+		}
+	}
+}

@@ -1,0 +1,13 @@
+﻿@using Fleqx.Models
+@model IEnumerable<Fleqx.Models.ChatMessageModel>
+
+
+@if (Model != null)
+{
+	<ul>
+		@foreach (ChatMessageModel chatMessage in Model)
+		{
+		<li><span class="messageusername">@chatMessage.User.FirstName - </span> @chatMessage.ChatMessageContent</li>
+		}
+	</ul>
+}

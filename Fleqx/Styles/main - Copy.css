@@ -1,0 +1,148 @@
+﻿.userinformation {
+	background-color: dimgrey;
+	margin-bottom: 10%;
+	margin-top: 5%;
+	padding: 10px;
+	position: relative;
+	text-align: center;
+}
+
+.userinformation .status-symbol { margin-left: 5px; }
+
+.logout {
+	border-bottom: none;
+	border-color: #FFFFFF !important;
+	border-left: none;
+	border-right: none;
+	bottom: 0;
+	padding-top: 15px;
+	position: absolute;
+}
+
+.center-block.login-logo { margin-top: 1% !important; }
+
+.btn-register {
+	background-color: transparent;
+	border-color: transparent;
+	border-radius: 0 !important;
+	color: #585656;
+	display: block;
+	font-size: 16px;
+	margin: 0 0 0 0;
+	width: 100%;
+}
+
+.modal-title { position: absolute; }
+
+.navbar {
+	background-color: #000000 !important;
+	border-radius: 0 !important;
+	margin-left: 15%;
+	position: relative;
+	width: 85%;
+}
+
+.navbar-brand {
+	background-color: #000000 !important;
+	border: medium;
+	border-color: #FFFFFF;
+	font-size: 2Vw;
+}
+
+.status-symbol { color: #b6ff00; }
+
+.sidepanel {
+	background-color: #585656;
+	height: 100%;
+	left: 0;
+	min-width: 150px;
+	position: fixed;
+	position: fixed;
+	top: 0;
+	width: 15%;
+	z-index: 1;
+}
+
+.sidepanel ul {
+	list-style: none;
+	padding: 0 0 0 0;
+}
+
+.sidepanel button {
+	background-color: #585656;
+	border-color: transparent;
+	border-radius: 0 !important;
+	display: block;
+	font-size: 15px;
+	margin: 0 0 0 0;
+	margin-bottom: 5px;
+	text-align: left;
+	width: 100%;
+}
+
+.sidepanel .glyphicon { margin-left: 1px; }
+
+.btn-hover:hover {
+	background-color: #FFFFFF !important;
+	color: #000000;
+}
+
+.username {
+	color: #FFFFFF !important;
+	font-size: 20px;
+	position: relative;
+	text-align: center;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active { -webkit-box-shadow: 0 0 0px 1000px #efefef inset; }
+
+.form-control { width: 90%; }
+
+.login-panel .input-group {
+	margin-left: 1%;
+	margin-right: 1%;
+}
+
+.login-panel .login-form {
+	height: auto;
+	position: relative;
+}
+
+.login-panel .center-button { margin: auto; }
+
+.login-panel .login-panel {
+	background-color: rgba(245, 245, 245, 0.5);
+	margin-top: 1%;
+	max-width: 75%;
+}
+
+.login-panel .panel-heading {
+	background-color: transparent !important;
+	color: #000000 !important;
+	font-size: 40px;
+	font-weight: bold;
+}
+
+.login-panel .login-label, .login-panel .signup-label {
+	color: #000000;
+	font-size: 20px;
+	font-weight: normal;
+	margin-left: 1%;
+	margin-top: 1%;
+}
+
+.login-panel .submit-login {
+	margin-bottom: 2%;
+	margin-top: 2%;
+	width: 95%;
+}
+
+/* Login */
+
+body {
+	background-color: #AEB6BF;
+	position: relative;
+}

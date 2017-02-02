@@ -1,0 +1,27 @@
+﻿@using Fleqx.Data.DatabaseModels
+@using Fleqx.Models
+
+@model TaskModel
+
+<div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Edit Task</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				@using (Html.BeginForm("Task", "Edit", FormMethod.Post, new {id = "editTaskForm", @class = "form task-edit-form center-block", autocomplete = "off"}))
+				{
+					<label class="signup-label">Task ID</label>
+					@Html.TextBox("taskID", @Model.TaskID, new { @class = "form-control", autocomplete = "off", @readonly = "readonly" })
+					<label class="signup-label">Password</label>
+					@Html.TextBoxFor(model => model.TaskTitle, new {@class = "form-control", @Value = Model.TaskTitle})
+					<button type="submit" form="editTaskForm" class="center-block form-button">Submit</button>
+				}
+			</div>
+		</div>
+	</div>
+</div>

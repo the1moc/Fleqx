@@ -1,0 +1,32 @@
+﻿@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width"/>
+	<meta charset="utf-8">
+	<meta name="description" content="Fleqx">
+	<script type="text/javascript" src="~/bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="~/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	@RenderSection("Scripts", false)
+	<link rel="stylesheet" href="~/bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="~/Styles/main.css">
+	<title></title>
+</head>
+<body>
+@RenderBody()
+@if (ViewBag.Error != null)
+{
+	<script>
+		$(document).ready(function() {
+			alert('@ViewBag.Error');
+		});
+	</script>
+
+	ViewBag.Error = null;
+}
+</body>
+</html>

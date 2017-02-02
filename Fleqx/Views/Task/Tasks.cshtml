@@ -1,0 +1,51 @@
+﻿@using Fleqx.Models;
+
+@model List<TaskModel>
+
+<div class="tasks-container">
+	<h1 class="main-title">@ViewBag.Title</h1>
+	<div class="open-container">
+		<h2>Open Tasks</h2>
+		@foreach (TaskModel taskModel in Model.Where(model => model.TaskState.TaskStateCurrent == "Open"))
+			{
+			<div class="open task-item" id="@taskModel.TaskID">
+				<div class="task-heading">
+					<h4>@taskModel.TaskID - <span class="title">@taskModel.TaskTitle</span></h4>
+				</div>
+				<div class="task-body">
+					<p>@taskModel.TaskDescription</p>
+				</div>
+			</div>
+			}
+	</div>
+	<div class="active-container">
+		<h2>Active Tasks</h2>
+		@foreach (TaskModel taskModel in Model.Where(model => model.TaskState.TaskStateCurrent == "Active"))
+			{
+			<div class="active task-item" id="@taskModel.TaskID">
+				<div class="task-heading">
+					<h4>@taskModel.TaskID - <span class="title">@taskModel.TaskTitle</span></h4>
+				</div>
+				<div class="task-body">
+					<p>@taskModel.TaskDescription</p>
+				</div>
+			</div>
+			}
+	</div>
+	<div class="closed-container">
+		<h2>Closed Tasks</h2>
+
+		@foreach (TaskModel taskModel in Model.Where(model => model.TaskState.TaskStateCurrent == "Closed"))
+			{
+			<div class="closed task-item" id="@taskModel.TaskID">
+				<div class="task-heading">
+					<h4>@taskModel.TaskID - <span class="title">@taskModel.TaskTitle</span></h4>
+				</div>
+				<div class="task-body">
+					<p>@taskModel.TaskDescription</p>
+				</div>
+			</div>
+			}
+	</div>
+	<div class="modal-form-section"></div>
+</div>

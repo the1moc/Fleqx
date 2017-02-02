@@ -1,0 +1,55 @@
+﻿.announcements {
+	.card-block {
+		border-radius: 10px;
+		margin: 0 0 10px 0;
+
+		.list-group {
+			margin-bottom: 0 !important;
+			.list-group-item {
+				background-color: #ffffff;
+				color: #3a5068;
+				.card-title {
+					background-color: $card-header-background-color;
+					border-radius: 5px;
+					padding: 10px;
+					margin-top: 1px !important;
+				}
+
+				.importance-icon {
+					font-size: 30px;
+					float: right;
+					&.importance-1 {
+						
+						color: $low;
+					}
+
+					&.importance-2 {
+						color: $low-medium;
+					}
+
+					&.importance-3 {
+						color: $medium;
+					}
+
+					&.importance-4 {
+						color: $medium-high;
+					}
+
+					&.importance-5 {
+						color: $high;
+					}
+				}
+			}
+		}
+	}
+
+	.add-button {
+		text-align: center;
+
+		.standard-button {
+			margin-bottom: 5px;
+			padding: 5px;
+			position: center;
+		}
+	}
+}

@@ -1,0 +1,59 @@
+﻿@using System.Text.RegularExpressions
+@{
+	Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+
+@section Scripts {
+	<script type="text/javascript" src="~/Scripts/contentloader.js"></script>
+	<script type="text/javascript" src="~/Scripts/jquery.signalR-2.2.1.min.js"></script>
+	<script type="text/javascript" src="~/signalr/hubs"></script>
+	<script type="text/javascript" src="~/Scripts/chat.js"></script>
+}
+
+<div class="home">
+	<div class="sidepanel-container">
+		<div id="sidepanel" class="sidepanel">
+			@if (Context.User.Identity.IsAuthenticated)
+			{
+				string name = Context.User.Identity.Name;
+				name = Regex.Replace(name, @"\b\w", match => match.ToString().ToUpper());
+
+				<div class="userinformation">
+					<a class="username" href="Account\Index">@name</a>
+				</div>
+			}
+			<ul>
+				<li>
+					<button class="panel-button" id="sectionbutton" data-url="@Url.Action("Announcements", "Announcement")"><i class="glyphicon glyphicon-check"></i> Announcements</button>
+				</li>
+				<li>
+					<button class="panel-button" id="sectionbutton" data-url="@Url.Action("Tasks", "Task", new { tasksDesired = "mytasks" })"><i class="glyphicon glyphicon-pushpin"></i> My Tasks</button>
+				</li>
+				<li>
+					<button class="panel-button" id="sectionbutton" data-url="@Url.Action("Tasks", "Task", new { tasksDesired = "teamtasks" })"><i class="glyphicon glyphicon-tasks"></i> Team Tasks</button>
+				</li>
+				<li>
+					<button class="panel-button" id="sectionbutton" data-url="@Url.Action("Tasks", "Task", new { tasksDesired = "alltasks" })"><i class="glyphicon glyphicon-briefcase"></i> All Tasks</button>
+				</li>
+				<li>
+					<button class="panel-button" id="sectionbutton"><i class="glyphicon glyphicon-cog"></i> Account</button>
+				</li>
+				@if (User.IsInRole("Admin"))
+				{
+					<li>
+						<button class="panel-button standard" data-toggle="modal" data-target="#registerModal"><i class="glyphicon glyphicon-plus"></i> Add user</button>
+					</li>
+				}
+				<li>
+					<button class="panel-button logout-button" onclick="window.location.href = '@Url.Action("Logout", "Security")'">
+						<i class="glyphicon glyphicon-off"></i>
+					</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+	@RenderPage("~/Views/Chat/Chat.cshtml")
+	@Html.Partial("~/Views/Home/_SignupForm.cshtml")
+	@RenderBody()
+	<button class="show-chat standard-button">Show Chat</button>
+</div>

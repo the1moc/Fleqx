@@ -1,0 +1,35 @@
+﻿@model Fleqx.Models.LoginModel
+
+@{
+	Layout = "~/Views/Shared/_BaseLayout.cshtml";
+	ViewBag.Title = "Login";
+}
+
+<body>
+<img class="center-block login-logo" src="~/Assets/logo.png"></>
+<div class="panel login-panel panel-default center-block">
+	<div class="panel-heading text-center">Login to Fleqx</div>
+	@using (Html.BeginForm("Login", "Security", FormMethod.Post, new {id = "loginForm", @class = "form login-form center-block"}))
+	{
+		<label class="login-label">Username</label>
+		<div class="input-group">
+			<div class="input-group-addon">
+				<span class="glyphicon glyphicon-user"></span>
+			</div>
+			@Html.TextBoxFor(model => model.UserName, new {@class = "form-control", placeholder = "Enter username here..."})
+
+		</div>
+
+		<label class="login-label">Password</label>
+		<div class="input-group">
+			<div class="input-group-addon">
+				<span class="glyphicon glyphicon-asterisk"></span>
+			</div>
+			@Html.PasswordFor(model => model.Password, new {@class = "form-control", placeholder = "Enter password here..."})
+		</div>
+
+		<button type="submit" form="loginForm" class="center-block form-button">Submit</button>
+	}
+
+</div>
+</body>
