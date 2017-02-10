@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using System.Web.Mvc;
+using Fleqx.Data;
 using Fleqx.Helper;
 
 namespace Fleqx.Controllers
@@ -11,6 +12,12 @@ namespace Fleqx.Controllers
 		public UserClaims CurrentUser
 		{
 			get { return new UserClaims(User as ClaimsPrincipal); }
+		}
+
+		// Get a new instance of the database context.
+		protected virtual DatabaseContext GetDatabaseContext()
+		{
+			return new DatabaseContext();
 		}
 	}
 }

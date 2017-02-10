@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using Fleqx.Controllers;
 
 namespace Fleqx.Data.DatabaseModels
 {
@@ -27,6 +28,36 @@ namespace Fleqx.Data.DatabaseModels
 
 		// The importance levels.
 		public static IEnumerable<SelectListItem> Importance = new List<SelectListItem>
+		{
+			new SelectListItem
+			{
+				Value = "1",
+				Text = "Very Low"
+			},
+			new SelectListItem
+			{
+				Value = "2",
+				Text = "Low"
+			},
+			new SelectListItem
+			{
+				Value = "3",
+				Text = "Medium"
+			},
+			new SelectListItem
+			{
+				Value = "4",
+				Text = "High"
+			},
+			new SelectListItem
+			{
+				Value = "5",
+				Text = "Very high"
+			}
+		};
+
+		// The importance levels.
+		public static IEnumerable<SelectListItem> TaskPriority = new List<SelectListItem>
 		{
 			new SelectListItem
 			{

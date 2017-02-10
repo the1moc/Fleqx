@@ -14,6 +14,11 @@ input:-webkit-autofill:active {
 			position: absolute;
 		}
 	}
+	.modal-body {
+		textarea {
+			max-width: 100%;
+		}
+	}
 }
 
 .login-panel {
@@ -38,6 +43,7 @@ input:-webkit-autofill:active {
 		width: 95%;
 		background-color: $button-background-color;
 		color: $button-color;
+		border-color: transparent;
 		border-radius: 5px;
 
 		&:hover {

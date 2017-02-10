@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Mvc;
 using Fleqx.Data.DatabaseModels;
 
 namespace Fleqx.Models
@@ -20,12 +22,15 @@ namespace Fleqx.Models
 		public int TaskPriority { get; set; }
 
 		// The time the task was created.
+		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 		public DateTime OriginalCreationDate { get; set; }
 
 		// The last time the task was renewed.
+		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 		public DateTime LastRenewalDate { get; set; }
 
 		// The time the task has to be done.
+		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 		public DateTime CriticalFinishDate { get; set; }
 
 		// The estimated number of days it will take to complete.
@@ -39,6 +44,9 @@ namespace Fleqx.Models
 
 		// The user that has been assigned the task.
 		public string AssignedUserId { get; set; }
+
+		// A list of all the users on the system.
+		public List<User> AllUsers { get; set; }
 
 		// Foreign key references
 		public virtual TaskState TaskState { get; set; }

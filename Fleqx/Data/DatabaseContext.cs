@@ -13,11 +13,11 @@ namespace Fleqx.Data
 			Database.SetInitializer(new DatabaseInitializer());
 		}
 
-		public DbSet<Announcement> Announcements { get; set; }
-		public DbSet<ChatMessage> ChatMessages { get; set; }
-		public DbSet<Task> Tasks { get; set; }
-		public DbSet<TaskState> TaskStates { get; set; }
-		public DbSet<Team> Teams { get; set; }
+		public virtual DbSet<Announcement> Announcements { get; set; }
+		public virtual DbSet<ChatMessage> ChatMessages { get; set; }
+		public virtual DbSet<Task> Tasks { get; set; }
+		public virtual DbSet<TaskState> TaskStates { get; set; }
+		public virtual DbSet<Team> Teams { get; set; }
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{

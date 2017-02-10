@@ -3,7 +3,6 @@
 @model List<TaskModel>
 
 <div class="tasks-container">
-	<h1 class="main-title">@ViewBag.Title</h1>
 	<div class="open-container">
 		<h2>Open Tasks</h2>
 		@foreach (TaskModel taskModel in Model.Where(model => model.TaskState.TaskStateCurrent == "Open"))

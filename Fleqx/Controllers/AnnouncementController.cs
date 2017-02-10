@@ -21,7 +21,7 @@ namespace Fleqx.Controllers
 		/// <returns></returns>
 		public ActionResult Announcements()
 		{
-			using (DatabaseContext dbContext = new DatabaseContext())
+			using (var dbContext = GetDatabaseContext())
 			{
 				List<Announcement> announcements = dbContext.Announcements.ToList();
 
@@ -53,7 +53,7 @@ namespace Fleqx.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				using (DatabaseContext dbContext = new DatabaseContext())
+				using (DatabaseContext dbContext = GetDatabaseContext())
 				{
 					dbContext.Announcements.Add(new Announcement
 					{
@@ -66,11 +66,11 @@ namespace Fleqx.Controllers
 
 					dbContext.SaveChanges();
 				}
-				return Redirect(Request.UrlReferrer.ToString());
+				return new HttpStatusCodeResult(200);
 			}
 
 			ViewBag.Error = "Please correctly fill out the form.";
-			return Redirect(Request.UrlReferrer.ToString());
+			return new HttpStatusCodeResult(500);
 		}
 	}
 }

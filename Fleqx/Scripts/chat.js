@@ -3,6 +3,7 @@
 /// 
 /// <reference path="~/Scripts/jquery.signalR-2.2.1.min.js
 
+// Create the connection to the server for the chat.
 function createConnection() {
 	var chat = $.connection.chatHub;
 	getMessages();
@@ -31,7 +32,7 @@ function createConnection() {
 	});
 };
 
-// Get all the current chat messages
+// Get all the current chat messages.
 function getMessages() {
 	$(".messages-container").load("/Chat/ChatMessages", function(response, status, xhr) {
 		if (status == "error")

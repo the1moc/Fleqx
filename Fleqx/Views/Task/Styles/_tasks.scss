@@ -1,5 +1,6 @@
 ﻿.tasks-container {
 	text-align: center;
+
 	.main-title {
 		margin: 0 0 5px 0;
 		background-color: #0078d7;
@@ -40,6 +41,11 @@
 		padding-bottom: 10px;
 	}
 
+	.task-body {
+		overflow: hidden;
+		max-height: 100px;
+	}
+
 	.open, .active, .closed {
 		margin: 0 auto 0 auto;
 		background-color: $task-background-color;
@@ -50,6 +56,23 @@
 		&:hover {
 			background-color: $task-background-hover-color;
 			color: $task-hover-color;
+		}
+	}
+
+	.task-edit-form {
+		text-align: left;
+
+		.row {
+			margin-top: 5px;
+		}
+
+		label {
+			margin-bottom: 0;
+		}
+
+		.task-edit-label:not(:first-child) {
+			padding: 0;
+			margin: 10px 0 0 0 !important;
 		}
 	}
 }

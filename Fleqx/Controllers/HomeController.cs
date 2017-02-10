@@ -11,7 +11,7 @@ namespace Fleqx.Controllers
 		/// <returns></returns>
 		public ActionResult Home()
 		{
-			return View();
+			return View("Home");
 		}
 	}
 }

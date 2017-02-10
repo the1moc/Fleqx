@@ -30,7 +30,7 @@ namespace Fleqx.Controllers
 		[HttpGet]
 		public ActionResult ChatMessages()
 		{
-			using (DatabaseContext dbContext = new DatabaseContext())
+			using (var dbContext = GetDatabaseContext())
 			{
 				List<ChatMessage> chatMessages = dbContext.ChatMessages.ToList();
 

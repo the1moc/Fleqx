@@ -21,7 +21,7 @@ namespace Fleqx.Controllers
 		[HttpGet]
 		public ActionResult Tasks(string tasksDesired)
 		{
-			using (DatabaseContext dbContext = new DatabaseContext())
+			using (var dbContext = GetDatabaseContext())
 			{
 				List<Task> tasks;
 				User currentUser = Startup.UserManager.FindById(User.Identity.GetUserId());
@@ -46,17 +46,18 @@ namespace Fleqx.Controllers
 				{
 					return new TaskModel
 					{
-						TaskID = task.TaskID,
-						TaskTitle = task.TasktTitle,
-						TaskDescription = task.TaskDescription,
-						TaskPriority = task.TaskPriority,
+						TaskID               = task.TaskID,
+						TaskTitle            = task.TasktTitle,
+						TaskDescription      = task.TaskDescription,
+						TaskPriority         = task.TaskPriority,
 						OriginalCreationDate = task.OriginalCreationDate,
-						LastRenewalDate = task.LastRenewalDate,
-						CriticalFinishDate = task.CriticalFinishDate,
-						EstimatedDays = task.EstimatedDays,
-						CreatedUser = task.CreatedUser,
-						AssignedUser = task.AssignedUser,
-						TaskState = task.TaskState
+						LastRenewalDate      = task.LastRenewalDate,
+						CriticalFinishDate   = task.CriticalFinishDate,
+						EstimatedDays        = task.EstimatedDays,
+						CreatedUser          = task.CreatedUser,
+						AssignedUser         = task.AssignedUser,
+						TaskState            = task.TaskState,
+						AllUsers             = null
 					};
 				}).ToList();
 
@@ -71,7 +72,7 @@ namespace Fleqx.Controllers
 		/// <returns></returns>
 		public ActionResult GetModalView(int taskId)
 		{
-			using (DatabaseContext dbContext = new DatabaseContext())
+			using (var dbContext = GetDatabaseContext())
 			{
 				Task model = dbContext.Tasks.First(task => task.TaskID == taskId);
 				TaskModel viewModel = new TaskModel
@@ -86,9 +87,48 @@ namespace Fleqx.Controllers
 					EstimatedDays = model.EstimatedDays,
 					CreatedUser = model.CreatedUser,
 					AssignedUser = model.AssignedUser,
-					TaskState = model.TaskState
+					TaskState = model.TaskState,
+					AllUsers = dbContext.Users.ToList()
 				};
 				return PartialView("_TaskEditForm", viewModel);
+			}
+		}
+
+		/// <summary>
+		/// Edit the model.
+		/// </summary>
+		/// <param name="task">The task model for the view.</param>
+		/// <returns></returns>
+		public ActionResult Edit(TaskModel viewModel)
+		{
+			try
+			{
+				using (var dbContext = GetDatabaseContext())
+				{
+					Task dbModel = dbContext.Tasks.Find(viewModel.TaskID);
+
+					dbModel.TaskID               = viewModel.TaskID;
+					dbModel.TasktTitle           = viewModel.TaskTitle;
+					dbModel.TaskDescription      = viewModel.TaskDescription;
+					dbModel.TaskPriority         = viewModel.TaskPriority;
+					dbModel.OriginalCreationDate = viewModel.OriginalCreationDate;
+					dbModel.LastRenewalDate      = viewModel.LastRenewalDate;
+					dbModel.CriticalFinishDate   = viewModel.CriticalFinishDate;
+					dbModel.EstimatedDays        = viewModel.EstimatedDays;
+					dbModel.CreatedUser          = viewModel.CreatedUser;
+					dbModel.AssignedUser         = viewModel.AssignedUser;
+					dbModel.TaskState            = viewModel.TaskState;
+
+					// Update the changes.
+					dbContext.Entry(dbModel).State = System.Data.Entity.EntityState.Modified;
+					dbContext.SaveChanges();
+
+					return new HttpStatusCodeResult(200);
+				}
+			}
+			catch(Exception e)
+			{
+				return new HttpStatusCodeResult(500, "There was an error updating the task.");
 			}
 		}
 	}
