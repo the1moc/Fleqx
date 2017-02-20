@@ -33,10 +33,14 @@ namespace Fleqx.Data.DatabaseModels
 		[DataType(DataType.DateTime)]
 		public DateTime LastRenewalDate { get; set; }
 
-		// The time the task has to be done.
+		// The date the task has to be done.
 		[Required]
 		[DataType(DataType.DateTime)]
 		public DateTime CriticalFinishDate { get; set; }
+
+		// The actual date the task was finished.
+		[DataType(DataType.DateTime)]
+		public DateTime? ActualFinishDate { get; set; }
 
 		// The estimated number of days it will take to complete.
 		[Required]

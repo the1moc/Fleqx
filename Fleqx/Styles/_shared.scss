@@ -53,6 +53,10 @@ input:-webkit-autofill:active {
 			border-color: $button-hover-color;
 		}
 	}
+
+	label {
+		margin-bottom: 0;
+	}
 }
 
 .standard-button {

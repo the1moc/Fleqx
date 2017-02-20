@@ -211,10 +211,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\FleqxDatabase.mdf" />
-    <Content Include="App_Data\FleqxDatabase_log.ldf">
-      <DependentUpon>FleqxDatabase.mdf</DependentUpon>
-    </Content>
     <Content Include="Assets\logo.png" />
     <Content Include="Global.asax" />
     <Content Include="bower.json" />
@@ -223,6 +219,7 @@
     <Content Include="Scripts\chat.js" />
     <Content Include="Scripts\contentloader.js" />
     <Content Include="Scripts\jquery.signalR-2.2.1.min.js" />
+    <Content Include="Scripts\tasks.js" />
     <Content Include="Styles\main - Copy.css">
       <DependentUpon>_variables.scss</DependentUpon>
     </Content>
@@ -305,6 +302,7 @@
     <Content Include="Views\Task\Tasks.cshtml" />
     <Content Include="Views\Task\Styles\_tasks.scss" />
     <Content Include="Views\Task\_TaskEditForm.cshtml" />
+    <Content Include="Views\Task\_TaskAddForm.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -312,7 +310,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

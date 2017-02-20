@@ -18,7 +18,7 @@ namespace Fleqx.Controllers
 		/// <summary>
 		/// Show the announcements view.
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>The announcements view.</returns>
 		public ActionResult Announcements()
 		{
 			using (var dbContext = GetDatabaseContext())

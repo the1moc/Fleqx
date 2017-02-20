@@ -5,17 +5,32 @@ namespace Fleqx.Models
 {
 	public class LoginModel
 	{
-		// The username field.
+		/// <summary>
+		/// Gets or sets the name of the user.
+		/// </summary>
+		/// <value>
+		/// The name of the user.
+		/// </value>
 		[Required]
 		[DataType(DataType.Text)]
 		public string UserName { get; set; }
 
-		// The password field.
+		/// <summary>
+		/// Gets or sets the password.
+		/// </summary>
+		/// <value>
+		/// The password.
+		/// </value>
 		[Required]
 		[DataType(DataType.Password)]
 		public string Password { get; set; }
 
-		// Reuqested url.
+		/// <summary>
+		/// Gets or sets the requested URL.
+		/// </summary>
+		/// <value>
+		/// The requested URL.
+		/// </value>
 		[HiddenInput]
 		[DataType(DataType.Text)]
 		public string RequestedUrl { get; set; }

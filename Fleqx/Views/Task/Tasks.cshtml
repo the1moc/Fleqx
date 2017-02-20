@@ -4,7 +4,8 @@
 
 <div class="tasks-container">
 	<div class="open-container">
-		<h2>Open Tasks</h2>
+		<h2>Open</h2>
+		<button class="standard-button add-task add-open"><i class="glyphicon glyphicon-plus"></i></button>
 		@foreach (TaskModel taskModel in Model.Where(model => model.TaskState.TaskStateCurrent == "Open"))
 			{
 			<div class="open task-item" id="@taskModel.TaskID">
@@ -18,7 +19,8 @@
 			}
 	</div>
 	<div class="active-container">
-		<h2>Active Tasks</h2>
+		<h2>Active</h2>
+		<button class="standard-button add-task add-active"><i class="glyphicon glyphicon-plus"></i></button>
 		@foreach (TaskModel taskModel in Model.Where(model => model.TaskState.TaskStateCurrent == "Active"))
 			{
 			<div class="active task-item" id="@taskModel.TaskID">
@@ -32,8 +34,8 @@
 			}
 	</div>
 	<div class="closed-container">
-		<h2>Closed Tasks</h2>
-
+		<h2>Closed</h2>
+		<button class="standard-button add-task add-closed"><i class="glyphicon glyphicon-plus"></i></button>
 		@foreach (TaskModel taskModel in Model.Where(model => model.TaskState.TaskStateCurrent == "Closed"))
 			{
 			<div class="closed task-item" id="@taskModel.TaskID">

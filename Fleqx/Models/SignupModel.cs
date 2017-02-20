@@ -4,27 +4,52 @@ namespace Fleqx.Models
 {
 	public class SignupModel
 	{
-		// The username field.
+		/// <summary>
+		/// Gets or sets the name of the user.
+		/// </summary>
+		/// <value>
+		/// The name of the user.
+		/// </value>
 		[Required]
 		[DataType(DataType.Text)]
 		public string UserName { get; set; }
 
-		// The password field.
+		/// <summary>
+		/// Gets or sets the password.
+		/// </summary>
+		/// <value>
+		/// The password.
+		/// </value>
 		[Required]
 		[DataType(DataType.Password)]
 		public string Password { get; set; }
 
-		// The first name field.
+		/// <summary>
+		/// Gets or sets the first name.
+		/// </summary>
+		/// <value>
+		/// The first name.
+		/// </value>
 		[Required]
 		[DataType(DataType.Text)]
 		public string FirstName { get; set; }
 
-		// The last name field.
+		/// <summary>
+		/// Gets or sets the last name.
+		/// </summary>
+		/// <value>
+		/// The last name.
+		/// </value>
 		[Required]
 		[DataType(DataType.Text)]
 		public string LastName { get; set; }
 
-		// The user role ID.
+		/// <summary>
+		/// Gets or sets the role.
+		/// </summary>
+		/// <value>
+		/// The role.
+		/// </value>
 		[Required]
 		public int Role { get; set; }
 	}

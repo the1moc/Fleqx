@@ -104,7 +104,8 @@ namespace Fleqx.Controllers
 				UserName  = signupModel.UserName,
 				FirstName = signupModel.FirstName,
 				LastName  = signupModel.LastName,
-				SecurityStamp = Guid.NewGuid().ToString()
+				SecurityStamp = Guid.NewGuid().ToString(),
+				TeamId    = 1
 			};
 
 			// Check if the user already exists.

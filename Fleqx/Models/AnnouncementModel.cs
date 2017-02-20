@@ -6,30 +6,60 @@ namespace Fleqx.Models
 {
 	public class AnnouncementModel
 	{
-		// The announcement ID (PK).
+		/// <summary>
+		/// Gets or sets the announcement identifier.
+		/// </summary>
+		/// <value>
+		/// The announcement identifier.
+		/// </value>
 		[Required]
 		public int AnnouncementID { get; set; }
 
-		// The announcement title.
+		/// <summary>
+		/// Gets or sets the announcement title.
+		/// </summary>
+		/// <value>
+		/// The announcement title.
+		/// </value>
 		[Required]
 		[DataType(DataType.Text)]
 		public string AnnouncementTitle { get; set; }
 
-		// The announcement content.
+		/// <summary>
+		/// Gets or sets the content of the announcement.
+		/// </summary>
+		/// <value>
+		/// The content of the announcement.
+		/// </value>
 		[Required]
 		[DataType(DataType.Text)]
 		public string AnnouncementContent { get; set; }
 
-		// The announcement importance.
+		/// <summary>
+		/// Gets or sets the announcement importance.
+		/// </summary>
+		/// <value>
+		/// The announcement importance.
+		/// </value>
 		[Required]
 		public int AnnouncementImportance { get; set; }
 
-		// When the announcement was created.
+		/// <summary>
+		/// Gets or sets the created.
+		/// </summary>
+		/// <value>
+		/// The created.
+		/// </value>
 		[Required]
 		[DataType(DataType.DateTime)]
 		public DateTime Created { get; set; }
 
-		// The user that posted the announcement.
+		/// <summary>
+		/// Gets or sets the user.
+		/// </summary>
+		/// <value>
+		/// The user.
+		/// </value>
 		[Required]
 		public User User { get; set; }
 	}

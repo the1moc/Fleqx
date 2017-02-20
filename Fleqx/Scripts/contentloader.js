@@ -1,4 +1,5 @@
 ﻿/// <reference path="~/bower_components/jquery/dist/jquery.js
+/// <reference path="~/bower_components/jquery-ui/jquery-ui.min.js
 
 $(document).ready(function()
 {
@@ -36,40 +37,14 @@ $(document).ready(function()
 				$("#content").empty();
 				$("#content").load("/Announcement/Announcements");
 				$("#announcementModal").modal("toggle");
+
+				// Remove the modal.
 				clearModal();
 			}
 		})
 	});
 
-	// Hook into the submit event for the edit task form.
-	$(document).on("submit", "#editTaskForm", function(event)
-	{
-		event.preventDefault();
-
-		$.ajax({
-			type: "POST",
-			url: "/Task/Edit",
-			data: $(this).serialize(),
-			success: function()
-			{
-				// Reload the announcements with the refreshed data
-				$("#content").empty();
-				$("#content").load("/Task/Tasks");
-				$("#editTaskForm").modal("toggle");
-				clearModal();
-			}
-		})
-	});
-
-	// Show the modal form for a task.
-	$(document).on("click", ".task-item", function()
-	{
-		$(".modal-form-section").load("/Task/GetModalView", { taskId: this.id }, function() {
-			$("#editTaskModal").modal();
-		});
-	})
-
-	// Had the chat
+	// Show the chat
 	$(".chat-container .panel-heading").click(function()
 	{
 		$(".chat-container").hide();
@@ -77,12 +52,18 @@ $(document).ready(function()
 		$(".show-chat").show();
 	})
 
-	// Show the chat
+	// Hide the chat
 	$(".show-chat").click(function()
 	{
 		$(".chat-container").show();
 		$(".content-container").css("margin-right", 300);
 		$(".show-chat").hide();
+	})
+
+	// When a modal is shown, make it draggable.
+	$(document).on("shown.bs.modal", ".modal", function()
+	{
+		makeDraggableModal();
 	})
 })
 
@@ -91,4 +72,13 @@ function clearModal()
 {
 	$('body').removeClass('modal-open');
 	$('.modal-backdrop').remove();
+}
+
+// Make a modal form draggable.
+function makeDraggableModal()
+{
+	// Make all generated modal forms draggable.
+	$(".modal-dialog").draggable({
+		handle: ".modal-header"
+	});
 }

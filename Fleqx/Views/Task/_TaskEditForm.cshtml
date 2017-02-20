@@ -25,6 +25,13 @@
 							@Html.TextBox("taskID", @Model.TaskID, new { @class = "form-control", autocomplete = "off", @readonly = "readonly" })
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<label class="task-edit-label">Task State</label>
+							@Html.DropDownListFor(model => model.TaskStateId, ListControlHelper.TaskStates,
+							new { @class = "form-control"})
+						</div>
+					</div>
 					<label class="task-edit-label">Description</label>
 					@Html.TextAreaFor(model => model.TaskDescription, new { @class = "form-control" })
 					<div class="row">
@@ -47,8 +54,16 @@
 							@Html.TextBoxFor(model => model.LastRenewalDate, new { @class = "form-control", type = "date", @readonly = "readonly", @Value = Model.LastRenewalDate.ToString("yyyy-MM-dd") })
 						</div>
 					</div>
-						<label class="task-edit-label">Critical Finish Date</label>
-						@Html.TextBoxFor(model => model.CriticalFinishDate, new { @class = "form-control", type = "date", @Value = Model.CriticalFinishDate.ToString("yyyy-MM-dd") })
+					<div class="row">
+						<div class="col-md-6">
+							<label class="task-edit-label">Critical Finish Date</label>
+							@Html.TextBoxFor(model => model.CriticalFinishDate, new { @class = "form-control", type = "date", @Value = Model.CriticalFinishDate.ToString("yyyy-MM-dd") })
+						</div>
+						<div class="col-md-6">
+							<label class="task-edit-label">Actual Finish Date</label>
+							@Html.TextBoxFor(model => model.ActualFinishDate, new { @class = "form-control", type = "date", @Value = Model.ActualFinishDate.ToString("yyyy-MM-dd") })
+						</div>
+					</div>
 						<label class="task-edit-label">Created by</label>
 						@Html.TextBox("createdTextBox", Model.AssignedUser.UserName, new { @class = "form-control", @readonly = "readonly" })
 						<label class="task-edit-label">Assigned to</label>

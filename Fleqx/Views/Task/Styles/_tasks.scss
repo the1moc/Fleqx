@@ -12,6 +12,20 @@
 		color: #FFFFFF;
 		margin: 0 0 10px 0 !important;
 		padding: 5px;
+		text-align: center;
+	}
+
+	.add-task {
+		width: 90%;
+		margin-bottom: 5px;
+		border-style: outset;
+		background-color: #FFFFFF;
+		color: #0078d7;
+
+		&:hover {
+			border-style: inset;
+			background-color: #f2f2f2;
+		 }
 	}
 
 	p {
@@ -21,21 +35,21 @@
 
 
 	.open-container {
-		background-color: $open;
+		background-color: #FFFFFF;
 		float: left;
 		width: 33%;
 		padding-bottom: 10px;
 	}
 
 	.active-container {
-		background-color: $active;
+		background-color: #FFFFFF;
 		display: inline-block;
 		width: 33%;
 		padding-bottom: 10px;
 	}
 
 	.closed-container {
-		background-color: $closed;
+		background-color: #FFFFFF;
 		float: right;
 		width: 33%;
 		padding-bottom: 10px;
@@ -44,18 +58,21 @@
 	.task-body {
 		overflow: hidden;
 		max-height: 100px;
+		margin: 5px;
 	}
 
 	.open, .active, .closed {
-		margin: 0 auto 0 auto;
-		background-color: $task-background-color;
-		width: 80%;
+		margin: 0 auto 5px auto;
+		border-style: outset;
+		width: 90%;
 		border-radius: 5px;
 		padding: 5px;
+		cursor: pointer;
 
 		&:hover {
-			background-color: $task-background-hover-color;
-			color: $task-hover-color;
+			border-style: inset;
+			background-color: #f2f2f2;
+			cursor: grab;
 		}
 	}
 
@@ -66,11 +83,20 @@
 			margin-top: 5px;
 		}
 
-		label {
-			margin-bottom: 0;
+		.task-edit-label:not(:first-child) {
+			padding: 0;
+			margin: 10px 0 0 0 !important;
+		}
+	}
+
+	.task-add-form {
+		text-align: left;
+
+		.row {
+			margin-top: 5px;
 		}
 
-		.task-edit-label:not(:first-child) {
+		.task-add-label:not(:first-child) {
 			padding: 0;
 			margin: 10px 0 0 0 !important;
 		}

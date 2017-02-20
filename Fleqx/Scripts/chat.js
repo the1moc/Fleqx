@@ -34,7 +34,7 @@ function createConnection() {
 
 // Get all the current chat messages.
 function getMessages() {
-	$(".messages-container").load("/Chat/ChatMessages", function(response, status, xhr) {
+	$(".messages-container").load("/Chat/ChatMessages", { call: "chat" }, function(response, status, xhr) {
 		if (status == "error")
 		{
 			alert("There was a problem refreshing the chat, make sure the client is connected");

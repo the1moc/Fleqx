@@ -88,7 +88,7 @@ namespace Fleqx.Data
 				{
 					new TaskState {TaskStateID = 1, TaskStateCurrent = "Open" },
 					new TaskState {TaskStateID = 2, TaskStateCurrent = "Active" },
-					new TaskState {TaskStateID = 3, TaskStateCurrent = "Close" }
+					new TaskState {TaskStateID = 3, TaskStateCurrent = "Closed" }
 				};
 
 				taskStates.ForEach(taskState => context.TaskStates.Add(taskState));
@@ -103,6 +103,7 @@ namespace Fleqx.Data
 					TaskPriority = 1,
 					OriginalCreationDate = DateTime.Now,
 					CriticalFinishDate = DateTime.Now.AddDays(7),
+					ActualFinishDate = null,
 					LastRenewalDate = DateTime.Now,
 					EstimatedDays = 1,
 					CreatedUserId = "1",
@@ -119,6 +120,7 @@ namespace Fleqx.Data
 					TaskPriority = 1,
 					OriginalCreationDate = DateTime.Now,
 					CriticalFinishDate = DateTime.Now.AddDays(7),
+					ActualFinishDate = null,
 					LastRenewalDate = DateTime.Now,
 					EstimatedDays = 1,
 					CreatedUserId = "1",
@@ -135,6 +137,7 @@ namespace Fleqx.Data
 					TaskPriority = 1,
 					OriginalCreationDate = DateTime.Now,
 					CriticalFinishDate = DateTime.Now.AddDays(7),
+					ActualFinishDate = DateTime.Now.AddDays(5),
 					LastRenewalDate = DateTime.Now,
 					EstimatedDays = 1,
 					CreatedUserId = "1",

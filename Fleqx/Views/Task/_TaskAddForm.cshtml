@@ -1,0 +1,61 @@
+﻿@using Fleqx.Data.DatabaseModels
+@using Fleqx.Models
+@using Microsoft.AspNet.Identity
+
+@model TaskModel
+
+<div class="modal fade" id="addTaskModal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Add Task</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				@using (Html.BeginForm("Add", "Task", FormMethod.Post, new { id = "addTaskForm", @class = "form task-add-form center-block", autocomplete = "off" }))
+				{
+					@Html.ValidationSummary(false, "");
+					Model.CreatedUserId =  User.Identity.GetUserId();
+					@Html.HiddenFor(model => model.CreatedUserId);
+					<div class="row">
+						<div class="col-md-6">
+							<label class="task-add-label">Title</label>
+							@Html.TextBoxFor(model => model.TaskTitle, new { @class = "form-control" })
+							@Html.ValidationMessageFor(model => model.TaskTitle)
+						</div>
+						<div class="col-md-6">
+							<label class="task-add-label">Task State</label>
+							@Html.DropDownListFor(model => model.TaskStateId, ListControlHelper.TaskStates,
+							new { @class = "form-control" })
+						</div>
+					</div>
+					<label class="task-add-label">Description</label>
+					@Html.TextAreaFor(model => model.TaskDescription, new { @class = "form-control" })
+					<div class="row">
+						<div class="col-md-8">
+							<label class="task-add-label">Task Priority</label>
+							@Html.DropDownListFor(model => model.TaskPriority, ListControlHelper.TaskPriority, new { @class = "form-control" })
+						</div>
+						<div class="col-md-4">
+							<label class="task-add-label">Estimated Days to Complete</label>
+							@Html.TextBoxFor(model => model.EstimatedDays, new { @class = "form-control" })
+							@Html.ValidationMessageFor(model => model.EstimatedDays)
+						</div>
+					</div>
+						<label class="task-add-label">Critical Finish Date</label>
+						@Html.TextBoxFor(model => model.CriticalFinishDate, new { @class = "form-control", type = "date" })
+						@Html.ValidationMessageFor(model => model.CriticalFinishDate)
+						<label class="task-add-label">Created by</label>
+						@Html.TextBox("createdTextBox", Context.User.Identity.Name, new { @class = "form-control", @readonly = "readonly" })
+						<label class="task-add-label">Assigned to</label>
+						@Html.DropDownListFor(model => model.AssignedUserId, new List<SelectListItem>(
+						Model.AllUsers.Select(user => new SelectListItem { Text = user.UserName, Value = user.Id })),
+						new { @class = "form-control" })
+						<button type="submit" form="addTaskForm" class="center-block form-button">Save</button>
+				}
+			</div>
+		</div>
+	</div>
+</div>

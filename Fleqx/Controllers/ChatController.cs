@@ -17,7 +17,7 @@ namespace Fleqx.Controllers
 		/// Display the chat view.
 		/// </summary>
 		/// <returns></returns>
-		[HttpGet]
+		[ChildActionOnly]
 		public ActionResult Chat()
 		{
 			return View();
@@ -27,7 +27,7 @@ namespace Fleqx.Controllers
 		/// Return all the chat messages.
 		/// </summary>
 		/// <returns></returns>
-		[HttpGet]
+		[HttpPost]
 		public ActionResult ChatMessages()
 		{
 			using (var dbContext = GetDatabaseContext())

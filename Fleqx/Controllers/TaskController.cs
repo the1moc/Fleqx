@@ -57,6 +57,7 @@ namespace Fleqx.Controllers
 						CreatedUser          = task.CreatedUser,
 						AssignedUser         = task.AssignedUser,
 						TaskState            = task.TaskState,
+						TaskStateId          = task.TaskStateId,
 						AllUsers             = null
 					};
 				}).ToList();
@@ -70,7 +71,7 @@ namespace Fleqx.Controllers
 		/// </summary>
 		/// <param name="taskModel">The task model for the view.</param>
 		/// <returns></returns>
-		public ActionResult GetModalView(int taskId)
+		public ActionResult GetEditModalView(int taskId)
 		{
 			using (var dbContext = GetDatabaseContext())
 			{
@@ -88,6 +89,7 @@ namespace Fleqx.Controllers
 					CreatedUser = model.CreatedUser,
 					AssignedUser = model.AssignedUser,
 					TaskState = model.TaskState,
+					TaskStateId = model.TaskStateId,
 					AllUsers = dbContext.Users.ToList()
 				};
 				return PartialView("_TaskEditForm", viewModel);
@@ -101,35 +103,98 @@ namespace Fleqx.Controllers
 		/// <returns></returns>
 		public ActionResult Edit(TaskModel viewModel)
 		{
-			try
+			if (ModelState.IsValid)
 			{
-				using (var dbContext = GetDatabaseContext())
+				try
 				{
-					Task dbModel = dbContext.Tasks.Find(viewModel.TaskID);
+					using (var dbContext = GetDatabaseContext())
+					{
+						Task dbModel = dbContext.Tasks.Find(viewModel.TaskID);
 
-					dbModel.TaskID               = viewModel.TaskID;
-					dbModel.TasktTitle           = viewModel.TaskTitle;
-					dbModel.TaskDescription      = viewModel.TaskDescription;
-					dbModel.TaskPriority         = viewModel.TaskPriority;
-					dbModel.OriginalCreationDate = viewModel.OriginalCreationDate;
-					dbModel.LastRenewalDate      = viewModel.LastRenewalDate;
-					dbModel.CriticalFinishDate   = viewModel.CriticalFinishDate;
-					dbModel.EstimatedDays        = viewModel.EstimatedDays;
-					dbModel.CreatedUser          = viewModel.CreatedUser;
-					dbModel.AssignedUser         = viewModel.AssignedUser;
-					dbModel.TaskState            = viewModel.TaskState;
+						dbModel.TaskID = viewModel.TaskID;
+						dbModel.TasktTitle = viewModel.TaskTitle;
+						dbModel.TaskDescription = viewModel.TaskDescription;
+						dbModel.TaskPriority = viewModel.TaskPriority;
+						dbModel.OriginalCreationDate = viewModel.OriginalCreationDate;
+						dbModel.LastRenewalDate = viewModel.LastRenewalDate;
+						dbModel.CriticalFinishDate = viewModel.CriticalFinishDate;
+						dbModel.EstimatedDays = viewModel.EstimatedDays;
+						dbModel.CreatedUser = viewModel.CreatedUser;
+						dbModel.AssignedUser = viewModel.AssignedUser;
+						dbModel.TaskState = viewModel.TaskState;
+						dbModel.TaskStateId = viewModel.TaskStateId;
 
-					// Update the changes.
-					dbContext.Entry(dbModel).State = System.Data.Entity.EntityState.Modified;
-					dbContext.SaveChanges();
+						// Update the changes.
+						dbContext.Entry(dbModel).State = System.Data.Entity.EntityState.Modified;
+						dbContext.SaveChanges();
 
-					return new HttpStatusCodeResult(200);
+						return new HttpStatusCodeResult(200);
+					}
+				}
+				catch (Exception e)
+				{
+					return new HttpStatusCodeResult(500, "There was an error updating the task.");
 				}
 			}
-			catch(Exception e)
+			return new HttpStatusCodeResult(500, "The form was not filled out correctly");
+		}
+
+		/// <summary>
+		/// Gets the add modal for the specified task.
+		/// </summary>
+		/// <returns></returns>
+		public ActionResult GetAddModalView()
+		{
+			using (var dbContext = GetDatabaseContext())
 			{
-				return new HttpStatusCodeResult(500, "There was an error updating the task.");
+				TaskModel viewModel = new TaskModel
+				{
+					AllUsers = dbContext.Users.ToList()
+				};
+
+				return PartialView("_TaskAddForm", viewModel);
 			}
+		}
+
+		/// <summary>
+		/// Addd a task.
+		/// </summary>
+		/// <param name="task">The task model for the view.</param>
+		/// <returns></returns>
+		public ActionResult Add(TaskModel viewModel)
+		{
+			if (ModelState.IsValid)
+			{
+				try
+				{
+					using (var dbContext = GetDatabaseContext())
+					{
+						Task dbModel = new Task();
+
+						dbModel.TasktTitle = viewModel.TaskTitle;
+						dbModel.TaskDescription = viewModel.TaskDescription;
+						dbModel.TaskPriority = viewModel.TaskPriority;
+						dbModel.OriginalCreationDate = DateTime.Now;
+						dbModel.LastRenewalDate = DateTime.Now;
+						dbModel.CriticalFinishDate = viewModel.CriticalFinishDate;
+						dbModel.EstimatedDays = viewModel.EstimatedDays;
+						dbModel.CreatedUserId = viewModel.CreatedUserId;
+						dbModel.AssignedUserId = viewModel.AssignedUserId;
+						dbModel.TaskStateId = viewModel.TaskStateId;
+
+						// Update the changes.
+						dbContext.Tasks.Add(dbModel);
+						dbContext.SaveChanges();
+
+						return new HttpStatusCodeResult(200);
+					}
+				}
+				catch (Exception e)
+				{
+					return new HttpStatusCodeResult(500, "There was an error adding the task.");
+				}
+			}
+			return new HttpStatusCodeResult(500, "The form was not filled out correctly");
 		}
 	}
 }

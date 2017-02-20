@@ -6,21 +6,41 @@ namespace Fleqx.Models
 {
 	public class ChatMessageModel
 	{
-		// The chat message ID.
+		/// <summary>
+		/// Gets or sets the chat message identifier.
+		/// </summary>
+		/// <value>
+		/// The chat message identifier.
+		/// </value>
 		[Required]
 		public int ChatMessageID { get; set; }
 
-		// The chat content.
+		/// <summary>
+		/// Gets or sets the content of the chat message.
+		/// </summary>
+		/// <value>
+		/// The content of the chat message.
+		/// </value>
 		[Required]
 		[DataType(DataType.Text)]
 		public string ChatMessageContent { get; set; }
 
-		// When the message was created.
+		/// <summary>
+		/// Gets or sets the created.
+		/// </summary>
+		/// <value>
+		/// The created.
+		/// </value>
 		[Required]
 		[DataType(DataType.DateTime)]
 		public DateTime Created { get; set; }
 
-		// The user that posted the announcement.
+		/// <summary>
+		/// Gets or sets the user.
+		/// </summary>
+		/// <value>
+		/// The user.
+		/// </value>
 		public User User { get; set; }
 	}
 }

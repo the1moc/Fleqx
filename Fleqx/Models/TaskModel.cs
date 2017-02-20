@@ -9,50 +9,125 @@ namespace Fleqx.Models
 {
 	public class TaskModel
 	{
-		// The task ID (PK).
+		/// <summary>
+		/// Gets or sets the task identifier.
+		/// </summary>
+		/// <value>
+		/// The task identifier.
+		/// </value>
 		public int TaskID { get; set; }
 
-		// The task title.
+		/// <summary>
+		/// Gets or sets the task title.
+		/// </summary>
+		/// <value>
+		/// The task title.
+		/// </value>
+		[Required(ErrorMessage = "Required")]
 		public string TaskTitle { get; set; }
 
-		// The task description.
+		/// <summary>
+		/// Gets or sets the task description.
+		/// </summary>
+		/// <value>
+		/// The task description.
+		/// </value>
 		public string TaskDescription { get; set; }
 
-		// The task importance.
+		/// <summary>
+		/// Gets or sets the task priority.
+		/// </summary>
+		/// <value>
+		/// The task priority.
+		/// </value>
+		[Required(ErrorMessage = "Required")]
 		public int TaskPriority { get; set; }
 
-		// The time the task was created.
+		/// <summary>
+		/// Gets or sets the original creation date.
+		/// </summary>
+		/// <value>
+		/// The original creation date.
+		/// </value>
 		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 		public DateTime OriginalCreationDate { get; set; }
 
-		// The last time the task was renewed.
+		/// <summary>
+		/// Gets or sets the last renewal date.
+		/// </summary>
+		/// <value>
+		/// The last renewal date.
+		/// </value>
 		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 		public DateTime LastRenewalDate { get; set; }
 
-		// The time the task has to be done.
+		/// <summary>
+		/// Gets or sets the critical finish date.
+		/// </summary>
+		/// <value>
+		/// The critical finish date.
+		/// </value>
+		[Required(ErrorMessage = "Required")]
 		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 		public DateTime CriticalFinishDate { get; set; }
 
-		// The estimated number of days it will take to complete.
+		/// <summary>
+		/// Gets or sets the actual finish date.
+		/// </summary>
+		/// <value>
+		/// The actual finish date.
+		/// </value>
+		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+		public DateTime ActualFinishDate { get; set; }
+
+		/// <summary>
+		/// Gets or sets the estimated days.
+		/// </summary>
+		/// <value>
+		/// The estimated days.
+		/// </value>
+		[Required(ErrorMessage = "Required")]
 		public int EstimatedDays { get; set; }
 
-		// The user that created the task.
+		/// <summary>
+		/// Gets or sets the created user identifier.
+		/// </summary>
+		/// <value>
+		/// The created user identifier.
+		/// </value>
 		public string CreatedUserId { get; set; }
 
-		// The current state of the task.
+		/// <summary>
+		/// Gets or sets the task state identifier.
+		/// </summary>
+		/// <value>
+		/// The task state identifier.
+		/// </value>
+		[Required(ErrorMessage = "Required")]
 		public int TaskStateId { get; set; }
 
-		// The user that has been assigned the task.
+		/// <summary>
+		/// Gets or sets the assigned user identifier.
+		/// </summary>
+		/// <value>
+		/// The assigned user identifier.
+		/// </value>
+		[Required(ErrorMessage = "Required")]
 		public string AssignedUserId { get; set; }
 
-		// A list of all the users on the system.
+		/// <summary>
+		/// Gets or sets all users of the system.
+		/// </summary>
+		/// <value>
+		/// All users.
+		/// </value>
 		public List<User> AllUsers { get; set; }
 
-		// Foreign key references
+		/// <summary>
+		/// Foreign key references.
+		/// </summary>
 		public virtual TaskState TaskState { get; set; }
-
 		public virtual User CreatedUser { get; set; }
-
 		public virtual User AssignedUser { get; set; }
 	}
 }
