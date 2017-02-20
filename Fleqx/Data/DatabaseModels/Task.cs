@@ -40,11 +40,14 @@ namespace Fleqx.Data.DatabaseModels
 
 		// The actual date the task was finished.
 		[DataType(DataType.DateTime)]
-		public DateTime? ActualFinishDate { get; set; }
+		public DateTime ActualFinishDate { get; set; }
 
 		// The estimated number of days it will take to complete.
 		[Required]
-		public int EstimatedDays { get; set; }
+		public int EstimatedDaysTaken { get; set; }
+
+		// The actual number of days it took to complete the task.
+		public int ActualDaysTaken { get; set; }
 
 		// The user that created the task.
 		[Required]

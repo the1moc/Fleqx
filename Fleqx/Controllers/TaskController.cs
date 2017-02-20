@@ -53,7 +53,9 @@ namespace Fleqx.Controllers
 						OriginalCreationDate = task.OriginalCreationDate,
 						LastRenewalDate      = task.LastRenewalDate,
 						CriticalFinishDate   = task.CriticalFinishDate,
-						EstimatedDays        = task.EstimatedDays,
+						ActualFinishDate     = task.ActualFinishDate,
+						EstimatedDaysTaken   = task.EstimatedDaysTaken,
+						ActualDaysTaken      = task.ActualDaysTaken,
 						CreatedUser          = task.CreatedUser,
 						AssignedUser         = task.AssignedUser,
 						TaskState            = task.TaskState,
@@ -85,7 +87,9 @@ namespace Fleqx.Controllers
 					OriginalCreationDate = model.OriginalCreationDate,
 					LastRenewalDate = model.LastRenewalDate,
 					CriticalFinishDate = model.CriticalFinishDate,
-					EstimatedDays = model.EstimatedDays,
+					ActualFinishDate = model.ActualFinishDate,
+					EstimatedDaysTaken = model.EstimatedDaysTaken,
+					ActualDaysTaken = model.ActualDaysTaken,
 					CreatedUser = model.CreatedUser,
 					AssignedUser = model.AssignedUser,
 					TaskState = model.TaskState,
@@ -115,11 +119,11 @@ namespace Fleqx.Controllers
 						dbModel.TasktTitle = viewModel.TaskTitle;
 						dbModel.TaskDescription = viewModel.TaskDescription;
 						dbModel.TaskPriority = viewModel.TaskPriority;
-						dbModel.OriginalCreationDate = viewModel.OriginalCreationDate;
 						dbModel.LastRenewalDate = viewModel.LastRenewalDate;
 						dbModel.CriticalFinishDate = viewModel.CriticalFinishDate;
-						dbModel.EstimatedDays = viewModel.EstimatedDays;
-						dbModel.CreatedUser = viewModel.CreatedUser;
+						dbModel.ActualFinishDate = viewModel.ActualFinishDate;
+						dbModel.EstimatedDaysTaken = viewModel.EstimatedDaysTaken;
+						dbModel.ActualDaysTaken = viewModel.ActualDaysTaken;
 						dbModel.AssignedUser = viewModel.AssignedUser;
 						dbModel.TaskState = viewModel.TaskState;
 						dbModel.TaskStateId = viewModel.TaskStateId;
@@ -149,7 +153,10 @@ namespace Fleqx.Controllers
 			{
 				TaskModel viewModel = new TaskModel
 				{
-					AllUsers = dbContext.Users.ToList()
+					// Set some values to be passed to the new add form.
+					AllUsers = dbContext.Users.ToList(),
+					CriticalFinishDate = DateTime.Now,
+					ActualFinishDate = new DateTime(2050, 1, 1)
 				};
 
 				return PartialView("_TaskAddForm", viewModel);
@@ -177,7 +184,8 @@ namespace Fleqx.Controllers
 						dbModel.OriginalCreationDate = DateTime.Now;
 						dbModel.LastRenewalDate = DateTime.Now;
 						dbModel.CriticalFinishDate = viewModel.CriticalFinishDate;
-						dbModel.EstimatedDays = viewModel.EstimatedDays;
+						dbModel.ActualFinishDate = new DateTime(2050, 1, 1);
+						dbModel.EstimatedDaysTaken = viewModel.EstimatedDaysTaken;
 						dbModel.CreatedUserId = viewModel.CreatedUserId;
 						dbModel.AssignedUserId = viewModel.AssignedUserId;
 						dbModel.TaskStateId = viewModel.TaskStateId;
@@ -191,7 +199,7 @@ namespace Fleqx.Controllers
 				}
 				catch (Exception e)
 				{
-					return new HttpStatusCodeResult(500, "There was an error adding the task.");
+					return new HttpStatusCodeResult(500, "There was an error adding the task" + e.Message);
 				}
 			}
 			return new HttpStatusCodeResult(500, "The form was not filled out correctly");

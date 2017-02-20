@@ -239,6 +239,8 @@
     overflow: hidden;
     max-height: 100px;
     margin: 5px; }
+  .tasks-container .closed {
+    background-color: darkgray; }
   .tasks-container .open, .tasks-container .active, .tasks-container .closed {
     margin: 0 auto 5px auto;
     border-style: outset;

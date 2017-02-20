@@ -20,33 +20,49 @@
 					Model.CreatedUserId =  User.Identity.GetUserId();
 					@Html.HiddenFor(model => model.CreatedUserId);
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-12">
 							<label class="task-add-label">Title</label>
 							@Html.TextBoxFor(model => model.TaskTitle, new { @class = "form-control" })
 							@Html.ValidationMessageFor(model => model.TaskTitle)
 						</div>
+					</div>
+					<div class="row">
 						<div class="col-md-6">
 							<label class="task-add-label">Task State</label>
 							@Html.DropDownListFor(model => model.TaskStateId, ListControlHelper.TaskStates,
-							new { @class = "form-control" })
+							new { @class = "form-control", id = "task-state-selection" })
 						</div>
-					</div>
-					<label class="task-add-label">Description</label>
-					@Html.TextAreaFor(model => model.TaskDescription, new { @class = "form-control" })
-					<div class="row">
-						<div class="col-md-8">
+						<div class="col-md-6">
 							<label class="task-add-label">Task Priority</label>
 							@Html.DropDownListFor(model => model.TaskPriority, ListControlHelper.TaskPriority, new { @class = "form-control" })
 						</div>
-						<div class="col-md-4">
-							<label class="task-add-label">Estimated Days to Complete</label>
-							@Html.TextBoxFor(model => model.EstimatedDays, new { @class = "form-control" })
-							@Html.ValidationMessageFor(model => model.EstimatedDays)
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<label class="task-add-label">Description</label>
+							@Html.TextAreaFor(model => model.TaskDescription, new { @class = "form-control" })
 						</div>
 					</div>
-						<label class="task-add-label">Critical Finish Date</label>
-						@Html.TextBoxFor(model => model.CriticalFinishDate, new { @class = "form-control", type = "date" })
-						@Html.ValidationMessageFor(model => model.CriticalFinishDate)
+					<div class="row">
+						<div class="col-md-6">
+							<label class="task-add-label">Estimated Days to Complete</label>
+							@Html.TextBoxFor(model => model.EstimatedDaysTaken, new { @class = "form-control" })
+						</div>
+						<div class="col-md-6" id="actual-days">
+							<label class="task-edit-label">Actual Days to Complete</label>
+							@Html.TextBoxFor(model => model.ActualDaysTaken, new { @class = "form-control" })
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<label class="task-add-label">Critical Finish Date</label>
+							@Html.TextBoxFor(model => model.CriticalFinishDate, new { @class = "form-control date", @Value = Model.CriticalFinishDate.ToString("yyyy-MM-dd") })
+						</div>
+						<div class="col-md-6" id="actual-finish">
+							<label class="task-edit-label">Actual Finish Date</label>
+							@Html.TextBoxFor(model => model.ActualFinishDate, new { @class = "form-control date", @Value = Model.ActualFinishDate.ToString("yyyy-MM-dd") })
+						</div>
+					</div>
 						<label class="task-add-label">Created by</label>
 						@Html.TextBox("createdTextBox", Context.User.Identity.Name, new { @class = "form-control", @readonly = "readonly" })
 						<label class="task-add-label">Assigned to</label>

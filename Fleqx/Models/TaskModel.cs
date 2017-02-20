@@ -23,7 +23,7 @@ namespace Fleqx.Models
 		/// <value>
 		/// The task title.
 		/// </value>
-		[Required(ErrorMessage = "Required")]
+		[Required]
 		public string TaskTitle { get; set; }
 
 		/// <summary>
@@ -40,7 +40,7 @@ namespace Fleqx.Models
 		/// <value>
 		/// The task priority.
 		/// </value>
-		[Required(ErrorMessage = "Required")]
+		[Required]
 		public int TaskPriority { get; set; }
 
 		/// <summary>
@@ -49,7 +49,6 @@ namespace Fleqx.Models
 		/// <value>
 		/// The original creation date.
 		/// </value>
-		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 		public DateTime OriginalCreationDate { get; set; }
 
 		/// <summary>
@@ -58,7 +57,7 @@ namespace Fleqx.Models
 		/// <value>
 		/// The last renewal date.
 		/// </value>
-		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+		[Required]
 		public DateTime LastRenewalDate { get; set; }
 
 		/// <summary>
@@ -67,8 +66,7 @@ namespace Fleqx.Models
 		/// <value>
 		/// The critical finish date.
 		/// </value>
-		[Required(ErrorMessage = "Required")]
-		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+		[Required]
 		public DateTime CriticalFinishDate { get; set; }
 
 		/// <summary>
@@ -77,7 +75,6 @@ namespace Fleqx.Models
 		/// <value>
 		/// The actual finish date.
 		/// </value>
-		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 		public DateTime ActualFinishDate { get; set; }
 
 		/// <summary>
@@ -86,8 +83,17 @@ namespace Fleqx.Models
 		/// <value>
 		/// The estimated days.
 		/// </value>
-		[Required(ErrorMessage = "Required")]
-		public int EstimatedDays { get; set; }
+		[Required]
+		public int EstimatedDaysTaken { get; set; }
+
+		/// <summary>
+		/// Gets or sets the estimated days.
+		/// </summary>
+		/// <value>
+		/// The estimated days.
+		/// </value>
+		[Required]
+		public int ActualDaysTaken { get; set; }
 
 		/// <summary>
 		/// Gets or sets the created user identifier.

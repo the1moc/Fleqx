@@ -61,6 +61,10 @@
 		margin: 5px;
 	}
 
+	.closed {
+		background-color: darkgray;
+	}
+
 	.open, .active, .closed {
 		margin: 0 auto 5px auto;
 		border-style: outset;
