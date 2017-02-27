@@ -24,7 +24,7 @@ namespace FleqxTests.Controllers
 		public void Announcement_ReturnMainView()
 		{
 			AnnouncementController controller = new MockedAnnouncementController();
-			var result = controller.Announcements() as ViewResult;
+			var result                        = controller.Announcements() as ViewResult;
 			Assert.That(result.Model, Has.Count.EqualTo(1));
 			Assert.That(((List<AnnouncementModel>)result.Model).First(), Has.Property("AnnouncementContent"));
 		}
@@ -36,7 +36,7 @@ namespace FleqxTests.Controllers
 		public void CreateAnnouncement_ValidModel()
 		{
 			AnnouncementController controller = new MockedAnnouncementController();
-			var result = controller.CreateAnnouncement(new Mock<AnnouncementFormModel>().Object) as HttpStatusCodeResult;
+			var result                        = controller.CreateAnnouncement(new Mock<AnnouncementFormModel>().Object) as HttpStatusCodeResult;
 			Assert.AreEqual(result.StatusCode, 205);
 		}
 

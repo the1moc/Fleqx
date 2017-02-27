@@ -1,0 +1,435 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Cake.Npm</name>
+    </assembly>
+    <members>
+        <member name="T:Cake.Npm.INpmRunnerCommands">
+            <summary>
+            Npm Runner command interface
+            </summary>
+        </member>
+        <member name="M:Cake.Npm.INpmRunnerCommands.Install(System.Action{Cake.Npm.NpmInstallSettings})">
+            <summary>
+            execute 'npm install' with options
+            </summary>
+            <param name="configure">options when running 'npm install'</param>
+        </member>
+        <member name="M:Cake.Npm.INpmRunnerCommands.RunScript(System.String,System.Action{Cake.Npm.NpmRunScriptSettings})">
+            <summary>
+            execute 'npm run'/'npm run-script' with arguments
+            </summary>
+            <param name="scriptName">name of the </param>
+            <param name="configure"></param>
+        </member>
+        <member name="T:Cake.Npm.NpmLogLevel">
+            <summary>
+            Details the npm log levels
+            </summary>
+        </member>
+        <member name="F:Cake.Npm.NpmLogLevel.Silent">
+            <summary>
+            -s, --silent or --loglevel silent
+            </summary>
+        </member>
+        <member name="F:Cake.Npm.NpmLogLevel.Warn">
+            <summary>
+            -q, --quiet or --loglevel warn
+            </summary>
+        </member>
+        <member name="F:Cake.Npm.NpmLogLevel.Info">
+            <summary>
+            -d or --loglevel info
+            </summary>
+        </member>
+        <member name="F:Cake.Npm.NpmLogLevel.Verbose">
+            <summary>
+            -dd or --loglevel verbose
+            </summary>
+        </member>
+        <member name="F:Cake.Npm.NpmLogLevel.Silly">
+            <summary>
+            -ddd or --loglevel silly
+            </summary>
+        </member>
+        <member name="T:Cake.Npm.NpmPackSettings">
+            <summary>
+            npm pack options
+            </summary>
+        </member>
+        <member name="M:Cake.Npm.NpmPackSettings.#ctor(System.String)">
+            <summary>
+            'npm pack' settings with target
+            </summary>
+        </member>
+        <member name="M:Cake.Npm.NpmPackSettings.#ctor">
+            <summary>
+            'npm pack' settings
+            </summary>
+        </member>
+        <member name="P:Cake.Npm.NpmPackSettings.Target">
+            <summary>
+            Installation target
+            </summary>
+        </member>
+        <member name="M:Cake.Npm.NpmPackSettings.EvaluateCore(Cake.Core.IO.ProcessArgumentBuilder)">
+            <summary>
+            evaluate options
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="T:Cake.Npm.NpmRunScriptSettings">
+            <summary>
+            npm run-script options
+            </summary>
+        </member>
+        <member name="P:Cake.Npm.NpmRunScriptSettings.Arguments">
+            <summary>
+            Arguments to pass to the target script
+            </summary>
+        </member>
+        <member name="M:Cake.Npm.NpmRunScriptSettings.#ctor">
+            <summary>
+            npm 'run-script' settings
+            </summary>
+        </member>
+        <member name="M:Cake.Npm.NpmRunScriptSettings.#ctor(System.String)">
+            <summary>
+            npm 'run-script' settings for the named script
+            </summary>
+            <param name="command">script name to execute</param>
+        </member>
+        <member name="P:Cake.Npm.NpmRunScriptSettings.ScriptName">
+            <summary>
+            Name of the script to execute as defined in package.json
+            </summary>
+        </member>
+        <member name="M:Cake.Npm.NpmRunScriptSettings.EvaluateCore(Cake.Core.IO.ProcessArgumentBuilder)">
+            <summary>
+            evaluate options
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Cake.Npm.NpmRunScriptSettings.WithArgument(System.String)">
+            <summary>
+            adds
+            </summary>
+            <param name="arg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cake.Npm.NpmRunScriptSettings.WithForce(System.Boolean)">
+            <summary>
+            Unsupported
+            </summary>
+            <param name="force"></param>
+        </member>
+        <member name="T:Cake.Npm.NamespaceDoc">
+            <summary>
+            This namespace contain types used for operations using the Npm tool wrapper
+            </summary>
+        </member>
+        <member name="T:Cake.Npm.NpmInstallSettings">
+            <summary>
+            Npm install options
+            </summary>
+        </member>
+        <member name="M:Cake.Npm.NpmInstallSettings.#ctor">
+            <summary>
+            Npm "install" settings
+            </summary>
+        </member>
+        <member name="M:Cake.Npm.NpmInstallSettings.EvaluateCore(Cake.Core.IO.ProcessArgumentBuilder)">
+            <summary>
+            evaluate options
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Cake.Npm.NpmInstallSettings.Package(System.Uri)">
+            <summary>
+            install a package from the given url
+            </summary>
+            <param name="url">Url to directory containing package.json (see npm docs)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Cake.Npm.NpmInstallSettings.Package(System.String,System.String,System.String)">
+            <summary>
+            install a package by name, with optional version/tag and scope
+            </summary>
+            <param name="package"></param>
+            <param name="versionOrTag"></param>
+            <param name="scope"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cake.Npm.NpmInstallSettings.Globally(System.Boolean)">
+            <summary>
+            Applies the --global parameter
+            </summary>
+            <param name="enabled"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cake.Npm.NpmInstallSettings.ForProduction(System.Boolean)">
+            <summary>
+            Applies the --production parameter (can not be set when installing individual packages
+            </summary>
+            <param name="enabled"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Cake.Npm.NpmInstallSettings.Packages">
+            <summary>
+            List of packages to install
+            </summary>
+        </member>
+        <member name="P:Cake.Npm.NpmInstallSettings.Global">
+            <summary>
+            --global
+            </summary>
+        </member>
+        <member name="P:Cake.Npm.NpmInstallSettings.Production">
+            <summary>
+            --production
+            </summary>
+        </member>
+        <member name="T:Cake.Npm.INpmRunnerConfiguration">
+            <summary>
+            Npm Runner configuration
+            </summary>
+        </member>
+        <member name="M:Cake.Npm.INpmRunnerConfiguration.FromPath(Cake.Core.IO.DirectoryPath)">
+            <summary>
+            Sets the working directory for npm commands
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cake.Npm.INpmRunnerConfiguration.WithLogLevel(Cake.Npm.NpmLogLevel)">
+            <summary>
+            Sets the npm logging level
+            </summary>
+            <param name="logLevel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Cake.Npm.NpmRunner">
+            <summary>
+            A wrapper around the Node Npm package manager
+            </summary>
+        </member>
+        <member name="M:Cake.Npm.NpmRunner.#ctor(Cake.Core.IO.IFileSystem,Cake.Core.ICakeEnvironment,Cake.Core.IO.IProcessRunner,Cake.Core.Tooling.IToolLocator,Cake.Core.Diagnostics.Verbosity)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cake.Npm.NpmRunner" /> class.
+            </summary>
+            <param name="fileSystem">The file system</param>
+            <param name="environment">The environment</param>
+            <param name="processRunner">The process runner</param>
+            <param name="toolLocator">The tool locator</param>
+            <param name="cakeVerbosityLevel">Specifies the current Cake verbosity level</param>
+        </member>
+        <member name="M:Cake.Npm.NpmRunner.FromPath(Cake.Core.IO.DirectoryPath)">
+            <summary>
+            Sets the working directory for npm commands
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cake.Npm.NpmRunner.WithLogLevel(Cake.Npm.NpmLogLevel)">
+            <summary>
+            Sets the npm logging level
+            </summary>
+            <param name="logLevel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cake.Npm.NpmRunner.Install(System.Action{Cake.Npm.NpmInstallSettings})">
+            <summary>
+            execute 'npm install' with options
+            </summary>
+            <param name="configure">options when running 'npm install'</param>
+        </member>
+        <member name="M:Cake.Npm.NpmRunner.RunScript(System.String,System.Action{Cake.Npm.NpmRunScriptSettings})">
+            <summary>
+            execute 'npm run'/'npm run-script' with arguments
+            </summary>
+            <param name="scriptName">name of the </param>
+            <param name="configure"></param>
+        </member>
+        <member name="M:Cake.Npm.NpmRunner.Pack(System.String)">
+            <summary>
+            execute 'npm pack' with an optional installable target
+            </summary>
+            <param name="target">package folder, tarball, or name. Defaults to the current directory</param>
+        </member>
+        <member name="M:Cake.Npm.NpmRunner.GetToolName">
+            <summary>
+            Gets the name of the tool
+            </summary>
+            <returns>the name of the tool</returns>
+        </member>
+        <member name="M:Cake.Npm.NpmRunner.GetToolExecutableNames">
+            <summary>
+            Gets the name of the tool executable
+            </summary>
+            <returns>The tool executable name</returns>
+        </member>
+        <member name="M:Cake.Npm.NpmRunner.GetWorkingDirectory(Cake.Npm.NpmRunnerSettings)">
+            <summary>
+            Gets the working directory from the NpmRunnerSettings
+                        Defaults to the currently set working directory.
+            </summary>
+            <param name="settings">The settings.</param>
+            <returns>
+            The working directory for the tool.
+            </returns>
+        </member>
+        <member name="T:Cake.Npm.NpmRunnerAliases">
+            <summary>
+            Provides a wrapper around Npm functionality within a Cake build script
+            </summary>
+        </member>
+        <member name="M:Cake.Npm.NpmRunnerAliases.Npm(Cake.Core.ICakeContext)">
+            <summary>
+            Get an Npm runner
+            </summary>
+            <param name="context">The context</param>
+            <returns></returns>
+            <example>
+            <para>Run 'npm install'</para>
+            <para>Cake task:</para>
+            <code>
+            <![CDATA[
+            Task("Npm-FromPath")
+                .Does(() =>
+            {
+                Npm.FromPath("./dir-with-packagejson").Install();
+            });
+            ]]>
+            </code>
+            <para>Run 'npm' with logging level</para>
+            <para>Cake task:</para>
+            <code>
+            <![CDATA[
+            Task("Npm-LogLevel")
+                .Does(() =>
+            {
+                Npm.WithLogLevel(NpmLogLevel.Silent).Install(settings => settings.Package("package"));
+                Npm.WithLogLevel(NpmLogLevel.Warn).Install(settings => settings.Package("package"));
+                Npm.WithLogLevel(NpmLogLevel.Info).Install(settings => settings.Package("package"));
+                Npm.WithLogLevel(NpmLogLevel.Verbose).Install(settings => settings.Package("package"));
+                Npm.WithLogLevel(NpmLogLevel.Silly)
+                    .Install(settings => settings.Package("package1"))
+                    .Install(settings => settings.Package("package2"));
+            });
+            ]]>
+            </code>
+            <para>Run 'npm install'</para>
+            <para>Cake task:</para>
+            <code>
+            <![CDATA[
+            Task("Npm-Install")
+                .Does(() =>
+            {
+                Npm.Install();
+            });
+            ]]>
+            </code>
+            <para>Run 'npm install gulp'</para>
+            <para>Cake task:</para>
+            <code>
+            <![CDATA[
+            Task("Npm-Install-Gulp")
+                .Does(() =>
+            {
+                Npm.Install(settings => settings.Package("package"));
+            });
+            ]]>
+            </code>
+            <para>Run 'npm install gulp -g'</para>
+            <para>Cake task:</para>
+            <code>
+            <![CDATA[
+            Task("Npm-Install-Gulp")
+                .Does(() =>
+            {
+                Npm.Install(settings => settings.Package("package").Globally());
+            });
+            ]]>
+            </code>
+            <para>Run 'npm install --production'</para>
+            <para>Cake task:</para>
+            <code>
+            <![CDATA[
+            Task("Npm-Install-Production")
+                .Does(() =>
+            {
+                Npm.Install(settings => settings.ForProduction());
+            });
+            ]]>
+            </code>
+            <para>Run 'npm install --force'</para>
+            <para>Cake task:</para>
+            <code>
+            <![CDATA[
+            Task("Npm-Install-Force")
+                .Does(() =>
+            {
+                Npm.Install(settings => settings.Force());
+            });
+            ]]>
+            </code>
+            <para>Run 'npm run hello'</para>
+            <para>Cake task:</para>
+            <code>
+            <![CDATA[
+            Task("Npm-RunScript")
+                .Does(() =>
+            {
+                Npm.RunScript("hello");
+            });
+            ]]>
+            </code>
+            <para>Run 'npm pack'</para>
+            <para>Cake task:</para>
+            <code>
+            <![CDATA[
+            Task("Npm-RunScript")
+                .Does(() =>
+            {
+                Npm.Pack();
+            });
+            ]]>
+            </code>
+            </example>
+        </member>
+        <member name="T:Cake.Npm.NpmRunnerSettings">
+            <summary>
+            Npm runner settings
+            </summary>
+        </member>
+        <member name="P:Cake.Npm.NpmRunnerSettings.Command">
+            <summary>
+            The command being ran
+            </summary>
+        </member>
+        <member name="M:Cake.Npm.NpmRunnerSettings.#ctor(System.String)">
+            <summary>
+            Creates Npm Runner settings
+            </summary>
+            <param name="command">command to run</param>
+        </member>
+        <member name="P:Cake.Npm.NpmRunnerSettings.Force">
+            <summary>
+            Applies the --force parameter
+            </summary>
+        </member>
+        <member name="M:Cake.Npm.NpmRunnerSettings.WithForce(System.Boolean)">
+            <summary>
+            Whether to set --force
+            </summary>
+            <param name="enabled">should use --force</param>
+            <returns>the settings</returns>
+        </member>
+        <member name="M:Cake.Npm.NpmRunnerSettings.EvaluateCore(Cake.Core.IO.ProcessArgumentBuilder)">
+            <summary>
+            evaluate options
+            </summary>
+            <param name="args"></param>
+        </member>
+    </members>
+</doc>

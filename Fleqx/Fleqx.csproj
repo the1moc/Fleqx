@@ -42,6 +42,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <ExcludeGeneratedDebugSymbol>false</ExcludeGeneratedDebugSymbol>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -213,9 +214,6 @@
   <ItemGroup>
     <Content Include="Assets\logo.png" />
     <Content Include="Global.asax" />
-    <Content Include="bower.json" />
-    <Content Include="package.json" />
-    <Content Include="gulpfile.js" />
     <Content Include="Scripts\chat.js" />
     <Content Include="Scripts\contentloader.js" />
     <Content Include="Scripts\jquery.signalR-2.2.1.min.js" />
@@ -285,6 +283,8 @@
     <Content Include="Views\Shared\Styles\_homeLayout.scss" />
     <Content Include="Views\Security\Styles\_login.scss" />
     <Content Include="Styles\main.scss" />
+    <Content Include=".bowerrc" />
+    <Content Include="bower.json" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -303,16 +303,17 @@
     <Content Include="Views\Task\Styles\_tasks.scss" />
     <Content Include="Views\Task\_TaskEditForm.cshtml" />
     <Content Include="Views\Task\_TaskAddForm.cshtml" />
+    <None Include="Properties\PublishProfiles\Fleqx.pubxml" />
+    <None Include="Properties\PublishProfiles\Test.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="WebEssentials2015-Settings.json" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

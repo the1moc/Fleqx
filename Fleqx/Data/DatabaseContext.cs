@@ -8,7 +8,7 @@ namespace Fleqx.Data
 	public class DatabaseContext : IdentityDbContext<User>
 	{
 		public DatabaseContext()
-			: base("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|FleqxDatabase.mdf;Integrated Security=True")
+			: base("Data Source=TICKDINGLER;Initial Catalog=FleqxMain;User ID=sa;Password=Girfev4p;")
 		{
 			Database.SetInitializer(new DatabaseInitializer());
 		}

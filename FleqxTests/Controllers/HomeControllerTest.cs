@@ -19,7 +19,7 @@ namespace FleqxTests.Controllers
 		public void TestHomeView()
 		{
 			HomeController controller = new HomeController();
-			var result     = controller.Home();
+			var result                = controller.Home();
 			Assert.IsInstanceOf(typeof(ViewResult), result);
 			Assert.AreEqual("Home", ((ViewResult)result).ViewName);
 		}

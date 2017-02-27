@@ -137,7 +137,7 @@ namespace Fleqx.Controllers
 				}
 				catch (Exception e)
 				{
-					return new HttpStatusCodeResult(500, "There was an error updating the task.");
+					return new HttpStatusCodeResult(500, "There was an error updating the task: " + e.Message);
 				}
 			}
 			return new HttpStatusCodeResult(500, "The form was not filled out correctly");
@@ -199,7 +199,7 @@ namespace Fleqx.Controllers
 				}
 				catch (Exception e)
 				{
-					return new HttpStatusCodeResult(500, "There was an error adding the task" + e.Message);
+					return new HttpStatusCodeResult(500, "There was an error adding the task:" + e.Message);
 				}
 			}
 			return new HttpStatusCodeResult(500, "The form was not filled out correctly");

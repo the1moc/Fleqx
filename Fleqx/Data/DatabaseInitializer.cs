@@ -7,6 +7,10 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Fleqx.Data
 {
+	/// <summary>
+	/// Initialize the database if it has not been created.
+	/// </summary>
+	/// <seealso cref="System.Data.Entity.CreateDatabaseIfNotExists{Fleqx.Data.DatabaseContext}" />
 	public class DatabaseInitializer : CreateDatabaseIfNotExists<DatabaseContext>
 	{
 		protected override void Seed(DatabaseContext context)
