@@ -8,7 +8,10 @@ namespace Fleqx.Hubs
 {
 	public class ChatHub : Hub
 	{
-		// Save a new message to the page.
+		/// <summary>
+		/// Saves the specified message to the DB.
+		/// </summary>
+		/// <param name="message">The message.</param>
 		public void Save(string message)
 		{
 			using (DatabaseContext dbContext = new DatabaseContext())

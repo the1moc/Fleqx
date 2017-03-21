@@ -15,7 +15,7 @@ namespace Fleqx.Controllers
 		}
 
 		// Get a new instance of the database context.
-		protected virtual DatabaseContext GetDatabaseContext()
+		public virtual DatabaseContext GetDatabaseContext()
 		{
 			return new DatabaseContext();
 		}

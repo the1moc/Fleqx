@@ -23,6 +23,8 @@
 					@Html.TextBoxFor(model => model.LastName, new {@class = "form-control"})
 					<label class="signup-label">Role</label>
 					@Html.DropDownListFor(model => model.Role, ListControlHelper.Roles, new {@class = "form-control"})
+					<label class="signup-label">Team</label>
+					@Html.DropDownListFor(model => model.Team, ListControlHelper.Teams, new { @class = "form-control" })
 					<button type="submit" form="signupForm" class="center-block form-button">Submit</button>
 				}
 			</div>

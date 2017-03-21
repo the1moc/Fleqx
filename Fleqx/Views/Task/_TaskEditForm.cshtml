@@ -69,7 +69,7 @@
 						</div>
 					</div>
 						<label class="task-edit-label">Created by</label>
-						@Html.TextBox("createdTextBox", Model.AssignedUser.UserName, new { @class = "form-control", @readonly = "readonly" })
+						@Html.TextBox("createdTextBox", Model.CreatedUser.UserName, new { @class = "form-control", @readonly = "readonly" })
 						<label class="task-edit-label">Assigned to</label>
 						@Html.DropDownListFor(model => model.AssignedUserId, new List<SelectListItem>(
 						Model.AllUsers.Select(user => new SelectListItem { Text = user.UserName, Value = user.Id })),

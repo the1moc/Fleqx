@@ -57,6 +57,7 @@ namespace Fleqx.Controllers
 		[HttpPost]
 		public async Task<ActionResult> Login(LoginModel loginModel)
 		{
+			// Return to the login page if the view model was invalid (incomplete data)
 			if (!ModelState.IsValid)
 			{
 				return View("LoginPage");
@@ -105,7 +106,7 @@ namespace Fleqx.Controllers
 				FirstName = signupModel.FirstName,
 				LastName  = signupModel.LastName,
 				SecurityStamp = Guid.NewGuid().ToString(),
-				TeamId    = 1
+				TeamId    = signupModel.Team
 			};
 
 			// Check if the user already exists.
@@ -117,7 +118,7 @@ namespace Fleqx.Controllers
 			}
 
 			// Add the user to the database.
-			userManager.Create(user, signupModel.Password);
+			IdentityResult addedUser = userManager.Create(user, signupModel.Password);
 
 			// Add them to the correct role.
 			userManager.AddToRole(user.Id, ListControlHelper.GetRole(signupModel.Role));

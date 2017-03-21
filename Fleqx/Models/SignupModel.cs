@@ -52,5 +52,14 @@ namespace Fleqx.Models
 		/// </value>
 		[Required]
 		public int Role { get; set; }
+
+		/// <summary>
+		/// Gets or sets the team.
+		/// </summary>
+		/// <value>
+		/// The team.
+		/// </value>
+		[Required]
+		public int Team { get; set; }
 	}
 }

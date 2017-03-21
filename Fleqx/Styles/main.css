@@ -4,6 +4,10 @@
 .signup-form .form-control {
   margin-bottom: 10px; }
 
+.login-logo {
+  margin-top: 40px;
+  margin-bottom: 40px; }
+
 .login-panel .panel-heading {
   font-weight: normal;
   font-size: 40px; }
@@ -27,32 +31,36 @@
 .announcements h1 {
   text-align: center; }
 
-.announcements .card-block {
-  border-radius: 10px;
-  margin: 0 0 10px 0; }
-  .announcements .card-block .list-group {
-    margin-bottom: 0 !important; }
-    .announcements .card-block .list-group .list-group-item {
-      background-color: #ffffff;
-      color: #3a5068; }
-      .announcements .card-block .list-group .list-group-item .card-title {
-        background-color: #FFFFFF;
-        border-radius: 5px;
-        padding: 10px;
-        margin-top: 1px !important; }
-      .announcements .card-block .list-group .list-group-item .importance-icon {
-        font-size: 30px;
-        float: right; }
-        .announcements .card-block .list-group .list-group-item .importance-icon.importance-1 {
-          color: lightgreen; }
-        .announcements .card-block .list-group .list-group-item .importance-icon.importance-2 {
-          color: green; }
-        .announcements .card-block .list-group .list-group-item .importance-icon.importance-3 {
-          color: yellow; }
-        .announcements .card-block .list-group .list-group-item .importance-icon.importance-4 {
-          color: orange; }
-        .announcements .card-block .list-group .list-group-item .importance-icon.importance-5 {
-          color: red; }
+.announcements .announcement-cards {
+  margin-top: 120px;
+  overflow: visible;
+  overflow-wrap: break-word; }
+  .announcements .announcement-cards .card-block {
+    border-radius: 10px;
+    margin: 0 0 10px 0; }
+    .announcements .announcement-cards .card-block .list-group {
+      margin-bottom: 0 !important; }
+      .announcements .announcement-cards .card-block .list-group .list-group-item {
+        background-color: #ffffff;
+        color: #3a5068; }
+        .announcements .announcement-cards .card-block .list-group .list-group-item .card-title {
+          background-color: #FFFFFF;
+          border-radius: 5px;
+          padding: 10px;
+          margin-top: 1px !important; }
+        .announcements .announcement-cards .card-block .list-group .list-group-item .importance-icon {
+          font-size: 30px;
+          float: right; }
+          .announcements .announcement-cards .card-block .list-group .list-group-item .importance-icon.importance-1 {
+            color: lightgreen; }
+          .announcements .announcement-cards .card-block .list-group .list-group-item .importance-icon.importance-2 {
+            color: green; }
+          .announcements .announcement-cards .card-block .list-group .list-group-item .importance-icon.importance-3 {
+            color: yellow; }
+          .announcements .announcement-cards .card-block .list-group .list-group-item .importance-icon.importance-4 {
+            color: orange; }
+          .announcements .announcement-cards .card-block .list-group .list-group-item .importance-icon.importance-5 {
+            color: red; }
 
 .announcements .add-button {
   text-align: center; }
@@ -64,14 +72,40 @@
 .announcement-form textarea {
   max-width: 100%; }
 
+.announcement-filter {
+  z-index: 1;
+  top: 5px;
+  left: 160px;
+  width: calc(100% - 475px);
+  position: fixed;
+  background-color: #ffffff !important;
+  text-align: center;
+  border-style: ridge; }
+  .announcement-filter .row {
+    margin: 0;
+    border-style: ridge; }
+  .announcement-filter .form-group {
+    margin-bottom: 5px !important;
+    color: #ffffff; }
+    .announcement-filter .form-group .form-control {
+      cursor: pointer; }
+  .announcement-filter .filter-form-label {
+    color: #3a5068; }
+  .announcement-filter .standard-button {
+    margin-bottom: 5px;
+    background-color: #FFFFFF;
+    color: #0078d7; }
+    .announcement-filter .standard-button:hover {
+      color: #4CAF50; }
+
 .chat-container {
+  z-index: 3;
   height: 100%;
   float: right;
-  top: 0;
+  top: 5px;
   right: 0;
   position: fixed;
   position: fixed;
-  margin-top: 10px;
   margin-right: 5px;
   background-color: #FFFFFF; }
   .chat-container ::-webkit-scrollbar {
@@ -137,10 +171,12 @@
     margin-left: 150px;
     margin-right: 305px; }
   .home #content {
+    z-index: 0;
     margin-left: 10px;
     margin-right: 10px;
     margin-top: 10px;
-    max-height: 100%; }
+    max-height: 100%;
+    min-width: 400px; }
   .home .sidepanel {
     height: 100%;
     float: left;
@@ -202,16 +238,21 @@
     margin: 0 0 5px 0;
     background-color: #0078d7;
     color: #FFFFFF; }
-  .tasks-container h2 {
-    background-color: #0078d7;
-    color: #FFFFFF;
-    margin: 0 0 10px 0 !important;
-    padding: 5px;
+  .tasks-container .task-heading {
     text-align: center; }
+    .tasks-container .task-heading.task-section {
+      background-color: #0078d7;
+      color: #FFFFFF;
+      margin: 0 0 5px 0 !important;
+      padding: 5px; }
+    .tasks-container .task-heading.task-item {
+      padding: 5px;
+      background-color: lightgray;
+      margin-top: 0; }
   .tasks-container .add-task {
     width: 90%;
     margin-bottom: 5px;
-    border-style: outset;
+    border-style: groove;
     background-color: #FFFFFF;
     color: #0078d7; }
     .tasks-container .add-task:hover {
@@ -239,19 +280,19 @@
     overflow: hidden;
     max-height: 100px;
     margin: 5px; }
-  .tasks-container .closed {
-    background-color: darkgray; }
   .tasks-container .open, .tasks-container .active, .tasks-container .closed {
     margin: 0 auto 5px auto;
-    border-style: outset;
+    border-style: hidden;
     width: 90%;
     border-radius: 5px;
     padding: 5px;
-    cursor: pointer; }
+    cursor: pointer;
+    background-color: #F0F0F0; }
     .tasks-container .open:hover, .tasks-container .active:hover, .tasks-container .closed:hover {
-      border-style: inset;
-      background-color: #f2f2f2;
+      background-color: lightgray;
       cursor: grab; }
+      .tasks-container .open:hover .task-item, .tasks-container .active:hover .task-item, .tasks-container .closed:hover .task-item {
+        background-color: #F0F0F0; }
   .tasks-container .task-edit-form {
     text-align: left; }
     .tasks-container .task-edit-form .row {

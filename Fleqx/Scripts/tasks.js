@@ -15,7 +15,7 @@
 				$("#actual-finish").hide();
 			}
 
-			$(".date").datepicker();
+			$(".date").datepicker({ dateFormat: "yy-mm-dd" });
 		});
 	})
 

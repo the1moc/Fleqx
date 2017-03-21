@@ -12,7 +12,7 @@ namespace Fleqx.Data.DatabaseModels
 		// The task title.
 		[DataType(DataType.Text)]
 		[Required]
-		public string TasktTitle { get; set; }
+		public string TaskTitle { get; set; }
 
 		// The task description.
 		[DataType(DataType.MultilineText)]

@@ -7,18 +7,27 @@
 		color: #FFFFFF;
 	}
 
-	h2 {
-		background-color: $task-section-heading-color;
-		color: #FFFFFF;
-		margin: 0 0 10px 0 !important;
-		padding: 5px;
+	.task-heading {
 		text-align: center;
+
+		&.task-section {
+			background-color: $task-section-heading-color;
+			color: #FFFFFF;
+			margin: 0 0 5px 0 !important;
+			padding: 5px;
+		}
+
+		&.task-item {
+			padding: 5px;
+			background-color: lightgray;
+			margin-top: 0;
+		}
 	}
 
 	.add-task {
 		width: 90%;
 		margin-bottom: 5px;
-		border-style: outset;
+		border-style: groove;
 		background-color: #FFFFFF;
 		color: #0078d7;
 
@@ -61,22 +70,21 @@
 		margin: 5px;
 	}
 
-	.closed {
-		background-color: darkgray;
-	}
-
 	.open, .active, .closed {
 		margin: 0 auto 5px auto;
-		border-style: outset;
+		border-style: hidden;
 		width: 90%;
 		border-radius: 5px;
 		padding: 5px;
 		cursor: pointer;
-
+		background-color: #F0F0F0;
 		&:hover {
-			border-style: inset;
-			background-color: #f2f2f2;
+			background-color: lightgray;
 			cursor: grab;
+
+			.task-item {
+				background-color: #F0F0F0;
+			}
 		}
 	}
 

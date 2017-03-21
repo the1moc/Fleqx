@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using Fleqx.Controllers;
 using System.Web.Mvc;
+using Moq;
 
 namespace FleqxTests.Controllers
 {
@@ -18,8 +19,10 @@ namespace FleqxTests.Controllers
 		[Test]
 		public void TestHomeView()
 		{
-			HomeController controller = new HomeController();
-			var result                = controller.Home();
+			Mock<HomeController> controller = new Mock<HomeController>();
+			controller.CallBase = true;
+
+			var result                = controller.Object.Home();
 			Assert.IsInstanceOf(typeof(ViewResult), result);
 			Assert.AreEqual("Home", ((ViewResult)result).ViewName);
 		}

@@ -1,89 +1,91 @@
 ﻿.home {
-	width: 100%;
-	min-height: 100%;
+    width: 100%;
+    min-height: 100%;
 
-	.content-container {
-		margin-left: 150px;
-		margin-right: 305px;
-	}
+    .content-container {
+        margin-left: 150px;
+        margin-right: 305px;
+    }
 
-	#content {
-		margin-left: 10px;
-		margin-right: 10px;
-		margin-top: 10px;
-		max-height: 100%;
-	}
+    #content {
+        z-index: 0;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 10px;
+        max-height: 100%;
+        min-width: 400px;
+    }
 
-	.sidepanel {
-		height: 100%;
-		float: left;
-		top: 0;
-		left: 0;
-		background-color: $sidepanel-background-color;
-		position: fixed;
-		min-width: 150px;
-		max-width: 150px;
+    .sidepanel {
+        height: 100%;
+        float: left;
+        top: 0;
+        left: 0;
+        background-color: $sidepanel-background-color;
+        position: fixed;
+        min-width: 150px;
+        max-width: 150px;
 
-		.userinformation {
-			position: relative;
-			text-align: center;
-			margin-bottom: 10%;
-			margin-top: 5%;
-			background-color: $sidebar-title-background;
-			padding: 10px;
-		}
+        .userinformation {
+            position: relative;
+            text-align: center;
+            margin-bottom: 10%;
+            margin-top: 5%;
+            background-color: $sidebar-title-background;
+            padding: 10px;
+        }
 
-		.username {
-			position: relative;
-			text-align: center;
-			font-size: 16px;
-			color: $sidebar-title-color;
-		}
+        .username {
+            position: relative;
+            text-align: center;
+            font-size: 16px;
+            color: $sidebar-title-color;
+        }
 
-		ul {
-			list-style: none;
-			padding-left: 0;
+        ul {
+            list-style: none;
+            padding-left: 0;
 
-			.panel-button {
-				margin: 0 0 10px 0;
-				text-align: left;
-				font-size: 15px;
-				width: 100%;
-				border: none;
-				color: $button-color;
-				background-color: $button-background-color;
-				padding: 10px 10px 10px 10px;
+            .panel-button {
+                margin: 0 0 10px 0;
+                text-align: left;
+                font-size: 15px;
+                width: 100%;
+                border: none;
+                color: $button-color;
+                background-color: $button-background-color;
+                padding: 10px 10px 10px 10px;
 
-				.glyphicon {
-					margin-left: 1px;
-					margin-right: 10px;
-				}
+                .glyphicon {
+                    margin-left: 1px;
+                    margin-right: 10px;
+                }
 
-					&:hover {
-						background-color: $button-hover-background-color;
-						color: $button-hover-color;
-					}
+                    &:hover {
+                        background-color: $button-hover-background-color;
+                        color: $button-hover-color;
+                    }
 
-				&.logout-button {
-					bottom: 0;
-					position: absolute;
-					text-align: center;
-					margin-bottom: 0;
-					padding: 15px 0 10px 0 !important;
+                &.logout-button {
+                    bottom: 0;
+                    position: absolute;
+                    text-align: center;
+                    margin-bottom: 0;
+                    padding: 15px 0 10px 0 !important;
 
-					&:hover {
-						background-color: $logout-button-hover-background-color;
-						color: $button-color;
-					}
-				}
-			}
-		}
-	}
-	.show-chat {
-		position: fixed;
-		bottom: 0;
-		right: 0;
-		margin: 0 10px 5px 0;
-		padding: 5px;
-	}
+                    &:hover {
+                        background-color: $logout-button-hover-background-color;
+                        color: $button-color;
+                    }
+                }
+            }
+        }
+    }
+    .show-chat {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        margin: 0 10px 5px 0;
+        padding: 5px;
+    }
 }

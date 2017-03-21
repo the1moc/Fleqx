@@ -217,6 +217,7 @@
     <Content Include="Scripts\chat.js" />
     <Content Include="Scripts\contentloader.js" />
     <Content Include="Scripts\jquery.signalR-2.2.1.min.js" />
+    <Content Include="Scripts\announcements.js" />
     <Content Include="Scripts\tasks.js" />
     <Content Include="Styles\main - Copy.css">
       <DependentUpon>_variables.scss</DependentUpon>
@@ -257,6 +258,7 @@
     </Compile>
     <Compile Include="Data\DatabaseModels\Announcement.cs" />
     <Compile Include="Hubs\ChatHub.cs" />
+    <Compile Include="Models\AnnouncementFilterModel.cs" />
     <Compile Include="Models\AnnouncementFormModel.cs" />
     <Compile Include="Models\ChatMessageModel.cs" />
     <Compile Include="Models\AnnouncementModel.cs" />
@@ -305,6 +307,8 @@
     <Content Include="Views\Task\_TaskAddForm.cshtml" />
     <None Include="Properties\PublishProfiles\Fleqx.pubxml" />
     <None Include="Properties\PublishProfiles\Test.pubxml" />
+    <Content Include="Views\Announcement\_AnnouncementFilterForm.cshtml" />
+    <Content Include="Views\Announcement\Styles\_announcementFilter.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

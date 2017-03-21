@@ -14,12 +14,12 @@ namespace Fleqx.Controllers
 	public class TaskController : BaseController
 	{
 		/// <summary>
-		/// Taskses the specified tasks.
+		/// Return the desires tasks partial view.
 		/// </summary>
 		/// <param name="tasks">The tasks that have to be shown</param>
 		/// <returns></returns>
 		[HttpGet]
-		public ActionResult Tasks(string tasksDesired)
+		public virtual ActionResult Tasks(string tasksDesired)
 		{
 			using (var dbContext = GetDatabaseContext())
 			{
@@ -47,7 +47,7 @@ namespace Fleqx.Controllers
 					return new TaskModel
 					{
 						TaskID               = task.TaskID,
-						TaskTitle            = task.TasktTitle,
+						TaskTitle            = task.TaskTitle,
 						TaskDescription      = task.TaskDescription,
 						TaskPriority         = task.TaskPriority,
 						OriginalCreationDate = task.OriginalCreationDate,
@@ -81,7 +81,7 @@ namespace Fleqx.Controllers
 				TaskModel viewModel = new TaskModel
 				{
 					TaskID = model.TaskID,
-					TaskTitle = model.TasktTitle,
+					TaskTitle = model.TaskTitle,
 					TaskDescription = model.TaskDescription,
 					TaskPriority = model.TaskPriority,
 					OriginalCreationDate = model.OriginalCreationDate,
@@ -92,6 +92,7 @@ namespace Fleqx.Controllers
 					ActualDaysTaken = model.ActualDaysTaken,
 					CreatedUser = model.CreatedUser,
 					AssignedUser = model.AssignedUser,
+					AssignedUserId = model.AssignedUserId,
 					TaskState = model.TaskState,
 					TaskStateId = model.TaskStateId,
 					AllUsers = dbContext.Users.ToList()
@@ -116,7 +117,7 @@ namespace Fleqx.Controllers
 						Task dbModel = dbContext.Tasks.Find(viewModel.TaskID);
 
 						dbModel.TaskID = viewModel.TaskID;
-						dbModel.TasktTitle = viewModel.TaskTitle;
+						dbModel.TaskTitle = viewModel.TaskTitle;
 						dbModel.TaskDescription = viewModel.TaskDescription;
 						dbModel.TaskPriority = viewModel.TaskPriority;
 						dbModel.LastRenewalDate = viewModel.LastRenewalDate;
@@ -124,8 +125,7 @@ namespace Fleqx.Controllers
 						dbModel.ActualFinishDate = viewModel.ActualFinishDate;
 						dbModel.EstimatedDaysTaken = viewModel.EstimatedDaysTaken;
 						dbModel.ActualDaysTaken = viewModel.ActualDaysTaken;
-						dbModel.AssignedUser = viewModel.AssignedUser;
-						dbModel.TaskState = viewModel.TaskState;
+						dbModel.AssignedUserId = viewModel.AssignedUserId;
 						dbModel.TaskStateId = viewModel.TaskStateId;
 
 						// Update the changes.
@@ -178,7 +178,7 @@ namespace Fleqx.Controllers
 					{
 						Task dbModel = new Task();
 
-						dbModel.TasktTitle = viewModel.TaskTitle;
+						dbModel.TaskTitle = viewModel.TaskTitle;
 						dbModel.TaskDescription = viewModel.TaskDescription;
 						dbModel.TaskPriority = viewModel.TaskPriority;
 						dbModel.OriginalCreationDate = DateTime.Now;

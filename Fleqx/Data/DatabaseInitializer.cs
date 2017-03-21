@@ -102,7 +102,7 @@ namespace Fleqx.Data
 				context.Tasks.Add(new Task
 				{
 					TaskID = 1,
-					TasktTitle = "Add More Tasks",
+					TaskTitle = "Add More Tasks",
 					TaskDescription = "I am open!",
 					TaskPriority = 1,
 					OriginalCreationDate = DateTime.Now,
@@ -119,7 +119,7 @@ namespace Fleqx.Data
 				context.Tasks.Add(new Task
 				{
 					TaskID = 2,
-					TasktTitle = "Add More Tasks",
+					TaskTitle = "Add More Tasks",
 					TaskDescription = "I am active!",
 					TaskPriority = 1,
 					OriginalCreationDate = DateTime.Now,
@@ -136,7 +136,7 @@ namespace Fleqx.Data
 				context.Tasks.Add(new Task
 				{
 					TaskID = 3,
-					TasktTitle = "Add More Tasks",
+					TaskTitle = "Add More Tasks",
 					TaskDescription = "I am closed!",
 					TaskPriority = 1,
 					OriginalCreationDate = DateTime.Now,

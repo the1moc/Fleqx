@@ -7,10 +7,20 @@ namespace Fleqx.Data.DatabaseModels
 {
 	public class TaskState
 	{
-		// The task state ID (PK).
+		/// <summary>
+		/// Gets or sets the task state identifier.
+		/// </summary>
+		/// <value>
+		/// The task state identifier.
+		/// </value>
 		public int TaskStateID { get; set; }
 
-		// The task state.
+		/// <summary>
+		/// Gets or sets the current task state.
+		/// </summary>
+		/// <value>
+		/// The current task state.
+		/// </value>
 		[Required]
 		public string TaskStateCurrent { get; set; }
 

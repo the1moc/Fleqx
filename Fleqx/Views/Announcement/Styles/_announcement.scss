@@ -1,59 +1,67 @@
 ﻿.announcements {
-	h1 {
-		text-align: center;
-	}
+    h1 {
+        text-align: center;
+    }
 
-	.card-block {
-		border-radius: 10px;
-		margin: 0 0 10px 0;
+    .announcement-cards {
+        margin-top: 120px;
+        overflow: visible;
+        overflow-wrap: break-word;
 
-		.list-group {
-			margin-bottom: 0 !important;
-			.list-group-item {
-				background-color: #ffffff;
-				color: #3a5068;
-				.card-title {
-					background-color: $card-header-background-color;
-					border-radius: 5px;
-					padding: 10px;
-					margin-top: 1px !important;
-				}
+        .card-block {
+            border-radius: 10px;
+            margin: 0 0 10px 0;
 
-				.importance-icon {
-					font-size: 30px;
-					float: right;
-					&.importance-1 {
-						
-						color: $low;
-					}
+            .list-group {
+                margin-bottom: 0 !important;
 
-					&.importance-2 {
-						color: $low-medium;
-					}
+                .list-group-item {
+                    background-color: #ffffff;
+                    color: #3a5068;
 
-					&.importance-3 {
-						color: $medium;
-					}
+                    .card-title {
+                        background-color: $card-header-background-color;
+                        border-radius: 5px;
+                        padding: 10px;
+                        margin-top: 1px !important;
+                    }
 
-					&.importance-4 {
-						color: $medium-high;
-					}
+                    .importance-icon {
+                        font-size: 30px;
+                        float: right;
 
-					&.importance-5 {
-						color: $high;
-					}
-				}
-			}
-		}
-	}
+                        &.importance-1 {
+                            color: $low;
+                        }
 
-	.add-button {
-		text-align: center;
+                        &.importance-2 {
+                            color: $low-medium;
+                        }
 
-		.standard-button {
-			margin-bottom: 5px;
-			padding: 5px;
-			position: center;
-		}
-	}
+                        &.importance-3 {
+                            color: $medium;
+                        }
+
+                        &.importance-4 {
+                            color: $medium-high;
+                        }
+
+                        &.importance-5 {
+                            color: $high;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .add-button {
+        text-align: center;
+
+        .standard-button {
+            margin-bottom: 5px;
+            padding: 5px;
+            position: center;
+        }
+    }
 }

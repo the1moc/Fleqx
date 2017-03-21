@@ -3,31 +3,42 @@
 @model List<Fleqx.Models.AnnouncementModel>
 
 <div class="announcements">
-	@if (Model != null)
-	{
-		foreach (AnnouncementModel announcement in Model)
-		{
-			<div class="card">
-				<div class="card-block">
-					<ul class="list-group">
-						<li class="list-group-item">
-							<h1 class="card-title">@announcement.AnnouncementTitle</h1>
-							<p class="card-text">@announcement.AnnouncementContent</p>
-						</li>
-						<li class="list-group-item">
-							<p>Created by @announcement.User.FirstName @announcement.User.LastName at @announcement.Created <i class="importance-@announcement.AnnouncementImportance importance-icon glyphicon glyphicon-fire"></i></p>
-						</li>
-					</ul>
-				</div>
-			</div>
-		}
-	}
+    <div class="filter-container">
+        @if (ViewBag.filterModel == null)
+        {
+            Html.RenderAction("AnnouncementFilterForm", "Announcement");
+        }
+        else
+        {
+            Html.RenderPartial("_AnnouncementFilterForm", (AnnouncementFilterModel)ViewBag.filterModel);
+        }
+    </div>
+    <div class="announcement-cards">
+        @if (Model != null)
+        {
+            foreach (AnnouncementModel announcement in Model)
+            {
+                <div class="card">
+                    <div class="card-block">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <h1 class="card-title">@announcement.AnnouncementTitle</h1>
+                                <p class="card-text">@announcement.AnnouncementContent</p>
+                            </li>
+                            <li class="list-group-item">
+                                <p>Created by @announcement.User.FirstName @announcement.User.LastName at @announcement.Created <i class="importance-@announcement.AnnouncementImportance importance-icon glyphicon glyphicon-fire"></i></p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>}
+        }
+    </div>
 
-	@if (Startup.UserManager.IsInRole(User.Identity.GetUserId(), "Admin"))
-	{
-		<div class="add-button">
-			<button class="standard-button" data-toggle="modal" data-target="#announcementModal"><i class="glyphicon glyphicon-pencil"></i> Add Anouncement</button>
-		</div>
-	}
-	@Html.Partial("~/Views/Announcement/_AnnouncementForm.cshtml", new AnnouncementFormModel())
+    @if (Startup.UserManager.IsInRole(User.Identity.GetUserId(), "Admin"))
+    {
+        <div class="add-button">
+            <button class="standard-button" data-toggle="modal" data-target="#announcementModal"><i class="glyphicon glyphicon-pencil"></i> Add Anouncement</button>
+        </div>
+    }
+    @Html.Partial("~/Views/Announcement/_AnnouncementForm.cshtml", new AnnouncementFormModel())
 </div>
