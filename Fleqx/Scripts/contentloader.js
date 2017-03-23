@@ -8,44 +8,21 @@ $(document).ready(function()
 
     // If the content is empty, load in the announcements content.
     if ($("#content").is(":empty")) {
-        $("#content").load("/Announcement/Announcements", function()
-        {
+        $("#content").load("/Announcement/Announcements", function() {
             $(".date").datepicker({ dateFormat: "yy-mm-dd" });
         });
     }
 
     // On click of a section button, load the partial view from the controller.
     $(".panel-button").click(function() {
-        $("#content").load($(this).data("url"));
+        $("#content").load($(this).data("url"), function() {
+            // Hacky, but initialise the date controls
+            $(".date").datepicker({ dateFormat: "yy-mm-dd" });
+        });
     });
 
-    // Hide the show chat button
-    if ($(".chat-container").is(":visible"))
-    {
-        $(".show-chat").hide();
-    }
-
-    // Show the chat
-    $(".chat-container .panel-heading").click(function()
-    {
-        $(".chat-container").hide();
-        $(".content-container").css("margin-right", 0);
-        $(".filter-form").css("width", "calc(100% - 170px)");
-        $(".show-chat").show();
-    })
-
-    // Hide the chat
-    $(".show-chat").click(function()
-    {
-        $(".chat-container").show();
-        $(".content-container").css("margin-right", 300);
-        $(".filter-form").css("width", "calc(100% - 470px)");
-        $(".show-chat").hide();
-    })
-
     // When a modal is shown, make it draggable.
-    $(document).on("shown.bs.modal", ".modal", function()
-    {
+    $(document).on("shown.bs.modal", ".modal", function() {
         makeDraggableModal();
     })
 })

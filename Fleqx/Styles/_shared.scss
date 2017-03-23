@@ -2,73 +2,111 @@
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-	-webkit-box-shadow: 0 0 0px 1000px #FFFFFF inset;
+    -webkit-box-shadow: 0 0 0px 1000px #FFFFFF inset;
 }
 
 .modal {
-	.modal-header {
-		background-color: $modal-header-background-color;
-		color: $modal-header-color;
+    .modal-header {
+        background-color: $modal-header-background-color;
+        color: $modal-header-color;
 
-		.modal-title {
-			position: absolute;
-		}
-	}
-	.modal-body {
-		textarea {
-			max-width: 100%;
-		}
-	}
+        .modal-title {
+            position: absolute;
+        }
+    }
+    .modal-body {
+        textarea {
+            max-width: 100%;
+        }
+    }
 }
 
 .login-panel {
-	max-width: 75%;
-	margin-top: 1%;
-	background-color: $panel-background-color;
+    max-width: 75%;
+    margin-top: 1%;
+    background-color: $panel-background-color;
 
-	.panel-heading {
-		background-color: transparent !important;
-		color: $panel-heading-color !important;
-	}
+    .panel-heading {
+        background-color: transparent !important;
+        color: $panel-heading-color !important;
+    }
 }
 
 .form {
-	max-width: 100%;
-	background-color: $form-background-color;
-	outline: 0;
+    max-width: 100%;
+    background-color: $form-background-color;
+    outline: 0;
 
-	.form-button {
-		margin-top: 1%;
-		margin-bottom: 1%;
-		width: 95%;
-		background-color: $button-background-color;
-		color: $button-color;
-		border-color: transparent;
-		border-radius: 5px;
+    .form-button {
+        margin-top: 1%;
+        margin-bottom: 1%;
+        width: 95%;
+        background-color: $button-background-color;
+        color: $button-color;
+        border-color: transparent;
+        border-radius: 5px;
 
-		&:hover {
-			background-color: $button-hover-background-color;
-			color: $button-hover-color;
-			border-style: solid;
-			border-color: $button-hover-color;
-		}
-	}
+        &:hover {
+            background-color: $button-hover-background-color;
+            color: $button-hover-color;
+            border-style: solid;
+            border-color: $button-hover-color;
+        }
+    }
 
-	label {
-		margin-bottom: 0;
-	}
+    label {
+        margin-bottom: 0;
+    }
 }
 
 .standard-button {
-	background-color: $button-background-color;
-	color: $button-color;
-	border-radius: 5px;
-	border: none;
-	font-size: 20px;
-	outline: 0;
+    background-color: $button-background-color;
+    color: $button-color;
+    border-radius: 5px;
+    border: none;
+    font-size: 20px;
+    outline: 0;
 
-	&:hover {
-		background-color: $button-hover-background-color;
-		color: $button-hover-color;
-	}
+    &:hover {
+        background-color: $button-hover-background-color;
+        color: $button-hover-color;
+    }
+}
+
+.filter-form {
+    z-index: 1;
+    top: 5px;
+    left: 160px;
+    width: calc(100% - 475px);
+    position: fixed;
+    background-color: #ffffff !important;
+    text-align: center;
+    border-style: ridge;
+    .row {
+        margin: 0;
+        border-style: ridge;
+    }
+
+    .form-group {
+        margin-bottom: 5px !important;
+        color: #ffffff;
+
+        .form-control {
+            cursor: pointer;
+        }
+    }
+
+    .filter-form-label {
+        color: #3a5068;
+    }
+
+    .standard-button {
+        margin-bottom: 5px;
+        background-color: #FFFFFF;
+        color: #0078d7;
+
+        &:hover {
+            color: #4CAF50;
+        }
+    }
 }

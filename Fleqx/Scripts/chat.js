@@ -3,41 +3,67 @@
 /// 
 /// <reference path="~/Scripts/jquery.signalR-2.2.1.min.js
 
+$(function()
+{
+    // Hide the show chat button
+    if ($(".chat-container").is(":visible")) {
+        $(".show-chat").hide();
+    }
+
+    // Show the chat
+    $(".chat-container .panel-heading").click(function()
+    {
+        $(".chat-container").hide();
+        $(".content-container").css("margin-right", 0);
+        $(".filter-form").css("width", "calc(100% - 170px)");
+        $(".show-chat").show();
+    })
+
+    // Hide the chat
+    $(".show-chat").click(function()
+    {
+        $(".chat-container").show();
+        $(".content-container").css("margin-right", 300);
+        $(".filter-form").css("width", "calc(100% - 470px)");
+        $(".show-chat").hide();
+    })
+});
+
 // Create the connection to the server for the chat.
 function createConnection() {
-	var chat = $.connection.chatHub;
-	getMessages();
-	var messagesContainer = $(".messages-container");
-	messagesContainer.scrollTop(messagesContainer.prop("scrollHeight"));
+    var chat = $.connection.chatHub;
+    getMessages();
+    var messagesContainer = $(".messages-container");
+    messagesContainer.scrollTop(messagesContainer.prop("scrollHeight"));
 
-	// Called when the hub is finished, to refresh the chat.
-	chat.client.update = function() {
-		getMessages();
-	}
+    // Called when the hub is finished, to refresh the chat.
+    chat.client.update = function() {
+        getMessages();
+    }
 
-	$.connection.hub.start().done(function()
-	{
-		// Fetch the initial messages.
-		getMessages();
-		$("#message").on("keyup",
-		(function(e) {
-			if (e.keyCode == 13) {
-				//  Save the last message sent.
-				chat.server.save($("#message").val());
+    $.connection.hub.start().done(function()
+    {
+        // Fetch the initial messages.
+        getMessages();
+        $("#message").on("keyup",
+        (function(e) {
+            if (e.keyCode == 13) {
+                //  Save the last message sent.
+                chat.server.save($("#message").val());
 
-				// Clear the text box.
-				$("#message").val("").focus();
-			}
-		}));
-	});
+                // Clear the text box.
+                $("#message").val("").focus();
+            }
+        }));
+    });
 };
 
 // Get all the current chat messages.
 function getMessages() {
-	$(".messages-container").load("/Chat/ChatMessages", { call: "chat" }, function(response, status, xhr) {
-		if (status == "error")
-		{
-			alert("There was a problem refreshing the chat, make sure the client is connected");
-		}
-	});
+    $(".messages-container").load("/Chat/ChatMessages", { call: "chat" }, function(response, status, xhr) {
+        if (status == "error")
+        {
+            alert("There was a problem refreshing the chat, make sure the client is connected");
+        }
+    });
 }

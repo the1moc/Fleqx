@@ -258,6 +258,7 @@
     </Compile>
     <Compile Include="Data\DatabaseModels\Announcement.cs" />
     <Compile Include="Hubs\ChatHub.cs" />
+    <Compile Include="Models\TaskFilterModel.cs" />
     <Compile Include="Models\AnnouncementFilterModel.cs" />
     <Compile Include="Models\AnnouncementFormModel.cs" />
     <Compile Include="Models\ChatMessageModel.cs" />
@@ -309,6 +310,7 @@
     <None Include="Properties\PublishProfiles\Test.pubxml" />
     <Content Include="Views\Announcement\_AnnouncementFilterForm.cshtml" />
     <Content Include="Views\Announcement\Styles\_announcementFilter.scss" />
+    <Content Include="Views\Task\_TaskFilterForm.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

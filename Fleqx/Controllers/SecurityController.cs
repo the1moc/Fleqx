@@ -118,7 +118,7 @@ namespace Fleqx.Controllers
 			}
 
 			// Add the user to the database.
-			IdentityResult addedUser = userManager.Create(user, signupModel.Password);
+			userManager.Create(user, signupModel.Password);
 
 			// Add them to the correct role.
 			userManager.AddToRole(user.Id, ListControlHelper.GetRole(signupModel.Role));

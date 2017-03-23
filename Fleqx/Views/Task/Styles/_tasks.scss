@@ -1,116 +1,116 @@
 ﻿.tasks-container {
-	text-align: center;
+    text-align: center;
+    margin-top: 120px;
+    .main-title {
+        margin: 0 0 5px 0;
+        background-color: #0078d7;
+        color: #FFFFFF;
+    }
 
-	.main-title {
-		margin: 0 0 5px 0;
-		background-color: #0078d7;
-		color: #FFFFFF;
-	}
+    .task-heading {
+        text-align: center;
 
-	.task-heading {
-		text-align: center;
+        &.task-section {
+            background-color: $task-section-heading-color;
+            color: #FFFFFF;
+            margin: 0 0 5px 0 !important;
+            padding: 5px;
+        }
 
-		&.task-section {
-			background-color: $task-section-heading-color;
-			color: #FFFFFF;
-			margin: 0 0 5px 0 !important;
-			padding: 5px;
-		}
+        &.task-item {
+            padding: 5px;
+            background-color: lightgray;
+            margin-top: 0;
+        }
+    }
 
-		&.task-item {
-			padding: 5px;
-			background-color: lightgray;
-			margin-top: 0;
-		}
-	}
+    .add-task {
+        width: 90%;
+        margin-bottom: 5px;
+        border-style: groove;
+        background-color: #FFFFFF;
+        color: #0078d7;
 
-	.add-task {
-		width: 90%;
-		margin-bottom: 5px;
-		border-style: groove;
-		background-color: #FFFFFF;
-		color: #0078d7;
+        &:hover {
+            border-style: inset;
+            background-color: #f2f2f2;
+         }
+    }
 
-		&:hover {
-			border-style: inset;
-			background-color: #f2f2f2;
-		 }
-	}
-
-	p {
-		margin: 0;
-		padding: 5px;
-	}
+    p {
+        margin: 0;
+        padding: 5px;
+    }
 
 
-	.open-container {
-		background-color: #FFFFFF;
-		float: left;
-		width: 33%;
-		padding-bottom: 10px;
-	}
+    .open-container {
+        background-color: #FFFFFF;
+        float: left;
+        width: 33%;
+        padding-bottom: 10px;
+    }
 
-	.active-container {
-		background-color: #FFFFFF;
-		display: inline-block;
-		width: 33%;
-		padding-bottom: 10px;
-	}
+    .active-container {
+        background-color: #FFFFFF;
+        display: inline-block;
+        width: 33%;
+        padding-bottom: 10px;
+    }
 
-	.closed-container {
-		background-color: #FFFFFF;
-		float: right;
-		width: 33%;
-		padding-bottom: 10px;
-	}
+    .closed-container {
+        background-color: #FFFFFF;
+        float: right;
+        width: 33%;
+        padding-bottom: 10px;
+    }
 
-	.task-body {
-		overflow: hidden;
-		max-height: 100px;
-		margin: 5px;
-	}
+    .task-body {
+        overflow: hidden;
+        max-height: 100px;
+        margin: 5px;
+    }
 
-	.open, .active, .closed {
-		margin: 0 auto 5px auto;
-		border-style: hidden;
-		width: 90%;
-		border-radius: 5px;
-		padding: 5px;
-		cursor: pointer;
-		background-color: #F0F0F0;
-		&:hover {
-			background-color: lightgray;
-			cursor: grab;
+    .open, .active, .closed {
+        margin: 0 auto 5px auto;
+        border-style: hidden;
+        width: 90%;
+        border-radius: 5px;
+        padding: 5px;
+        cursor: pointer;
+        background-color: #F0F0F0;
+        &:hover {
+            background-color: lightgray;
+            cursor: grab;
 
-			.task-item {
-				background-color: #F0F0F0;
-			}
-		}
-	}
+            .task-item {
+                background-color: #F0F0F0;
+            }
+        }
+    }
 
-	.task-edit-form {
-		text-align: left;
+    .task-edit-form {
+        text-align: left;
 
-		.row {
-			margin-top: 5px;
-		}
+        .row {
+            margin-top: 5px;
+        }
 
-		.task-edit-label:not(:first-child) {
-			padding: 0;
-			margin: 10px 0 0 0 !important;
-		}
-	}
+        .task-edit-label:not(:first-child) {
+            padding: 0;
+            margin: 10px 0 0 0 !important;
+        }
+    }
 
-	.task-add-form {
-		text-align: left;
+    .task-add-form {
+        text-align: left;
 
-		.row {
-			margin-top: 5px;
-		}
+        .row {
+            margin-top: 5px;
+        }
 
-		.task-add-label:not(:first-child) {
-			padding: 0;
-			margin: 10px 0 0 0 !important;
-		}
-	}
+        .task-add-label:not(:first-child) {
+            padding: 0;
+            margin: 10px 0 0 0 !important;
+        }
+    }
 }

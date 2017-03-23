@@ -108,6 +108,11 @@ namespace Fleqx.Data.DatabaseModels
             {
                 Value = "5",
                 Text = "Very high"
+            },
+            new SelectListItem
+            {
+                Value = "6",
+                Text = "All"
             }
         };
 
