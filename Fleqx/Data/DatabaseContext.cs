@@ -2,13 +2,14 @@
 using System.Data.Entity.ModelConfiguration.Conventions;
 using Fleqx.Data.DatabaseModels;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.SqlClient;
 
 namespace Fleqx.Data
 {
 	public class DatabaseContext : IdentityDbContext<User>
 	{
 		public DatabaseContext()
-			: base("Data Source=TICKDINGLER;Initial Catalog=FleqxMain;User ID=sa;Password=Girfev4p;")
+			: base("Data Source=(local)\\FLEQX;Initial Catalog=FleqxMain;User ID=sa;Password=spcol;")
 		{
 			Database.SetInitializer(new DatabaseInitializer());
 		}

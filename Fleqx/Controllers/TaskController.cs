@@ -23,13 +23,15 @@ namespace Fleqx.Controllers
         {
             using (var dbContext = GetDatabaseContext())
             {
+                // Initial blank filter model.
                 TaskFilterModel filterModel = new TaskFilterModel
                 {
                     EndDate = DateTime.Now,
                     StartDate = DateTime.Now.AddDays(-7),
                     TasksDesired = desiredTasks,
                     AllUsers = dbContext.Users.ToList(),
-                    CreatedUserId = User.Identity.GetUserId()
+                    CreatedUserId = "",
+                    TaskPriority = -1
                 };
 
                 List<Task> tasks;
@@ -140,22 +142,6 @@ namespace Fleqx.Controllers
                 ViewBag.filterModel = filterModel;
                 return PartialView("Tasks", models);
             }
-        }
-
-        /// <summary>
-        /// Get the filter form view with a populated model.
-        /// </summary>
-        /// <returns>The view that contains the partial view model.</returns>
-        public ActionResult TaskFilterForm()
-        {
-            TaskFilterModel filterModel = new TaskFilterModel
-            {
-                StartDate = DateTime.Now.AddDays(-7),
-                EndDate = DateTime.Now,
-                TaskPriority = 6
-            };
-
-            return PartialView("_TaskFilterForm", filterModel);
         }
 
         /// <summary>

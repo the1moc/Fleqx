@@ -3,14 +3,7 @@
 @model List<TaskModel>
 
 <div class="filter-container">
-    @if (ViewBag.filterModel == null)
-    {
-        Html.RenderAction("TaskFilterForm", "Task");
-    }
-    else
-    {
-        Html.RenderPartial("_TaskFilterForm", (TaskFilterModel)ViewBag.filterModel);
-    }
+    @{Html.RenderPartial("_TaskFilterForm", (TaskFilterModel)ViewBag.filterModel); }
 </div>
 
 <div class="tasks-container">
