@@ -52,14 +52,6 @@ namespace Fleqx.Models
         public string TaskTitle { get; set; }
 
         /// <summary>
-        /// Gets or sets the task description.
-        /// </summary>
-        /// <value>
-        /// The task description.
-        /// </value>
-        public string TaskDescription { get; set; }
-
-        /// <summary>
         /// Gets or sets the original creation date.
         /// </summary>
         /// <value>

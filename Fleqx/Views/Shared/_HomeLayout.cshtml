@@ -38,7 +38,7 @@
                     <button class="panel-button" id="sectionbutton" data-url="@Url.Action("Tasks", "Task", new { tasksDesired = "alltasks" })"><i class="glyphicon glyphicon-briefcase"></i> All Tasks</button>
                 </li>
                 <li>
-                    <button class="panel-button" id="sectionbutton"><i class="glyphicon glyphicon-cog"></i> Account</button>
+                    <button class="panel-button" id="sectionbutton" data-url="@Url.Action("Settings", "Account")"><i class="glyphicon glyphicon-cog"></i> Account</button>
                 </li>
                 @if (User.IsInRole("Admin"))
                 {

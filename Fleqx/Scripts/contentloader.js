@@ -1,4 +1,4 @@
-﻿/// <reference path="~/bower_components/jquery/dist/jquery.js
+﻿/// <reference path="../bower_components/jquery/dist/jquery.js" />
 /// <reference path="~/bower_components/jquery-ui/jquery-ui.min.js
 
 $(document).ready(function()
@@ -7,14 +7,18 @@ $(document).ready(function()
     createConnection();
 
     // If the content is empty, load in the announcements content.
-    if ($("#content").is(":empty")) {
+    if ($("#content").is(":empty"))
+    {
         $("#content").load("/Announcement/Announcements", function() {
             $(".date").datepicker({ dateFormat: "yy-mm-dd" });
         });
     }
 
     // On click of a section button, load the partial view from the controller.
-    $(".panel-button").click(function() {
+    $(".panel-button").click(function()
+    {
+        $(".panel-button:not(:last)").css({ "background-color": "#0078d7", "color": "#FFFFFF" });
+        $(this).css({ "background-color": "#FFFFFF", "color": "#0078d7" });
         $("#content").load($(this).data("url"), function() {
             // Hacky, but initialise the date controls
             $(".date").datepicker({ dateFormat: "yy-mm-dd" });

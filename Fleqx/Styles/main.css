@@ -32,7 +32,7 @@
   text-align: center; }
 
 .announcements .announcement-cards {
-  margin-top: 120px;
+  margin-top: 5px;
   overflow: visible;
   overflow-wrap: break-word; }
   .announcements .announcement-cards .card-block {
@@ -71,6 +71,9 @@
 
 .announcement-form textarea {
   max-width: 100%; }
+
+.account-container {
+  height: 90%; }
 
 .chat-container {
   z-index: 3;
@@ -134,7 +137,8 @@
       width: 100%;
       height: 40px;
       border-radius: 10px;
-      border-style: solid; }
+      border-style: solid;
+      padding: 10px !important; }
       .chat-container .inputs-container #message:focus {
         outline: none; }
 
@@ -150,7 +154,8 @@
     margin-right: 10px;
     margin-top: 10px;
     max-height: 100%;
-    min-width: 400px; }
+    min-width: 400px;
+    overflow: auto; }
   .home .sidepanel {
     height: 100%;
     float: left;
@@ -208,7 +213,8 @@
 
 .tasks-container {
   text-align: center;
-  margin-top: 120px; }
+  margin-top: 5px;
+  min-width: 800px; }
   .tasks-container .main-title {
     margin: 0 0 5px 0;
     background-color: #0078d7;
@@ -227,9 +233,11 @@
   .tasks-container .add-task {
     width: 90%;
     margin-bottom: 5px;
-    border-style: groove;
+    border-style: solid;
+    border-width: 1px;
     background-color: #FFFFFF;
-    color: #0078d7; }
+    color: #0078d7;
+    border-color: lightslategrey; }
     .tasks-container .add-task:hover {
       border-style: inset;
       background-color: #f2f2f2; }
@@ -337,30 +345,32 @@ input:-webkit-autofill:active {
     background-color: #FFFFFF;
     color: #0078d7; }
 
-.filter-form {
-  z-index: 1;
-  top: 5px;
-  left: 160px;
-  width: calc(100% - 475px);
-  position: fixed;
+.filter-container .filter-form {
+  max-height: 200px;
   background-color: #ffffff !important;
   text-align: center;
-  border-style: ridge; }
-  .filter-form .row {
-    margin: 0;
-    border-style: ridge; }
-  .filter-form .form-group {
-    margin-bottom: 5px !important;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #0078d7;
+  min-width: 800px; }
+  .filter-container .filter-form .row {
+    max-height: 100px;
+    margin: 0; }
+  .filter-container .filter-form .form-group {
+    max-height: 54px;
+    margin: 0 !important;
     color: #ffffff; }
-    .filter-form .form-group .form-control {
+    .filter-container .filter-form .form-group .form-control {
       cursor: pointer; }
-  .filter-form .filter-form-label {
+    .filter-container .filter-form .form-group .text-box {
+      cursor: default !important; }
+  .filter-container .filter-form .filter-form-label {
     color: #3a5068; }
-  .filter-form .standard-button {
+  .filter-container .filter-form .standard-button {
     margin-bottom: 5px;
     background-color: #FFFFFF;
     color: #0078d7; }
-    .filter-form .standard-button:hover {
+    .filter-container .filter-form .standard-button:hover {
       color: #4CAF50; }
 
 /* Login */

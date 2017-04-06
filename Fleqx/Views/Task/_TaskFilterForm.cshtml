@@ -4,6 +4,7 @@
 
 @using (Html.BeginForm("FilterTasks", "Task", FormMethod.Post, new { id = "taskFilterForm", @class = "form filter-form task-filter center-block", autocomplete = "off" }))
 {
+    @Html.HiddenFor(model => model.TasksDesired)
     <div class="row">
         <div class="form-group col-xs-3">
             <label class="filter-form-label">Start Date</label>
@@ -15,20 +16,41 @@
         </div>
         <div class="form-group col-xs-3">
             <label class="filter-form-label">Task priority</label>
-             @{List<SelectListItem> taskSelectList = new List<SelectListItem>();
-                 taskSelectList.Add(new SelectListItem { Text = "", Value = "" });
-                 taskSelectList.AddRange(ListControlHelper.TaskPriority); }
-                 @Html.DropDownListFor(model => model.TaskPriority, taskSelectList, new { @class = "form-control", @Value = Model.TaskPriority })
+            @{List<SelectListItem> taskSelectList = new List<SelectListItem>();
+                taskSelectList.Add(new SelectListItem { Text = "", Value = "-1" });
+                taskSelectList.AddRange(ListControlHelper.TaskPriority); }
+            @Html.DropDownListFor(model => model.TaskPriority, taskSelectList, new { @class = "form-control", @Value = Model.TaskPriority })
         </div>
         <div class="form-group col-xs-3">
-            <label class="filter-form-label">Created by</label>
             @{List<SelectListItem> createdSelectList = new List<SelectListItem>();
                 createdSelectList.Add(new SelectListItem { Text = "", Value = "" });
                 createdSelectList.AddRange(Model.AllUsers.Select(user => new SelectListItem { Text = user.UserName, Value = user.Id }));}
-                @Html.DropDownListFor(model => model.CreatedUserId, createdSelectList, new { @class = "form-control" });
-        </div>
-        <div class="form-group col-xs-12">
-            <button type="submit" form="taskFilterForm" class="standard-button center-block">Apply filter</button>
+            <label class="filter-form-label">Created by</label>
+            @Html.DropDownListFor(model => model.CreatedUserId, createdSelectList, new { @class = "form-control" });
         </div>
     </div>
-}
+        <div class="row">
+            <div class="form-group col-xs-3">
+                <label class="filter-form-label">Task title</label>
+                @Html.TextBoxFor(model => model.TaskTitle, new { @class = "form-control text-box" })
+            </div>
+            <div class="form-group col-xs-3">
+                <label class="filter-form-label">Estimated days taken</label>
+                @Html.TextBoxFor(model => model.EstimatedDaysTaken, new { @class = "form-control text-box" })
+            </div>
+            <div class="form-group col-xs-3">
+                <label class="filter-form-label">Actual days taken</label>
+                @Html.TextBoxFor(model => model.ActualDaysTaken, new { @class = "form-control text-box" })
+            </div>
+            <div class="form-group col-xs-3">
+                <label class="filter-form-label">Assigned to</label>
+                @{List<SelectListItem> assignedSelectList = new List<SelectListItem>();
+                assignedSelectList.Add(new SelectListItem { Text = "", Value = "" });
+                assignedSelectList.AddRange(Model.AllUsers.Select(user => new SelectListItem { Text = user.UserName, Value = user.Id }));}
+                @Html.DropDownListFor(model => model.AssignedUserId, assignedSelectList, new { @class = "form-control" });
+            </div>
+            <div class="form-group col-xs-12">
+                <button type="submit" form="taskFilterForm" class="standard-button center-block">Apply filter</button>
+            </div>
+        </div>
+                    }

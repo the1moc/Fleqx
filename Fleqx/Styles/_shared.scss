@@ -14,6 +14,7 @@ input:-webkit-autofill:active {
             position: absolute;
         }
     }
+
     .modal-body {
         textarea {
             max-width: 100%;
@@ -73,42 +74,47 @@ input:-webkit-autofill:active {
     }
 }
 
-.filter-form {
-    z-index: 1;
-    max-height: 200px;
-    top: 5px;
-    left: 160px;
-    width: calc(100% - 475px);
-    position: fixed;
-    background-color: #ffffff !important;
-    text-align: center;
-    border-style: ridge;
-    .row {
-        max-height: 100px;
-        margin: 0;
-        border-style: ridge;
-    }
+.filter-container {
+    .filter-form {
+        max-height: 200px;
+        background-color: #ffffff !important;
+        text-align: center;
+        border-style: solid;
+        border-width: 2px;
+        border-color: #0078d7;
+        min-width: 800px;
 
-    .form-group {
-        margin-bottom: 5px !important;
-        color: #ffffff;
-
-        .form-control {
-            cursor: pointer;
+        .row {
+            max-height: 100px;
+            margin: 0;
         }
-    }
 
-    .filter-form-label {
-        color: #3a5068;
-    }
+        .form-group {
+            max-height: 54px;
+            margin: 0 !important;
+            color: #ffffff;
 
-    .standard-button {
-        margin-bottom: 5px;
-        background-color: #FFFFFF;
-        color: #0078d7;
+            .form-control {
+                cursor: pointer;
+            }
 
-        &:hover {
-            color: #4CAF50;
+            .text-box {
+                cursor: default !important;
+            }
+        }
+
+        .filter-form-label {
+            color: #3a5068;
+        }
+
+        .standard-button {
+            margin-bottom: 5px;
+            background-color: #FFFFFF;
+            color: #0078d7;
+
+            &:hover {
+                color: #4CAF50;
+            }
         }
     }
 }

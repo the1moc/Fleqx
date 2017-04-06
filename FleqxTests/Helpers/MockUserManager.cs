@@ -11,19 +11,18 @@ using Moq;
 
 namespace FleqxTests.Helpers
 {
-	public static class MockUserManager
-	{
-		/// <summary>
-		/// Provide a mock user manager with a mock user inside it.
-		/// </summary>
-		/// <returns></returns>
-		public static Mock<UserManager<User>> GetMockUserManager()
-		{
-			var mockUser      = new User() { UserName = "TestUserName" };
-			var mockUserStore = new Mock<IUserStore<User>>();
-			var userManager   = new Mock<UserManager<User>>(mockUserStore.Object);
+    public static class MockUserManager
+    {
+        /// <summary>
+        /// Provide a mock user manager with a mock user inside it.
+        /// </summary>
+        /// <returns></returns>
+        public static Mock<UserManager<User>> GetMockUserManager()
+        {
+            var mockUserStore = new Mock<IUserStore<User>>();
+            var userManager   = new Mock<UserManager<User>>(mockUserStore.Object);
 
-			return userManager;
-		}
-	}
+            return userManager;
+        }
+    }
 }

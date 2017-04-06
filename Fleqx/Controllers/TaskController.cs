@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web.Mvc;
 using Fleqx.Data;
 using Fleqx.Data.DatabaseModels;
@@ -13,13 +14,32 @@ namespace Fleqx.Controllers
     // Controller for all task logic
     public class TaskController : BaseController
     {
+        protected UserManager<User> userManager;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TaskController"/> class.
+        /// </summary>
+        public TaskController()
+            : this(new UserManager<User>(new UserStore<User>(new DatabaseContext())))
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TaskController"/> class.
+        /// </summary>
+        /// <param name="userManager">The user manager.</param>
+        public TaskController(UserManager<User> userManager)
+        {
+            this.userManager = userManager;
+        }
+
         /// <summary>
         /// Return the desires tasks partial view with the default one week range filter only.
         /// </summary>
         /// <param name="desiredTasks">The type of tasks the user wants to get.</param>
         /// <returns></returns>
         [HttpGet]
-        public virtual ActionResult Tasks(string desiredTasks)
+        public virtual ActionResult Tasks(string tasksDesired)
         {
             using (var dbContext = GetDatabaseContext())
             {
@@ -28,7 +48,7 @@ namespace Fleqx.Controllers
                 {
                     EndDate = DateTime.Now,
                     StartDate = DateTime.Now.AddDays(-7),
-                    TasksDesired = desiredTasks,
+                    TasksDesired = tasksDesired,
                     AllUsers = dbContext.Users.ToList(),
                     CreatedUserId = "",
                     TaskPriority = -1
@@ -36,8 +56,9 @@ namespace Fleqx.Controllers
 
                 List<Task> tasks;
 
-                User currentUser = Startup.UserManager.FindById(User.Identity.GetUserId());
-                switch (desiredTasks)
+                User currentUser = GetCurrentUser();
+
+                switch (tasksDesired)
                 {
                     case "mytasks":
                         tasks = dbContext.Tasks.Where(task => task.AssignedUserId == currentUser.Id).ToList();
@@ -95,7 +116,7 @@ namespace Fleqx.Controllers
             using (var dbContext = GetDatabaseContext())
             {
                 List<Task> tasks;
-                User currentUser = Startup.UserManager.FindById(User.Identity.GetUserId());
+                User currentUser = GetCurrentUser();
                 switch (filterModel.TasksDesired)
                 {
                     case "mytasks":
@@ -112,9 +133,11 @@ namespace Fleqx.Controllers
                         break;
                 }
 
-                // Apply the filter.
+                // Apply the date filters.
                 tasks = tasks.Where(task => task.OriginalCreationDate >= filterModel.StartDate &&
                                             task.OriginalCreationDate <= filterModel.EndDate).ToList();
+
+                tasks = FilterByModel(filterModel, tasks);
 
                 // Create the view models to be passed to the task view
                 List<TaskModel> models = tasks.Select(task =>
@@ -139,6 +162,7 @@ namespace Fleqx.Controllers
                     };
                 }).ToList();
 
+                filterModel.AllUsers = dbContext.Users.ToList();
                 ViewBag.filterModel = filterModel;
                 return PartialView("Tasks", models);
             }
@@ -279,6 +303,51 @@ namespace Fleqx.Controllers
                 }
             }
             return new HttpStatusCodeResult(500, "The form was not filled out correctly");
+        }
+
+        /// <summary>
+        /// Filter the tasks by the filter model
+        /// </summary>
+        /// <param name="filterModel">The filter model.</param>
+        /// <param name="tasks">The tasks.</param>
+        /// <returns></returns>
+        public List<Task> FilterByModel(TaskFilterModel filterModel, List<Task> tasks)
+        {
+            if(filterModel.TaskPriority > -1)
+            {
+                tasks = tasks.Where(task => task.TaskPriority == filterModel.TaskPriority).ToList();
+            }
+            if (filterModel.CreatedUserId != null)
+            {
+                tasks = tasks.Where(task => task.CreatedUserId == filterModel.CreatedUserId).ToList();
+            }
+            if (filterModel.TaskTitle != null)
+            {
+                tasks = tasks.Where(task => task.TaskTitle.Contains(filterModel.TaskTitle)).ToList();
+            }
+            if (filterModel.EstimatedDaysTaken > 0)
+            {
+                tasks = tasks.Where(task => task.EstimatedDaysTaken == filterModel.EstimatedDaysTaken).ToList();
+            }
+            if (filterModel.ActualDaysTaken > 0)
+            {
+                tasks = tasks.Where(task => task.ActualDaysTaken == filterModel.ActualDaysTaken).ToList();
+            }
+            if (filterModel.AssignedUserId != null)
+            {
+                tasks = tasks.Where(task => task.AssignedUserId == filterModel.AssignedUserId).ToList();
+            }
+
+            return tasks;
+        }
+
+        /// <summary>
+        /// Gets the currently logged in user.
+        /// </summary>
+        /// <returns>The user ID</returns>
+        public virtual User GetCurrentUser()
+        {
+            return userManager.FindById(User.Identity.GetUserId());
         }
     }
 }

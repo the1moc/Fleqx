@@ -237,6 +237,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Controllers\ChatController.cs" />
@@ -258,6 +259,7 @@
     </Compile>
     <Compile Include="Data\DatabaseModels\Announcement.cs" />
     <Compile Include="Hubs\ChatHub.cs" />
+    <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\TaskFilterModel.cs" />
     <Compile Include="Models\AnnouncementFilterModel.cs" />
     <Compile Include="Models\AnnouncementFormModel.cs" />
@@ -297,8 +299,6 @@
     <Content Include="Styles\_shared.scss" />
     <Content Include="Views\Announcement\Announcements.cshtml" />
     <Content Include="Views\Announcement\Styles\_announcement.scss" />
-    <Content Include="Views\Announcement\_AnnouncementForm.cshtml" />
-    <Content Include="Views\Announcement\Styles\_announcementForm.scss" />
     <Content Include="Views\Chat\Chat.cshtml" />
     <Content Include="Views\Chat\_ChatMessages.cshtml" />
     <Content Include="Views\Chat\Styles\_chat.scss" />
@@ -308,9 +308,13 @@
     <Content Include="Views\Task\_TaskAddForm.cshtml" />
     <None Include="Properties\PublishProfiles\Fleqx.pubxml" />
     <None Include="Properties\PublishProfiles\Test.pubxml" />
-    <Content Include="Views\Announcement\_AnnouncementFilterForm.cshtml" />
-    <Content Include="Views\Announcement\Styles\_announcementFilter.scss" />
     <Content Include="Views\Task\_TaskFilterForm.cshtml" />
+    <Content Include="Views\Account\Settings.cshtml" />
+    <Content Include="Views\Account\Styles\_account.scss" />
+    <Content Include="Views\Announcement\Styles\_announcementFilter.scss" />
+    <Content Include="Views\Announcement\Styles\_announcementForm.scss" />
+    <Content Include="Views\Announcement\_AnnouncementFilterForm.cshtml" />
+    <Content Include="Views\Announcement\_AnnouncementForm.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

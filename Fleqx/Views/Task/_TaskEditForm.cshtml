@@ -4,79 +4,85 @@
 @model TaskModel
 
 <div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title">Edit Task</h4>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				@using (Html.BeginForm("Edit", "Task", FormMethod.Post, new { id = "editTaskForm", @class = "form task-edit-form center-block", autocomplete = "off" }))
-				{
-					<div class="row">
-						<div class="col-md-9">
-							<label class="task-edit-label">Title</label>
-							@Html.TextBoxFor(model => model.TaskTitle, new { @class = "form-control" })
-						</div>
-						<div class="col-md-3">
-							<label class="task-edit-label">Task ID</label>
-							@Html.TextBox("taskID", @Model.TaskID, new { @class = "form-control", autocomplete = "off", @readonly = "readonly" })
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6">
-							<label class="task-edit-label">Task State</label>
-							@Html.DropDownListFor(model => model.TaskStateId, ListControlHelper.TaskStates,
-							new { @class = "form-control", id = "task-state-selection"})
-						</div>
-						<div class="col-md-6">
-							<label class="task-edit-label">Task Priority</label>
-							@Html.DropDownListFor(model => model.TaskPriority, ListControlHelper.TaskPriority, new { @class = "form-control", @Value = Model.TaskPriority })
-						</div>
-					</div>
-					<label class="task-edit-label">Description</label>
-					@Html.TextAreaFor(model => model.TaskDescription, new { @class = "form-control" })
-					<div class="row">
-						<div class="col-md-6">
-							<label class="task-edit-label">Estimated Days to Complete</label>
-							@Html.TextBoxFor(model => model.EstimatedDaysTaken, new { @class = "form-control" })
-						</div>
-						<div class="col-md-6" id="actual-days">
-							<label class="task-edit-label">Actual Days to Complete</label>
-							@Html.TextBoxFor(model => model.ActualDaysTaken, new { @class = "form-control" })
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6">
-							<label class="task-edit-label">Creation Date</label>
-							@Html.TextBoxFor(model => model.OriginalCreationDate, new { @class = "form-control date", @readonly = "readonly", @Value = Model.OriginalCreationDate.ToString("yyyy-MM-dd")})
-						</div>
-						<div class="col-md-6">
-							<label class="task-edit-label">Last Renewal Date</label>
-							@Html.TextBoxFor(model => model.LastRenewalDate, new { @class = "form-control date", @readonly = "readonly", @Value = Model.LastRenewalDate.ToString("yyyy-MM-dd") })
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6">
-							<label class="task-edit-label">Critical Finish Date</label>
-							@Html.TextBoxFor(model => model.CriticalFinishDate, new { @class = "form-control date", @Value = Model.CriticalFinishDate.ToString("yyyy-MM-dd") })
-						</div>
-						<div class="col-md-6" id="actual-finish">
-							<label class="task-edit-label">Actual Finish Date</label>
-							@Html.TextBoxFor(model => model.ActualFinishDate, new { @class = "form-control date", @Value = Model.ActualFinishDate.ToString("yyyy-MM-dd") })
-						</div>
-					</div>
-						<label class="task-edit-label">Created by</label>
-						@Html.TextBox("createdTextBox", Model.CreatedUser.UserName, new { @class = "form-control", @readonly = "readonly" })
-						<label class="task-edit-label">Assigned to</label>
-						@Html.DropDownListFor(model => model.AssignedUserId, new List<SelectListItem>(
-						Model.AllUsers.Select(user => new SelectListItem { Text = user.UserName, Value = user.Id })),
-						new { @class = "form-control", @Value = Model.AssignedUserId })
-						<button type="submit" form="editTaskForm" class="center-block form-button">Save changes</button>
-				}
-			</div>
-		</div>
-	</div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Task</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Edit", "Task", FormMethod.Post, new { id = "editTaskForm", @class = "form task-edit-form center-block", autocomplete = "off" }))
+                {
+                    <div class="row">
+                        <div class="col-md-9">
+                            <label class="task-edit-label">Title</label>
+                            @Html.TextBoxFor(model => model.TaskTitle, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-3">
+                            <label class="task-edit-label">Task ID</label>
+                            @Html.TextBox("taskID", @Model.TaskID, new { @class = "form-control", autocomplete = "off", @readonly = "readonly" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="task-edit-label">Task State</label>
+                            @Html.DropDownListFor(model => model.TaskStateId, ListControlHelper.TaskStates,
+                            new { @class = "form-control", id = "task-state-selection"})
+                        </div>
+                        <div class="col-md-6">
+                            <label class="task-edit-label">Task Priority</label>
+                            @Html.DropDownListFor(model => model.TaskPriority, ListControlHelper.TaskPriority, new { @class = "form-control", @Value = Model.TaskPriority })
+                        </div>
+                    </div>
+                    <label class="task-edit-label">Description</label>
+                    @Html.TextAreaFor(model => model.TaskDescription, new { @class = "form-control" })
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="task-edit-label">Estimated Days to Complete</label>
+                            @Html.TextBoxFor(model => model.EstimatedDaysTaken, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-6" id="actual-days">
+                            <label class="task-edit-label">Actual Days to Complete</label>
+                            @Html.TextBoxFor(model => model.ActualDaysTaken, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="task-edit-label">Creation Date</label>
+                            @Html.TextBoxFor(model => model.OriginalCreationDate, new { @class = "form-control date", @readonly = "readonly", @Value = Model.OriginalCreationDate.ToString("yyyy-MM-dd")})
+                        </div>
+                        <div class="col-md-6">
+                            <label class="task-edit-label">Last Renewal Date</label>
+                            @Html.TextBoxFor(model => model.LastRenewalDate, new { @class = "form-control date", @readonly = "readonly", @Value = Model.LastRenewalDate.ToString("yyyy-MM-dd") })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="task-edit-label">Critical Finish Date</label>
+                            @Html.TextBoxFor(model => model.CriticalFinishDate, new { @class = "form-control date", @Value = Model.CriticalFinishDate.ToString("yyyy-MM-dd") })
+                        </div>
+                        <div class="col-md-6" id="actual-finish">
+                            <label class="task-edit-label">Actual Finish Date</label>
+                            @Html.TextBoxFor(model => model.ActualFinishDate, new { @class = "form-control date", @Value = Model.ActualFinishDate.ToString("yyyy-MM-dd") })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="task-edit-label">Created by</label>
+                            @Html.TextBox("createdTextBox", Model.CreatedUser.UserName, new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                        <div class="col-md-6">
+                            <label class="task-edit-label">Assigned to</label>
+                            @Html.DropDownListFor(model => model.AssignedUserId, new List<SelectListItem>(
+                        Model.AllUsers.Select(user => new SelectListItem { Text = user.UserName, Value = user.Id })),
+                        new { @class = "form-control", @Value = Model.AssignedUserId })
+                        </div>
+                        </div>
+                        <button type="submit" form="editTaskForm" class="center-block form-button">Save changes</button>
+                        }
+                    </div>
+        </div>
+    </div>
 </div>

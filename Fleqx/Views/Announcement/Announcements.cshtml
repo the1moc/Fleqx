@@ -2,17 +2,17 @@
 @using Microsoft.AspNet.Identity
 @model List<Fleqx.Models.AnnouncementModel>
 
+<div class="filter-container">
+    @if (ViewBag.filterModel == null)
+    {
+        Html.RenderAction("AnnouncementFilterForm", "Announcement");
+    }
+    else
+    {
+        Html.RenderPartial("_AnnouncementFilterForm", (AnnouncementFilterModel)ViewBag.filterModel);
+    }
+</div>
 <div class="announcements">
-    <div class="filter-container">
-        @if (ViewBag.filterModel == null)
-        {
-            Html.RenderAction("AnnouncementFilterForm", "Announcement");
-        }
-        else
-        {
-            Html.RenderPartial("_AnnouncementFilterForm", (AnnouncementFilterModel)ViewBag.filterModel);
-        }
-    </div>
     <div class="announcement-cards">
         @if (Model != null)
         {
@@ -34,7 +34,7 @@
         }
     </div>
 
-    @if (Startup.UserManager.IsInRole(User.Identity.GetUserId(), "Admin"))
+    @if (User.IsInRole("Admin"))
     {
         <div class="add-button">
             <button class="standard-button" data-toggle="modal" data-target="#announcementModal"><i class="glyphicon glyphicon-pencil"></i> Add Anouncement</button>

@@ -169,6 +169,7 @@
     <Compile Include="Controllers\AnnouncementControllerTest.cs" />
     <Compile Include="Controllers\SecurityControllerTest.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
+    <Compile Include="Controllers\ChatControllerTest.cs" />
     <Compile Include="Controllers\TaskControllerTest.cs" />
     <Compile Include="Helpers\MockDatabase.cs" />
     <Compile Include="Helpers\MockUserManager.cs" />

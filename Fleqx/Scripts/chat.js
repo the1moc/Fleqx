@@ -15,7 +15,6 @@ $(function()
     {
         $(".chat-container").hide();
         $(".content-container").css("margin-right", 0);
-        $(".filter-form").css("width", "calc(100% - 170px)");
         $(".show-chat").show();
     })
 
@@ -24,7 +23,6 @@ $(function()
     {
         $(".chat-container").show();
         $(".content-container").css("margin-right", 300);
-        $(".filter-form").css("width", "calc(100% - 470px)");
         $(".show-chat").hide();
     })
 });
@@ -47,8 +45,8 @@ function createConnection() {
         getMessages();
         $("#message").on("keyup",
         (function(e) {
-            if (e.keyCode == 13) {
-                //  Save the last message sent.
+            if (e.keyCode == 13 && $("#message").val() != "") {
+                // Save the last message sent.
                 chat.server.save($("#message").val());
 
                 // Clear the text box.
