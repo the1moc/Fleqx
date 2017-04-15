@@ -125,6 +125,7 @@
     $(document).on("submit", "#taskFilterForm", function(event)
     {
         event.preventDefault();
+        //plugEmptyDates();
 
         $.ajax({
             type: "POST",
@@ -180,7 +181,7 @@ function initialiseDates()
     $(".date").datepicker({ dateFormat: "yy-mm-dd" });
     $(".date").each(function (index)
     {
-        if ($(this).val() == "9999-12-31") {
+        if ($(this).val() == "9999-12-31" || $(this).val() == "0001-01-01") {
             $(this).val("");
         }
     })

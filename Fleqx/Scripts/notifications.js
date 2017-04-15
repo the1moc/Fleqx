@@ -5,6 +5,6 @@
     setTimeout(function ()
     {
         $("#notification").addClass("hidden");
-    }, 3000)
+    }, 500)
 
 }

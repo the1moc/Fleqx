@@ -5,6 +5,13 @@
     .content-container {
         margin-left: 150px;
         margin-right: 305px;
+
+        .alert {
+            margin: 0px;
+            height: 30px;
+            padding: 5px;
+            text-align: center;
+        }
     }
 
     #content {

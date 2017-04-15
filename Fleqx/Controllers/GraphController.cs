@@ -75,6 +75,21 @@ namespace Fleqx.Controllers
         }
 
         /// <summary>
+        /// Gets the created tasks made in the last week.
+        /// </summary>
+        /// <returns></returns>
+        public string GetCreatedTasks()
+        {
+            ChartModel chartModel = CreateCreatedTasksLineGraph();
+
+            var camelCaseFormatter = new JsonSerializerSettings();
+            camelCaseFormatter.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            return JsonConvert.SerializeObject(chartModel, camelCaseFormatter);
+        }
+
+
+
+        /// <summary>
         /// Gets the state of the personal task.
         /// </summary>
         /// <returns></returns>
@@ -85,6 +100,78 @@ namespace Fleqx.Controllers
             var camelCaseFormatter = new JsonSerializerSettings();
             camelCaseFormatter.ContractResolver = new CamelCasePropertyNamesContractResolver();
             return JsonConvert.SerializeObject(chartModel, camelCaseFormatter);
+        }
+
+        /// <summary>
+        /// Creates the created tasks in the past week graph.
+        /// </summary>
+        /// <returns></returns>
+        public ChartModel CreateCreatedTasksLineGraph()
+        {
+            using (var dbContext = GetDatabaseContext())
+            {
+                ChartModel chartModel = new ChartModel
+                {
+                    Type = "line"
+                };
+
+                ChartDataModel chartDataModel = new ChartDataModel
+                {
+                    Labels = new List<string> {
+                        DateTime.Now.AddDays(-6).DayOfWeek.ToString(),
+                        DateTime.Now.AddDays(-5).DayOfWeek.ToString(),
+                        DateTime.Now.AddDays(-4).DayOfWeek.ToString(),
+                        DateTime.Now.AddDays(-3).DayOfWeek.ToString(),
+                        DateTime.Now.AddDays(-2).DayOfWeek.ToString(),
+                        DateTime.Now.AddDays(-1).DayOfWeek.ToString(),
+                        DateTime.Now.DayOfWeek.ToString()
+                    }
+                };
+
+                ChartDatasetModel chartDatasetModel = new ChartDatasetModel
+                {
+                    Data = new int[7],
+                    BackgroundColor = new string[] { "#0078d7" },
+                    BorderColor = new string[] { "#FFFFFF" },
+                    BorderWidth = 1
+                };
+
+                DateTime lastWeek = DateTime.Now.AddDays(-7);
+                IEnumerable<Task> tasks = dbContext.Tasks.Where(task => task.OriginalCreationDate >= lastWeek).ToList();
+                foreach (Task task in tasks)
+                {
+                    switch ((DateTime.Now - task.OriginalCreationDate).Days.ToString())
+                    {
+                        case "7":
+                            chartDatasetModel.Data[0]++;
+                            break;
+                        case "6":
+                            chartDatasetModel.Data[1]++;
+                            break;
+                        case "5":
+                            chartDatasetModel.Data[2]++;
+                            break;
+                        case "4":
+                            chartDatasetModel.Data[3]++;
+                            break;
+                        case "3":
+                            chartDatasetModel.Data[4]++;
+                            break;
+                        case "2":
+                            chartDatasetModel.Data[5]++;
+                            break;
+                        default:
+                            chartDatasetModel.Data[6]++;
+                            break;
+
+                    }
+                }
+
+                chartDataModel.Datasets = new List<ChartDatasetModel> { chartDatasetModel };
+                chartModel.Data = chartDataModel;
+                chartModel.Title = "Tasks Created - Past Week";
+                return chartModel;
+            }
         }
 
         /// <summary>
@@ -102,8 +189,13 @@ namespace Fleqx.Controllers
 
                 ChartDataModel chartDataModel = new ChartDataModel
                 {
-                    Labels = dbContext.Users.Select(user => user.UserName).ToList()
+                    Labels = new List<string>()
                 };
+
+                foreach(User user in dbContext.Users.ToList())
+                {
+                    chartDataModel.Labels.Add(user.UserName);
+                }
 
                 ChartDatasetModel chartDatasetModel = new ChartDatasetModel
                 {
@@ -113,10 +205,9 @@ namespace Fleqx.Controllers
                     BorderWidth = 1
                 };
 
-                IEnumerable<User> users = dbContext.Users.ToList();
                 int index = 0;
 
-                foreach (User user in users)
+                foreach (User user in dbContext.Users.ToList())
                 {
                     IEnumerable<Task> tasksWithinTimePeriod = user.AssignedTasks.Where(task => task.OriginalCreationDate >= DateTime.Now.AddDays(-14));
 
@@ -127,7 +218,7 @@ namespace Fleqx.Controllers
 
                 chartDataModel.Datasets = new List<ChartDatasetModel> { chartDatasetModel };
                 chartModel.Data = chartDataModel;
-                chartModel.Title = "Estimated Days for each User - Assigned Tasks";
+                chartModel.Title = "Estimated Days for each User - Active Tasks";
                 return chartModel;
             }
         }
@@ -168,6 +259,134 @@ namespace Fleqx.Controllers
             chartModel.Data = chartDataModel;
             chartModel.Title = "Currently Logged in Users";
             return chartModel;
+        }
+
+        /// <summary>
+        /// Gets the completed days for each user chart.
+        /// </summary>
+        /// <returns></returns>
+        public string GetCompletedDays()
+        {
+            ChartModel chartModel = CreateUserCompletedDaysChart();
+
+            var camelCaseFormatter = new JsonSerializerSettings();
+            camelCaseFormatter.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            return JsonConvert.SerializeObject(chartModel, camelCaseFormatter);
+        }
+
+        /// <summary>
+        /// Gets the open tasks on the system.
+        /// </summary>
+        /// <returns></returns>
+        public string GetOpenTasks()
+        {
+            ChartModel chartModel = CreateOpenTasksChart();
+
+            var camelCaseFormatter = new JsonSerializerSettings();
+            camelCaseFormatter.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            return JsonConvert.SerializeObject(chartModel, camelCaseFormatter);
+        }
+
+        /// <summary>
+        /// Creates the open tasks chart model.
+        /// </summary>
+        /// <returns></returns>
+        public ChartModel CreateOpenTasksChart()
+        {
+            using (var dbContext = GetDatabaseContext())
+            {
+                ChartModel chartModel = new ChartModel
+                {
+                    Type = "polarArea"
+                };
+
+                ChartDataModel chartDataModel = new ChartDataModel
+                {
+                    Labels = new List<string> { "Very Low", "Low", "Medium", "High", "Very High" }
+                };
+
+                ChartDatasetModel chartDatasetModel = new ChartDatasetModel
+                {
+                    Data = new int[5],
+                    BackgroundColor = new string[] { "#4CE641", "#95EC32", "#F2F222", "#F88D11", "#FF1200" },
+                    BorderColor = new string[] { "#ffffff" },
+                    BorderWidth = 1
+                };
+                List<Task> openTasks = dbContext.Tasks.Where(task => task.TaskStateId == 1).ToList();
+
+                chartDatasetModel.Data[0] = openTasks.Count(task => task.TaskPriority == 1);
+                chartDatasetModel.Data[1] = openTasks.Count(task => task.TaskPriority == 2);
+                chartDatasetModel.Data[2] = openTasks.Count(task => task.TaskPriority == 3);
+                chartDatasetModel.Data[3] = openTasks.Count(task => task.TaskPriority == 4);
+                chartDatasetModel.Data[4] = openTasks.Count(task => task.TaskPriority == 5);
+
+                chartDataModel.Datasets = new List<ChartDatasetModel> { chartDatasetModel };
+                chartModel.Data = chartDataModel;
+                chartModel.Title = "Open Tasks - Priority Weighting";
+                return chartModel;
+            }
+        }
+
+        /// <summary>
+        /// Creates the user completed days charts.
+        /// </summary>
+        /// <returns></returns>
+        public ChartModel CreateUserCompletedDaysChart()
+        {
+            using (var dbContext = GetDatabaseContext())
+            {
+                // Initial blank filter model.
+                TaskFilterModel filterModel = new TaskFilterModel
+                {
+                    OriginalCreationDateFrom = DateTime.Now.AddDays(-14),
+                    OriginalCreationDateTo = DateTime.Now,
+                    ActualFinishDateFrom = DateTime.Now.AddDays(-14),
+                    ActualFinishDateTo = DateTime.Now,
+                    StartedDate = DateTime.Now.AddDays(-14),
+                    AllUsers = dbContext.Users.ToList(),
+                    CreatedUserId = "",
+                    TaskPriority = -1
+                };
+
+                ChartModel chartModel = new ChartModel
+                {
+                    Type = "bar"
+                };
+
+                ChartDataModel chartDataModel = new ChartDataModel
+                {
+                    Labels = new List<string>()
+                };
+
+                int index = 0;
+                foreach(User user in dbContext.Users.ToList())
+                {
+                    chartDataModel.Labels.Add(user.UserName);
+                }
+
+                ChartDatasetModel chartDatasetModel = new ChartDatasetModel
+                {
+                    Data = new int[dbContext.Users.Count()],
+                    BackgroundColor = new string[] { "#FF69B4" },
+                    BorderColor = new string[] { "#FFFFFF" },
+                };
+
+                IEnumerable<User> users = dbContext.Users.ToList();
+                index = 0;
+                foreach (User user in users)
+                {
+                    int totalCompletedDays = user.AssignedTasks.Where(task => task.TaskStateId == 3 && task.ActualFinishDate >= filterModel.ActualFinishDateFrom
+                         && task.ActualFinishDate <= filterModel.ActualFinishDateTo).Sum(task => task.ActualDaysTaken);
+                    chartDatasetModel.Data[index] = totalCompletedDays;
+                    index++;
+                }
+
+                chartDataModel.Datasets = new List<ChartDatasetModel> { chartDatasetModel };
+                chartModel.Data = chartDataModel;
+                chartModel.Title = "User Completed Days - Past Two Weeks";
+
+                return chartModel;
+            }
         }
 
         /// <summary>

@@ -157,6 +157,11 @@ h1 {
   .home .content-container {
     margin-left: 150px;
     margin-right: 305px; }
+    .home .content-container .alert {
+      margin: 0px;
+      height: 30px;
+      padding: 5px;
+      text-align: center; }
   .home #content {
     z-index: 0;
     margin-left: 10px;

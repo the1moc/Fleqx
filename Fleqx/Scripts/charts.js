@@ -30,6 +30,12 @@ function createGraph(d)
         case "doughnut":
             createDoughnutChart(parsedData);
             break;
+        case "line":
+            createLineChart(parsedData);
+            break;
+        case "polarArea":
+            createDoughnutChart(parsedData);
+            break;
     }
 }
 
@@ -44,7 +50,7 @@ function createBarChart(parsedData)
     }
 
     $("#chart").css("max-height", "800px");
-    $("#chart").css("max-width", "");
+    $("#chart").css("max-width", "1000px");
     var ctx = document.getElementById('chart').getContext('2d');
     this.myChart = new Chart(ctx, {
         type: parsedData.type,
@@ -87,6 +93,46 @@ function createDoughnutChart(parsedData)
         options: {
             animation: {
                 animateScale: true
+            },
+            scale: {
+                ticks: {
+                    display: false
+                }
+            }
+        }
+    });
+}
+
+function createLineChart(parsedData)
+{
+    $("#chart").css("max-height", "800px");
+    $("#chart").css("max-width", "1000px");
+    var ctx = document.getElementById('chart').getContext('2d');
+    this.myChart = new Chart(ctx, {
+        type: parsedData.type,
+        data: parsedData.data,
+        options: {
+            legend: {
+                display: false
+            },
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        fontSize: 20
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        fontSize: 20,
+                        beginAtZero: true,
+                        userCallback: function (label, index, labels)
+                        {
+                            if (Math.floor(label) === label) {
+                                return label;
+                            }
+                        }
+                    }
+                }]
             }
         }
     });

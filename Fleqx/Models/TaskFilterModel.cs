@@ -83,6 +83,14 @@ namespace Fleqx.Models
         public DateTime StartedDate { get; set; }
 
         /// <summary>
+        /// Gets or sets the team identifier.
+        /// </summary>
+        /// <value>
+        /// The team identifier.
+        /// </value>
+        public int TeamId { get; set; }
+
+        /// <summary>
         /// Gets or sets the actual finish date start filter.
         /// </summary>
         /// <value>

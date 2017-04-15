@@ -66,10 +66,12 @@ namespace Fleqx.Controllers
                 {
                     case "mytasks":
                         tasks = dbContext.Tasks.Where(task => task.AssignedUserId == currentUser.Id).ToList();
+                        filterModel.AssignedUserId = currentUser.Id;
                         ViewBag.Title = "My Tasks";
                         break;
                     case "teamtasks":
                         tasks = dbContext.Tasks.Where(task => task.AssignedUser.TeamId == currentUser.TeamId).ToList();
+                        filterModel.TeamId = currentUser.TeamId;
                         ViewBag.Title = "Team Tasks";
                         break;
                     default:
@@ -120,23 +122,8 @@ namespace Fleqx.Controllers
         {
             using (var dbContext = GetDatabaseContext())
             {
-                List<Task> tasks;
+                List<Task> tasks = dbContext.Tasks.ToList();
                 User currentUser = GetCurrentUser();
-                switch (filterModel.TasksDesired)
-                {
-                    case "mytasks":
-                        tasks = dbContext.Tasks.Where(task => task.AssignedUserId == currentUser.Id).ToList();
-                        ViewBag.Title = "My Tasks";
-                        break;
-                    case "teamtasks":
-                        tasks = dbContext.Tasks.Where(task => task.AssignedUser.TeamId == currentUser.TeamId).ToList();
-                        ViewBag.Title = "Team Tasks";
-                        break;
-                    default:
-                        tasks = dbContext.Tasks.ToList();
-                        ViewBag.Title = "All Tasks";
-                        break;
-                }
 
                 tasks = FilterByModel(filterModel, tasks);
 
@@ -319,23 +306,23 @@ namespace Fleqx.Controllers
         /// <returns></returns>
         public List<Task> FilterByModel(TaskFilterModel filterModel, List<Task> tasks)
         {
-            if (filterModel.OriginalCreationDateFrom != DateTime.MaxValue)
+            if (filterModel.OriginalCreationDateFrom != DateTime.MaxValue && filterModel.OriginalCreationDateFrom != DateTime.MinValue)
             {
                 tasks = tasks.Where(task => task.OriginalCreationDate >= filterModel.OriginalCreationDateFrom).ToList();
             }
-            if (filterModel.OriginalCreationDateTo != DateTime.MaxValue)
+            if (filterModel.OriginalCreationDateTo != DateTime.MaxValue && filterModel.OriginalCreationDateTo != DateTime.MinValue)
             {
                 tasks = tasks.Where(task => task.OriginalCreationDate <= filterModel.OriginalCreationDateTo).ToList();
             }
-            if (filterModel.ActualFinishDateFrom != DateTime.MaxValue)
+            if (filterModel.ActualFinishDateFrom != DateTime.MaxValue && filterModel.ActualFinishDateFrom != DateTime.MinValue)
             {
                 tasks = tasks.Where(task => task.ActualFinishDate >= filterModel.ActualFinishDateFrom).ToList();
             }
-            if (filterModel.ActualFinishDateTo != DateTime.MaxValue)
+            if (filterModel.ActualFinishDateTo != DateTime.MaxValue && filterModel.ActualFinishDateTo != DateTime.MinValue)
             {
                 tasks = tasks.Where(task => task.ActualFinishDate <= filterModel.ActualFinishDateTo).ToList();
             }
-            if (filterModel.StartedDate != DateTime.MaxValue)
+            if (filterModel.StartedDate != DateTime.MaxValue && filterModel.StartedDate != DateTime.MinValue)
             {
                 tasks = tasks.Where(task => task.TaskStartedDate >= filterModel.StartedDate).ToList();
             }
