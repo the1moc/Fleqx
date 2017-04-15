@@ -10,134 +10,151 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
+using System.Web.Security;
+using System.Web.Caching;
 
 namespace Fleqx.Controllers
 {
-	[AllowAnonymous]
-	public class SecurityController : Controller
-	{
-		private readonly UserManager<User> userManager;
+    [AllowAnonymous]
+    public class SecurityController : Controller
+    {
+        private readonly UserManager<User> userManager;
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="SecurityController"/> class.
-		/// </summary>
-		public SecurityController()
-			: this(new UserManager<User>(new UserStore<User>(new DatabaseContext())))
-		{
-		}
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SecurityController"/> class.
+        /// </summary>
+        public SecurityController()
+            : this(new UserManager<User>(new UserStore<User>(new DatabaseContext())))
+        {
+        }
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="SecurityController"/> class.
-		/// </summary>
-		/// <param name="userManager">The user manager.</param>
-		public SecurityController(UserManager<User> userManager)
-		{
-			this.userManager = userManager;
-		}
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SecurityController"/> class.
+        /// </summary>
+        /// <param name="userManager">The user manager.</param>
+        public SecurityController(UserManager<User> userManager)
+        {
+            userManager.UserValidator = new UserValidator<User>(userManager)
+            {
+                AllowOnlyAlphanumericUserNames = false,
+                
+            };
 
-		/// <summary>
-		/// Display the login screen view.
-		/// </summary>
-		/// <param name="returnUrl">The return URL.</param>
-		/// <returns></returns>
-		[HttpGet]
-		public ActionResult Login(string returnUrl)
-		{
-			LoginModel model = new LoginModel
-			{
-				RequestedUrl = returnUrl
-			};
+            this.userManager = userManager;
+        }
 
-			return View("LoginPage", model);
-		}
+        /// <summary>
+        /// Display the login screen view.
+        /// </summary>
+        /// <param name="returnUrl">The return URL.</param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult Login(string returnUrl)
+        {
+            LoginModel model = new LoginModel
+            {
+                RequestedUrl = returnUrl
+            };
 
-		/// <summary>
-		/// Attempt to login a user.
-		/// </summary>
-		/// <param name="loginModel">The login model.</param>
-		/// <returns></returns>
-		[HttpPost]
-		public async Task<ActionResult> Login(LoginModel loginModel)
-		{
-			// Return to the login page if the view model was invalid (incomplete data)
-			if (!ModelState.IsValid)
-			{
-				return View("LoginPage");
-			}
+            return View("LoginPage", model);
+        }
 
-			User user = await userManager.FindAsync(loginModel.UserName, loginModel.Password);
+        /// <summary>
+        /// Attempt to login a user.
+        /// </summary>
+        /// <param name="loginModel">The login model.</param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<ActionResult> Login(LoginModel loginModel)
+        {
+            // Return to the login page if the view model was invalid (incomplete data)
+            if (!ModelState.IsValid)
+            {
+                return View("LoginPage");
+            }
 
-			if (user != null)
-			{
-				ClaimsIdentity identity = await userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+            User user = await userManager.FindAsync(loginModel.UserName, loginModel.Password);
 
-				IOwinContext context = Request.GetOwinContext();
-				context.Authentication.SignIn(identity);
+            if (user != null)
+            {
+                ClaimsIdentity identity = await userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
 
-				if (string.IsNullOrEmpty(loginModel.RequestedUrl) || !Url.IsLocalUrl(loginModel.RequestedUrl))
-				{
-					return Redirect(Url.Action("Home", "Home"));
-				}
+                IOwinContext context = Request.GetOwinContext();
+                context.Authentication.SignIn(identity);
 
-				ViewBag.Clear();
-				return Redirect(loginModel.RequestedUrl);
-			}
+                user.IsLoggedIn = 1;
+                await userManager.UpdateAsync(user);
 
-			ViewBag.Error = "Invalid credentials. Try again.";
-			return View("LoginPage");
-		}
+                if (string.IsNullOrEmpty(loginModel.RequestedUrl) || !Url.IsLocalUrl(loginModel.RequestedUrl))
+                {
+                    return Redirect(Url.Action("Home", "Home"));
+                }
 
-		/// <summary>
-		/// Signs up a user.
-		/// </summary>
-		/// <param name="signupModel">The signup model.</param>
-		/// <returns></returns>
-		[HttpPost]
-		public async Task<ActionResult> SignUp(SignupModel signupModel)
-		{
-			if (!ModelState.IsValid)
-			{
-				ViewBag.Error = "The form was not filled out correctly.";
-				return Redirect(Request.UrlReferrer.PathAndQuery);
-			}
+                ViewBag.Clear();
+                return Redirect(loginModel.RequestedUrl);
+            }
 
-			// Create the user model.
-			User user = new User
-			{
-				UserName  = signupModel.UserName,
-				FirstName = signupModel.FirstName,
-				LastName  = signupModel.LastName,
-				SecurityStamp = Guid.NewGuid().ToString(),
-				TeamId    = signupModel.Team
-			};
+            ViewBag.Error = "Invalid credentials. Try again.";
+            return View("LoginPage");
+        }
 
-			// Check if the user already exists.
-			User existingUser = await userManager.FindByNameAsync(user.UserName);
-			if (existingUser != null && existingUser.Id != user.Id)
-			{
-				ViewBag.Error = "That user already exists";
-				return Redirect(Request.UrlReferrer.PathAndQuery);
-			}
+        /// <summary>
+        /// Signs up a user.
+        /// </summary>
+        /// <param name="signupModel">The signup model.</param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<ActionResult> SignUp(SignupModel signupModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return new HttpStatusCodeResult(500, "The form was not filled out correctly, please check again");
+            }
 
-			// Add the user to the database.
-			userManager.Create(user, signupModel.Password);
+            // Create the user model.
+            User user = new User
+            {
+                UserName  = signupModel.UserName,
+                FirstName = signupModel.FirstName,
+                LastName  = signupModel.LastName,
+                SecurityStamp = Guid.NewGuid().ToString(),
+                TeamId    = signupModel.Team
+            };
 
-			// Add them to the correct role.
-			userManager.AddToRole(user.Id, ListControlHelper.GetRole(signupModel.Role));
-			return Redirect(Request.UrlReferrer.PathAndQuery);
-		}
+            // Check if the user already exists.
+            User existingUser = await userManager.FindByNameAsync(user.UserName);
+            if (existingUser != null && existingUser.Id != user.Id)
+            {
+                return new HttpStatusCodeResult(500, "That user already exists");
+            }
 
-		/// <summary>
-		/// Logouts the user.
-		/// </summary>
-		/// <returns></returns>
-		[HttpGet]
-		public ActionResult Logout()
-		{
-			IAuthenticationManager authManager = HttpContext.GetOwinContext().Authentication;
-			authManager.SignOut();
+            // Add the user to the database.
+            var result = await userManager.CreateAsync(user, signupModel.Password);
 
-			return View("LoginPage");
-		}
-	}
+            if (result.Succeeded)
+            {
+                // Add them to the correct role.
+                userManager.AddToRole(user.Id, ListControlHelper.GetRole(signupModel.Role));
+                return Redirect(Request.UrlReferrer.PathAndQuery);
+            }
+            return new HttpStatusCodeResult(500, "Error adding the user: " + result.Errors);
+        }
+
+        /// <summary>
+        /// Logouts the user.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<ActionResult> Logout()
+        {
+            User user = userManager.FindById(HttpContext.User.Identity.GetUserId());
+            user.IsLoggedIn = 0;
+            await userManager.UpdateAsync(user);
+
+            IAuthenticationManager authManager = HttpContext.GetOwinContext().Authentication;
+            authManager.SignOut();
+
+            return View("LoginPage");
+        }
+    }
 }

@@ -30,7 +30,6 @@
         .userinformation {
             position: relative;
             text-align: center;
-            margin-bottom: 10%;
             margin-top: 5%;
             background-color: $sidebar-title-background;
             padding: 10px;
@@ -42,15 +41,18 @@
             font-size: 16px;
             color: $sidebar-title-color;
         }
+        hr {
+            margin: 1px;
+        }
 
         ul {
             list-style: none;
             padding-left: 0;
 
             .panel-button {
-                margin: 0 0 10px 0;
+                margin: 10px 0 0 0;
                 text-align: left;
-                font-size: 15px;
+                font-size: 12px;
                 width: 100%;
                 border: none;
                 color: $button-color;

@@ -15,7 +15,11 @@
                 $("#actual-finish").hide();
             }
 
-            $(".date").datepicker({ dateFormat: "yy-mm-dd" });
+            // Hide these fields if the task is in the open state.
+            if ($("#task-state-selection").val() == 1) {
+                $("#actual-start").hide();
+            }
+            initialiseDates();
         });
     })
 
@@ -50,7 +54,12 @@
                 $("#actual-finish").hide();
             }
 
-            $(".date").datepicker({ dateFormat: "yy-mm-dd" });
+            // Hide these fields if the task is in the open state.
+            if ($("#task-state-selection").val() == 1) {
+                $("#actual-start").hide();
+            }
+
+            initialiseDates();
         });
     })
 
@@ -58,6 +67,7 @@
     $(document).on("submit", "#editTaskForm", function(event)
     {
         event.preventDefault();
+        plugEmptyDates();
 
         $.ajax({
             type: "POST",
@@ -67,9 +77,13 @@
             {
                 // Reload the tasks with the refreshed data
                 $("#content").empty();
-                $("#content").load("/Task/Tasks");
-                $("#editTaskForm").modal("toggle");
-                clearModal();
+                $("#content").load("/Task/Tasks", function ()
+                {
+                    initialiseDates();
+                });
+                $("#editTaskModal").modal("hide");
+
+                displayPopup("Task has been changed.");
             },
             error: function(jqXHR, textStatus, errorThrown)
             {
@@ -82,6 +96,7 @@
     $(document).on("submit", "#addTaskForm", function(event)
     {
         event.preventDefault();
+        plugEmptyDates();
 
         $.ajax({
             type: "POST",
@@ -91,9 +106,13 @@
             {
                 // Reload the tasks with the refreshed data
                 $("#content").empty();
-                $("#content").load("/Task/Tasks");
-                $("#editTaskForm").modal("toggle");
-                clearModal();
+                $("#content").load("/Task/Tasks", function ()
+                {
+                    initialiseDates();
+                });
+                $("#addTaskModal").modal("hide");
+
+                displayPopup("New task has been added.");
             },
             error: function(jqXHR, textStatus, errorThrown)
             {
@@ -116,7 +135,9 @@
                 // Reload the announcements with the new data.
                 $("#content").empty();
                 $("#content").html(data);
-                $(".date").datepicker({ dateFormat: "yy-mm-dd" });
+                initialiseDates();
+
+                displayPopup("Filter has been applied.");
             }
         })
     });
@@ -133,5 +154,34 @@
             $("#actual-days").hide();
             $("#actual-finish").hide();
         }
+
+        // Hide these fields if the task is in the open state.
+        if ($("#task-state-selection").val() == 1) {
+            $("#actual-start").hide();
+        }
+        else {
+            $("#actual-start").show();
+        }
     });
 });
+
+function plugEmptyDates()
+{
+    $(".date").each(function (index)
+    {
+        if ($(this).val() == "") {
+            $(this).val("9999-12-31");
+        }
+    });
+}
+
+function initialiseDates()
+{
+    $(".date").datepicker({ dateFormat: "yy-mm-dd" });
+    $(".date").each(function (index)
+    {
+        if ($(this).val() == "9999-12-31") {
+            $(this).val("");
+        }
+    })
+}

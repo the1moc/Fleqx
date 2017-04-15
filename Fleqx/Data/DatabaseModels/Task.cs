@@ -4,73 +4,77 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Fleqx.Data.DatabaseModels
 {
-	public class Task
-	{
-		// The task ID (PK).
-		public int TaskID { get; set; }
+    public class Task
+    {
+        // The task ID (PK).
+        public int TaskID { get; set; }
 
-		// The task title.
-		[DataType(DataType.Text)]
-		[Required]
-		public string TaskTitle { get; set; }
+        // The task title.
+        [DataType(DataType.Text)]
+        [Required]
+        public string TaskTitle { get; set; }
 
-		// The task description.
-		[DataType(DataType.MultilineText)]
-		[Required]
-		public string TaskDescription { get; set; }
+        // The task description.
+        [DataType(DataType.MultilineText)]
+        [Required]
+        public string TaskDescription { get; set; }
 
-		// The task importance.
-		[Required]
-		public int TaskPriority { get; set; }
+        // The task importance.
+        [Required]
+        public int TaskPriority { get; set; }
 
-		// The time the task was created.
-		[Required]
-		[DataType(DataType.DateTime)]
-		public DateTime OriginalCreationDate { get; set; }
+        // The time the task was created.
+        [Required]
+        [DataType(DataType.DateTime)]
+        public DateTime OriginalCreationDate { get; set; }
 
-		// The last time the task was renewed.
-		[Required]
-		[DataType(DataType.DateTime)]
-		public DateTime LastRenewalDate { get; set; }
+        // The last time the task was renewed.
+        [Required]
+        [DataType(DataType.DateTime)]
+        public DateTime LastRenewalDate { get; set; }
 
-		// The date the task has to be done.
-		[Required]
-		[DataType(DataType.DateTime)]
-		public DateTime CriticalFinishDate { get; set; }
+        // The date the task was started.
+        [DataType(DataType.DateTime)]
+        public DateTime TaskStartedDate { get; set; }
 
-		// The actual date the task was finished.
-		[DataType(DataType.DateTime)]
-		public DateTime ActualFinishDate { get; set; }
+        // The date the task has to be done.
+        [Required]
+        [DataType(DataType.DateTime)]
+        public DateTime CriticalFinishDate { get; set; }
 
-		// The estimated number of days it will take to complete.
-		[Required]
-		public int EstimatedDaysTaken { get; set; }
+        // The actual date the task was finished.
+        [DataType(DataType.DateTime)]
+        public DateTime ActualFinishDate { get; set; }
 
-		// The actual number of days it took to complete the task.
-		public int ActualDaysTaken { get; set; }
+        // The estimated number of days it will take to complete.
+        [Required]
+        public int EstimatedDaysTaken { get; set; }
 
-		// The user that created the task.
-		[Required]
-		[DataType(DataType.Text)]
-		public string CreatedUserId { get; set; }
+        // The actual number of days it took to complete the task.
+        public int ActualDaysTaken { get; set; }
 
-		// The current state of the task.
-		[Required]
-		public int TaskStateId { get; set; }
+        // The user that created the task.
+        [Required]
+        [DataType(DataType.Text)]
+        public string CreatedUserId { get; set; }
 
-		// The user that has been assigned the task.
-		[Required]
-		[DataType(DataType.Text)]
-		public string AssignedUserId { get; set; }
+        // The current state of the task.
+        [Required]
+        public int TaskStateId { get; set; }
 
-		// Foreign key references
-		[ForeignKey("TaskStateId")]
-		public virtual TaskState TaskState { get; set; }
+        // The user that has been assigned the task.
+        [Required]
+        [DataType(DataType.Text)]
+        public string AssignedUserId { get; set; }
 
-		[ForeignKey("CreatedUserId")]
-		public virtual User CreatedUser { get; set; }
+        // Foreign key references
+        [ForeignKey("TaskStateId")]
+        public virtual TaskState TaskState { get; set; }
 
-		[ForeignKey("AssignedUserId")]
-		public virtual User AssignedUser { get; set; }
-	}
+        [ForeignKey("CreatedUserId")]
+        public virtual User CreatedUser { get; set; }
+
+        [ForeignKey("AssignedUserId")]
+        public virtual User AssignedUser { get; set; }
+    }
 }

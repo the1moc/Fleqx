@@ -16,14 +16,12 @@
             <div class="modal-body">
                 @using (Html.BeginForm("Add", "Task", FormMethod.Post, new { id = "addTaskForm", @class = "form task-add-form center-block", autocomplete = "off" }))
                 {
-                    @Html.ValidationSummary(false, "");
                     Model.CreatedUserId = User.Identity.GetUserId();
                     @Html.HiddenFor(model => model.CreatedUserId);
                     <div class="row">
                         <div class="col-md-12">
                             <label class="task-add-label">Title</label>
                             @Html.TextBoxFor(model => model.TaskTitle, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.TaskTitle)
                         </div>
                     </div>
                     <div class="row">
@@ -51,6 +49,12 @@
                         <div class="col-md-6" id="actual-days">
                             <label class="task-edit-label">Actual Days to Complete</label>
                             @Html.TextBoxFor(model => model.ActualDaysTaken, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" id="actual-start">
+                            <label class="task-edit-label">Started Date</label>
+                            @Html.TextBoxFor(model => model.TaskStartedDate, new { @class = "form-control date", @Value = Model.TaskStartedDate.ToString("yyyy-MM-dd") })
                         </div>
                     </div>
                     <div class="row">

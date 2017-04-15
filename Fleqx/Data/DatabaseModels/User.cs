@@ -17,6 +17,9 @@ namespace Fleqx.Data.DatabaseModels
 		[Required]
 		public string LastName { get; set; }
 
+        // If that user is logged in.
+        public int IsLoggedIn { get; set; }
+
 		// The team that person is in.
 		[Required]
 		public int TeamId { get; set; }

@@ -40,7 +40,8 @@ namespace Fleqx.Data
                     LastName = "Jones",
                     PasswordHash = hashedPassword,
                     SecurityStamp = Guid.NewGuid().ToString(),
-                    TeamId = 1
+                    TeamId = 1,
+                    IsLoggedIn = 0
                 });
 
                 context.SaveChanges();
@@ -57,8 +58,8 @@ namespace Fleqx.Data
                 context.SaveChanges();
 
                 // Add the first user to the admin role.
-                UserManager<User> userManager = new UserManager<User>(new UserStore<User>(new DatabaseContext()));
-                userManager.AddToRole(context.Users.Find("1").Id, "Admin");
+                UserManager<User> userManager = new UserManager<User>(new UserStore<User>(context));
+                userManager.AddToRole("1", "Admin");
 
                 // Add the first announcement.
                 List<Announcement> announcements = new List<Announcement>
@@ -113,7 +114,8 @@ namespace Fleqx.Data
                     EstimatedDaysTaken = 1,
                     CreatedUserId = "1",
                     AssignedUserId = "1",
-                    TaskStateId = 1
+                    TaskStateId = 1,
+                    TaskStartedDate = new DateTime(2050, 1, 1)
                 });
 
                 // Add the tasks.
@@ -130,7 +132,8 @@ namespace Fleqx.Data
                     EstimatedDaysTaken = 1,
                     CreatedUserId = "1",
                     AssignedUserId = "1",
-                    TaskStateId = 2
+                    TaskStateId = 2,
+                    TaskStartedDate = DateTime.Now
                 });
 
                 // Add the tasks.
@@ -148,7 +151,8 @@ namespace Fleqx.Data
                     ActualDaysTaken = 1,
                     CreatedUserId = "1",
                     AssignedUserId = "1",
-                    TaskStateId = 3
+                    TaskStateId = 3,
+                    TaskStartedDate = DateTime.Now.AddDays(6)
                 });
 
                 // Add the tasks.
@@ -166,7 +170,8 @@ namespace Fleqx.Data
                     ActualDaysTaken = 1,
                     CreatedUserId = "1",
                     AssignedUserId = "1",
-                    TaskStateId = 1
+                    TaskStateId = 1,
+                    TaskStartedDate = DateTime.Now.AddDays(1)
                 });
 
                 context.SaveChanges();

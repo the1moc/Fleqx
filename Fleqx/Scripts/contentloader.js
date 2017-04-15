@@ -10,18 +10,29 @@ $(document).ready(function()
     if ($("#content").is(":empty"))
     {
         $("#content").load("/Announcement/Announcements", function() {
-            $(".date").datepicker({ dateFormat: "yy-mm-dd" });
+            initialiseDates();
         });
     }
 
     // On click of a section button, load the partial view from the controller.
-    $(".panel-button").click(function()
+    $(".standard-panel").click(function ()
     {
-        $(".panel-button:not(:last)").css({ "background-color": "#0078d7", "color": "#FFFFFF" });
+        $(".standard-panel").css({ "background-color": "#0078d7", "color": "#FFFFFF" });
         $(this).css({ "background-color": "#FFFFFF", "color": "#0078d7" });
-        $("#content").load($(this).data("url"), function() {
+        $("#content").load($(this).data("url"), function ()
+        {
+            if ($(".graph-container").length)
+            {
+                var data = $.ajax({
+                    url: $(".graphMyTasks").data("url"),
+                    success: (function (data, status)
+                    {
+                        createGraph(data);
+                    })
+                });
+            }
             // Hacky, but initialise the date controls
-            $(".date").datepicker({ dateFormat: "yy-mm-dd" });
+            initialiseDates();
         });
     });
 
@@ -34,7 +45,7 @@ $(document).ready(function()
 // When hooking into the submit event, manually remove the bootstrap modal form.
 function clearModal()
 {
-    $('body').removeClass('modal-open');
+    $('body').removeClass('modal');
     $('.modal-backdrop').remove();
 }
 

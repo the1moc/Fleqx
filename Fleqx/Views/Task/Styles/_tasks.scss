@@ -12,10 +12,14 @@
         text-align: center;
 
         &.task-section {
-            background-color: $task-section-heading-color;
-            color: #FFFFFF;
-            margin: 0 0 5px 0 !important;
+            background-color:#FFFFFF;
+            color: $task-section-heading-color;
+            margin: 0 0 10px 0 !important;
             padding: 5px;
+            border-bottom-style: solid;
+            border-width: 1px;
+
+            
         }
 
         &.task-item {

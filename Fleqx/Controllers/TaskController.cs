@@ -46,13 +46,17 @@ namespace Fleqx.Controllers
                 // Initial blank filter model.
                 TaskFilterModel filterModel = new TaskFilterModel
                 {
-                    EndDate = DateTime.Now,
-                    StartDate = DateTime.Now.AddDays(-7),
                     TasksDesired = tasksDesired,
                     AllUsers = dbContext.Users.ToList(),
                     CreatedUserId = "",
-                    TaskPriority = -1
-                };
+                    TaskPriority = -1,
+                    ActualFinishDateFrom = DateTime.MaxValue,
+                    ActualFinishDateTo = DateTime.MaxValue,
+                    OriginalCreationDateFrom = DateTime.MaxValue,
+                    OriginalCreationDateTo = DateTime.MaxValue,
+                    StartedDate = DateTime.MaxValue,
+                    CriticalFinishDate = DateTime.MaxValue
+            };
 
                 List<Task> tasks;
 
@@ -73,8 +77,8 @@ namespace Fleqx.Controllers
                         ViewBag.Title = "All Tasks";
                         break;
                 }
-                // Apply the dates filter.
-                tasks = tasks.Where(task => task.OriginalCreationDate >= filterModel.StartDate).ToList();
+
+                tasks.RemoveAll(task => task.TaskStateId == 3 && task.ActualFinishDate <= DateTime.Now.AddDays(-14));
 
                 // Create the view models to be passed to the task view
                 List<TaskModel> models = tasks.Select(task =>
@@ -95,7 +99,8 @@ namespace Fleqx.Controllers
                         AssignedUser = task.AssignedUser,
                         TaskState = task.TaskState,
                         TaskStateId = task.TaskStateId,
-                        AllUsers = null
+                        AllUsers = null,
+                        TaskStartedDate = task.TaskStartedDate
                     };
                 }).ToList();
 
@@ -133,10 +138,6 @@ namespace Fleqx.Controllers
                         break;
                 }
 
-                // Apply the date filters.
-                tasks = tasks.Where(task => task.OriginalCreationDate >= filterModel.StartDate &&
-                                            task.OriginalCreationDate <= filterModel.EndDate).ToList();
-
                 tasks = FilterByModel(filterModel, tasks);
 
                 // Create the view models to be passed to the task view
@@ -158,7 +159,8 @@ namespace Fleqx.Controllers
                         AssignedUser = task.AssignedUser,
                         TaskState = task.TaskState,
                         TaskStateId = task.TaskStateId,
-                        AllUsers = null
+                        AllUsers = null,
+                        TaskStartedDate = task.TaskStartedDate
                     };
                 }).ToList();
 
@@ -195,7 +197,8 @@ namespace Fleqx.Controllers
                     AssignedUserId = model.AssignedUserId,
                     TaskState = model.TaskState,
                     TaskStateId = model.TaskStateId,
-                    AllUsers = dbContext.Users.ToList()
+                    AllUsers = dbContext.Users.ToList(),
+                    TaskStartedDate = model.TaskStartedDate
                 };
                 return PartialView("_TaskEditForm", viewModel);
             }
@@ -227,6 +230,7 @@ namespace Fleqx.Controllers
                         dbModel.ActualDaysTaken = viewModel.ActualDaysTaken;
                         dbModel.AssignedUserId = viewModel.AssignedUserId;
                         dbModel.TaskStateId = viewModel.TaskStateId;
+                        dbModel.TaskStartedDate = viewModel.TaskStartedDate;
 
                         // Update the changes.
                         dbContext.Entry(dbModel).State = System.Data.Entity.EntityState.Modified;
@@ -256,7 +260,8 @@ namespace Fleqx.Controllers
                     // Set some values to be passed to the new add form.
                     AllUsers = dbContext.Users.ToList(),
                     CriticalFinishDate = DateTime.Now,
-                    ActualFinishDate = new DateTime(2050, 1, 1)
+                    ActualFinishDate = DateTime.MaxValue,
+                    TaskStartedDate = DateTime.MaxValue
                 };
 
                 return PartialView("_TaskAddForm", viewModel);
@@ -284,11 +289,12 @@ namespace Fleqx.Controllers
                         dbModel.OriginalCreationDate = DateTime.Now;
                         dbModel.LastRenewalDate = DateTime.Now;
                         dbModel.CriticalFinishDate = viewModel.CriticalFinishDate;
-                        dbModel.ActualFinishDate = new DateTime(2050, 1, 1);
+                        dbModel.ActualFinishDate = viewModel.ActualFinishDate;
                         dbModel.EstimatedDaysTaken = viewModel.EstimatedDaysTaken;
                         dbModel.CreatedUserId = viewModel.CreatedUserId;
                         dbModel.AssignedUserId = viewModel.AssignedUserId;
                         dbModel.TaskStateId = viewModel.TaskStateId;
+                        dbModel.TaskStartedDate = viewModel.TaskStartedDate;
 
                         // Update the changes.
                         dbContext.Tasks.Add(dbModel);
@@ -313,7 +319,27 @@ namespace Fleqx.Controllers
         /// <returns></returns>
         public List<Task> FilterByModel(TaskFilterModel filterModel, List<Task> tasks)
         {
-            if(filterModel.TaskPriority > -1)
+            if (filterModel.OriginalCreationDateFrom != DateTime.MaxValue)
+            {
+                tasks = tasks.Where(task => task.OriginalCreationDate >= filterModel.OriginalCreationDateFrom).ToList();
+            }
+            if (filterModel.OriginalCreationDateTo != DateTime.MaxValue)
+            {
+                tasks = tasks.Where(task => task.OriginalCreationDate <= filterModel.OriginalCreationDateTo).ToList();
+            }
+            if (filterModel.ActualFinishDateFrom != DateTime.MaxValue)
+            {
+                tasks = tasks.Where(task => task.ActualFinishDate >= filterModel.ActualFinishDateFrom).ToList();
+            }
+            if (filterModel.ActualFinishDateTo != DateTime.MaxValue)
+            {
+                tasks = tasks.Where(task => task.ActualFinishDate <= filterModel.ActualFinishDateTo).ToList();
+            }
+            if (filterModel.StartedDate != DateTime.MaxValue)
+            {
+                tasks = tasks.Where(task => task.TaskStartedDate >= filterModel.StartedDate).ToList();
+            }
+            if (filterModel.TaskPriority > -1)
             {
                 tasks = tasks.Where(task => task.TaskPriority == filterModel.TaskPriority).ToList();
             }
@@ -324,6 +350,10 @@ namespace Fleqx.Controllers
             if (filterModel.TaskTitle != null)
             {
                 tasks = tasks.Where(task => task.TaskTitle.Contains(filterModel.TaskTitle)).ToList();
+            }
+            if (filterModel.TaskDescription != null)
+            {
+                tasks = tasks.Where(task => task.TaskDescription.Contains(filterModel.TaskDescription)).ToList();
             }
             if (filterModel.EstimatedDaysTaken > 0)
             {

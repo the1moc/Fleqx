@@ -13,8 +13,7 @@ using Microsoft.Owin.Security;
 
 namespace Fleqx.Controllers
 {
-    [AllowAnonymous]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private readonly UserManager<User> userManager;
 
@@ -41,9 +40,61 @@ namespace Fleqx.Controllers
         /// <param name="returnUrl">The return URL.</param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult Settings()
+        public ActionResult Signup()
         {
-            return View("Settings");
+            return View("_Signup", new SignupModel());
+        }
+
+        /// <summary>
+        /// Get the account settings view.
+        /// </summary>
+        /// <param name="returnUrl">The return URL.</param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult Edit()
+        {
+            using (var dbContext = GetDatabaseContext())
+            {
+                User user = dbContext.Users.Find(User.Identity.GetUserId());
+
+                AccountModel model = new AccountModel
+                {
+                    Id = user.Id,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Team = user.TeamId,
+                    UserName = user.UserName
+                };
+
+                return View("_Settings", model);
+            }
+        }
+
+        /// <summary>
+        /// Edit the user details.
+        /// </summary>
+        /// <param name="returnUrl">The return URL.</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Edit(AccountModel accountModel)
+        {
+            using (var dbContext = GetDatabaseContext())
+            {
+                User user = userManager.FindById(accountModel.Id);
+
+                user.UserName = accountModel.UserName;
+                user.FirstName = accountModel.FirstName;
+                user.LastName = accountModel.LastName;
+                user.TeamId = accountModel.Team;
+                user.SecurityStamp = Guid.NewGuid().ToString();
+
+                if (accountModel.Password != null)
+                {
+                    user.PasswordHash = new PasswordHasher().HashPassword(accountModel.Password);
+                }
+                userManager.Update(user);
+                return Redirect(Request.UrlReferrer.PathAndQuery);
+            }
         }
     }
 }

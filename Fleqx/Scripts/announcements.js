@@ -18,6 +18,7 @@
                     $(".date").datepicker({ dateFormat: "yy-mm-dd" });
                 });
                 $("#announcementModal").modal("toggle");
+                displayPopup("New announcement has been added.");
 
                 // Remove the modal.
                 clearModal();
@@ -40,6 +41,7 @@
                 $("#content").empty();
                 $("#content").html(data);
                 $(".date").datepicker({ dateFormat: "yy-mm-dd" });
+                displayPopup("Filter applied.");
             }
         })
     });

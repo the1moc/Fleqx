@@ -53,7 +53,13 @@
                             <label class="task-edit-label">Creation Date</label>
                             @Html.TextBoxFor(model => model.OriginalCreationDate, new { @class = "form-control date", @readonly = "readonly", @Value = Model.OriginalCreationDate.ToString("yyyy-MM-dd")})
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" id="actual-start">
+                            <label class="task-edit-label">Started Date</label>
+                            @Html.TextBoxFor(model => model.TaskStartedDate, new { @class = "form-control date", @Value = Model.TaskStartedDate.ToString("yyyy-MM-dd") })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
                             <label class="task-edit-label">Last Renewal Date</label>
                             @Html.TextBoxFor(model => model.LastRenewalDate, new { @class = "form-control date", @readonly = "readonly", @Value = Model.LastRenewalDate.ToString("yyyy-MM-dd") })
                         </div>

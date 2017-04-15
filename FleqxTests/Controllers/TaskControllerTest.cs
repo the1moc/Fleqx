@@ -72,16 +72,16 @@ namespace FleqxTests.Controllers
 
             TaskFilterModel taskFilterModel = new TaskFilterModel
             {
-                StartDate = DateTime.Now.AddDays(-1),
-                EndDate = DateTime.Now.AddDays(6),
+                OriginalCreationDateFrom = DateTime.Now.AddDays(-1),
+                OriginalCreationDateTo = DateTime.Now.AddDays(6),
                 TasksDesired = "alltasks",
                 TaskPriority = -1
             };
 
             var result = controller.Object.FilterTasks(taskFilterModel) as PartialViewResult;
             Assert.That(result.Model, Has.Count.EqualTo(3));
-            Assert.IsTrue(((List<TaskModel>)result.Model).First().OriginalCreationDate >= taskFilterModel.StartDate);
-            Assert.IsTrue(((List<TaskModel>)result.Model).First().OriginalCreationDate <= taskFilterModel.EndDate);
+            Assert.IsTrue(((List<TaskModel>)result.Model).First().OriginalCreationDate >= taskFilterModel.OriginalCreationDateFrom);
+            Assert.IsTrue(((List<TaskModel>)result.Model).First().OriginalCreationDate <= taskFilterModel.OriginalCreationDateTo);
         }
 
         /// <summary>
@@ -95,8 +95,8 @@ namespace FleqxTests.Controllers
 
             TaskFilterModel taskFilterModel = new TaskFilterModel
             {
-                StartDate = DateTime.Now.AddDays(-1),
-                EndDate = DateTime.Now.AddDays(6),
+                OriginalCreationDateFrom = DateTime.Now.AddDays(-1),
+                OriginalCreationDateTo = DateTime.Now.AddDays(6),
                 TasksDesired = "alltasks",
                 TaskPriority = 2
             };
@@ -117,8 +117,8 @@ namespace FleqxTests.Controllers
 
             TaskFilterModel taskFilterModel = new TaskFilterModel
             {
-                StartDate = DateTime.Now.AddDays(-1),
-                EndDate = DateTime.Now.AddDays(6),
+                OriginalCreationDateFrom = DateTime.Now.AddDays(-1),
+                OriginalCreationDateTo = DateTime.Now.AddDays(6),
                 TasksDesired = "alltasks",
                 TaskPriority = -1,
                 TaskTitle = "Custom Title"
@@ -140,8 +140,8 @@ namespace FleqxTests.Controllers
 
             TaskFilterModel taskFilterModel = new TaskFilterModel
             {
-                StartDate = DateTime.Now.AddDays(-1),
-                EndDate = DateTime.Now.AddDays(6),
+                OriginalCreationDateFrom = DateTime.Now.AddDays(-1),
+                OriginalCreationDateTo = DateTime.Now.AddDays(6),
                 TasksDesired = "alltasks",
                 TaskPriority = -1,
                 CreatedUserId = "2"
@@ -163,8 +163,8 @@ namespace FleqxTests.Controllers
 
             TaskFilterModel taskFilterModel = new TaskFilterModel
             {
-                StartDate = DateTime.Now.AddDays(-1),
-                EndDate = DateTime.Now.AddDays(6),
+                OriginalCreationDateFrom = DateTime.Now.AddDays(-1),
+                OriginalCreationDateTo = DateTime.Now.AddDays(6),
                 TasksDesired = "alltasks",
                 TaskPriority = -1,
                 EstimatedDaysTaken = 3
@@ -186,8 +186,8 @@ namespace FleqxTests.Controllers
 
             TaskFilterModel taskFilterModel = new TaskFilterModel
             {
-                StartDate = DateTime.Now.AddDays(-1),
-                EndDate = DateTime.Now.AddDays(6),
+                OriginalCreationDateFrom = DateTime.Now.AddDays(-1),
+                OriginalCreationDateTo = DateTime.Now.AddDays(6),
                 TasksDesired = "alltasks",
                 TaskPriority = -1,
                 ActualDaysTaken = 7
@@ -209,8 +209,8 @@ namespace FleqxTests.Controllers
 
             TaskFilterModel taskFilterModel = new TaskFilterModel
             {
-                StartDate = DateTime.Now.AddDays(-1),
-                EndDate = DateTime.Now.AddDays(6),
+                OriginalCreationDateFrom = DateTime.Now.AddDays(-1),
+                OriginalCreationDateTo = DateTime.Now.AddDays(6),
                 TasksDesired = "alltasks",
                 TaskPriority = -1,
                 AssignedUserId = "2"

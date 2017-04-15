@@ -1,3 +1,14 @@
 ﻿.account-container {
-    height: 90%;
+    background-color: aqua !important;
+    .account-form {
+    }
+}
+
+.signup-form {
+    .form-button {
+        font-size: 20px;
+    }
+    .form-control {
+        margin-bottom: 10px;
+    }
 }

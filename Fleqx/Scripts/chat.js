@@ -5,10 +5,9 @@
 
 $(function()
 {
-    // Hide the show chat button
-    if ($(".chat-container").is(":visible")) {
-        $(".show-chat").hide();
-    }
+    $(".chat-container").hide();
+    $(".content-container").css("margin-right", 0);
+    $(".show-chat").show();
 
     // Show the chat
     $(".chat-container .panel-heading").click(function()

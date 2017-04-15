@@ -214,17 +214,14 @@
   <ItemGroup>
     <Content Include="Assets\logo.png" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\charts.js" />
     <Content Include="Scripts\chat.js" />
     <Content Include="Scripts\contentloader.js" />
     <Content Include="Scripts\jquery.signalR-2.2.1.min.js" />
     <Content Include="Scripts\announcements.js" />
+    <Content Include="Scripts\account.js" />
+    <Content Include="Scripts\notifications.js" />
     <Content Include="Scripts\tasks.js" />
-    <Content Include="Styles\main - Copy.css">
-      <DependentUpon>_variables.scss</DependentUpon>
-    </Content>
-    <Content Include="Styles\main - Copy.min.css">
-      <DependentUpon>main - Copy.css</DependentUpon>
-    </Content>
     <Content Include="Styles\main.css">
       <DependentUpon>main.scss</DependentUpon>
     </Content>
@@ -237,6 +234,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\GraphController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
@@ -259,6 +257,9 @@
     </Compile>
     <Compile Include="Data\DatabaseModels\Announcement.cs" />
     <Compile Include="Hubs\ChatHub.cs" />
+    <Compile Include="Models\ChartDatasetModel.cs" />
+    <Compile Include="Models\ChartDataModel.cs" />
+    <Compile Include="Models\ChartModel.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\TaskFilterModel.cs" />
     <Compile Include="Models\AnnouncementFilterModel.cs" />
@@ -284,7 +285,7 @@
     <Content Include="Views\Home\Home.cshtml" />
     <Content Include="Views\Shared\_BaseLayout.cshtml" />
     <Content Include="Views\Shared\_HomeLayout.cshtml" />
-    <Content Include="Views\Home\_SignupForm.cshtml" />
+    <Content Include="Views\Account\_Signup.cshtml" />
     <Content Include="Views\Shared\Styles\_homeLayout.scss" />
     <Content Include="Views\Security\Styles\_login.scss" />
     <Content Include="Styles\main.scss" />
@@ -295,7 +296,6 @@
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <Content Include="Styles\_variables.scss" />
-    <Content Include="Views\Home\Styles\_signup.scss" />
     <Content Include="Styles\_shared.scss" />
     <Content Include="Views\Announcement\Announcements.cshtml" />
     <Content Include="Views\Announcement\Styles\_announcement.scss" />
@@ -309,12 +309,14 @@
     <None Include="Properties\PublishProfiles\Fleqx.pubxml" />
     <None Include="Properties\PublishProfiles\Test.pubxml" />
     <Content Include="Views\Task\_TaskFilterForm.cshtml" />
-    <Content Include="Views\Account\Settings.cshtml" />
+    <Content Include="Views\Account\_Settings.cshtml" />
     <Content Include="Views\Account\Styles\_account.scss" />
     <Content Include="Views\Announcement\Styles\_announcementFilter.scss" />
     <Content Include="Views\Announcement\Styles\_announcementForm.scss" />
     <Content Include="Views\Announcement\_AnnouncementFilterForm.cshtml" />
     <Content Include="Views\Announcement\_AnnouncementForm.cshtml" />
+    <Content Include="Views\Graph\Graph.cshtml" />
+    <Content Include="Views\Graph\Styles\_graph.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

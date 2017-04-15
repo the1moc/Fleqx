@@ -8,24 +8,6 @@ namespace Fleqx.Models
     public class TaskFilterModel
     {
         /// <summary>
-        /// Gets or sets the start filter date.
-        /// </summary>
-        /// <value>
-        /// The start date.
-        /// </value>
-        [Required]
-        public DateTime StartDate { get; set; }
-
-        /// <summary>
-        /// Gets or sets the end filter date.
-        /// </summary>
-        /// <value>
-        /// The end date.
-        /// </value>
-        [Required]
-        public DateTime EndDate { get; set; }
-
-        /// <summary>
         /// Gets or sets the task priority.
         /// </summary>
         /// <value>
@@ -48,16 +30,31 @@ namespace Fleqx.Models
         /// <value>
         /// The task title.
         /// </value>
-        [Required]
         public string TaskTitle { get; set; }
 
         /// <summary>
-        /// Gets or sets the original creation date.
+        /// Gets or sets the task description.
+        /// </summary>
+        /// <value>
+        /// The task description.
+        /// </value>
+        public string TaskDescription { get; set; }
+
+        /// <summary>
+        /// Gets or sets the original creation date start filter.
         /// </summary>
         /// <value>
         /// The original creation date.
         /// </value>
-        public DateTime OriginalCreationDate { get; set; }
+        public DateTime OriginalCreationDateFrom { get; set; }
+
+        /// <summary>
+        /// Gets or sets the original creation date end filter.
+        /// </summary>
+        /// <value>
+        /// The original creation date.
+        /// </value>
+        public DateTime OriginalCreationDateTo { get; set; }
 
         /// <summary>
         /// Gets or sets the last renewal date.
@@ -78,12 +75,28 @@ namespace Fleqx.Models
         public DateTime CriticalFinishDate { get; set; }
 
         /// <summary>
-        /// Gets or sets the actual finish date.
+        /// Gets or sets the actual start date.
         /// </summary>
         /// <value>
         /// The actual finish date.
         /// </value>
-        public DateTime ActualFinishDate { get; set; }
+        public DateTime StartedDate { get; set; }
+
+        /// <summary>
+        /// Gets or sets the actual finish date start filter.
+        /// </summary>
+        /// <value>
+        /// The actual finish date.
+        /// </value>
+        public DateTime ActualFinishDateFrom { get; set; }
+
+        /// <summary>
+        /// Gets or sets the actual finish date end filter.
+        /// </summary>
+        /// <value>
+        /// The actual finish date.
+        /// </value>
+        public DateTime ActualFinishDateTo { get; set; }
 
         /// <summary>
         /// Gets or sets the estimated days.

@@ -1,10 +1,4 @@
-﻿.signup-form .form-button {
-  font-size: 20px; }
-
-.signup-form .form-control {
-  margin-bottom: 10px; }
-
-.login-logo {
+﻿.login-logo {
   margin-top: 40px;
   margin-bottom: 40px; }
 
@@ -73,7 +67,13 @@
   max-width: 100%; }
 
 .account-container {
-  height: 90%; }
+  background-color: aqua !important; }
+
+.signup-form .form-button {
+  font-size: 20px; }
+
+.signup-form .form-control {
+  margin-bottom: 10px; }
 
 .chat-container {
   z-index: 3;
@@ -142,6 +142,15 @@
       .chat-container .inputs-container #message:focus {
         outline: none; }
 
+h1 {
+  margin-top: 5px; }
+
+.graph-container #id {
+  max-height: 1000px; }
+
+.graph-container .graph-selections {
+  margin-bottom: 10px; }
+
 .home {
   width: 100%;
   min-height: 100%; }
@@ -168,7 +177,6 @@
     .home .sidepanel .userinformation {
       position: relative;
       text-align: center;
-      margin-bottom: 10%;
       margin-top: 5%;
       background-color: #FFFFFF;
       padding: 10px; }
@@ -177,13 +185,15 @@
       text-align: center;
       font-size: 16px;
       color: #000000; }
+    .home .sidepanel hr {
+      margin: 1px; }
     .home .sidepanel ul {
       list-style: none;
       padding-left: 0; }
       .home .sidepanel ul .panel-button {
-        margin: 0 0 10px 0;
+        margin: 10px 0 0 0;
         text-align: left;
-        font-size: 15px;
+        font-size: 12px;
         width: 100%;
         border: none;
         color: #FFFFFF;
@@ -222,10 +232,12 @@
   .tasks-container .task-heading {
     text-align: center; }
     .tasks-container .task-heading.task-section {
-      background-color: #0078d7;
-      color: #FFFFFF;
-      margin: 0 0 5px 0 !important;
-      padding: 5px; }
+      background-color: #FFFFFF;
+      color: #0078d7;
+      margin: 0 0 10px 0 !important;
+      padding: 5px;
+      border-bottom-style: solid;
+      border-width: 1px; }
     .tasks-container .task-heading.task-item {
       padding: 5px;
       background-color: lightgray;
@@ -350,7 +362,7 @@ input:-webkit-autofill:active {
   background-color: #ffffff !important;
   text-align: center;
   border-style: solid;
-  border-width: 2px;
+  border-width: 1px;
   border-color: #0078d7;
   min-width: 800px; }
   .filter-container .filter-form .row {

@@ -6,22 +6,27 @@
 {
     @Html.HiddenFor(model => model.TasksDesired)
     <div class="row">
-        <div class="form-group col-xs-3">
-            <label class="filter-form-label">Start Date</label>
-            @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control date", @Value = Model.StartDate.ToString("yyyy-MM-dd") })
+        <div class="form-group col-xs-2">
+            <label class="filter-form-label">Created From</label>
+            @Html.TextBoxFor(model => model.OriginalCreationDateFrom, new { @class = "form-control date", @Value = Model.OriginalCreationDateFrom.ToString("yyyy-MM-dd") })
         </div>
-        <div class="form-group col-xs-3">
-            <label class="filter-form-label">End Date</label>
-            @Html.TextBoxFor(model => model.EndDate, new { @class = "form-control date", @Value = Model.EndDate.ToString("yyyy-MM-dd") })
+        <div class="form-group col-xs-2">
+            <label class="filter-form-label">Created To</label>
+            @Html.TextBoxFor(model => model.OriginalCreationDateTo, new { @class = "form-control date", @Value = Model.OriginalCreationDateTo.ToString("yyyy-MM-dd") })
         </div>
-        <div class="form-group col-xs-3">
-            <label class="filter-form-label">Task priority</label>
-            @{List<SelectListItem> taskSelectList = new List<SelectListItem>();
-                taskSelectList.Add(new SelectListItem { Text = "", Value = "-1" });
-                taskSelectList.AddRange(ListControlHelper.TaskPriority); }
-            @Html.DropDownListFor(model => model.TaskPriority, taskSelectList, new { @class = "form-control", @Value = Model.TaskPriority })
+        <div class="form-group col-xs-2">
+            <label class="filter-form-label">Finished From</label>
+            @Html.TextBoxFor(model => model.ActualFinishDateFrom, new { @class = "form-control date", @Value = Model.ActualFinishDateFrom.ToString("yyyy-MM-dd") })
         </div>
-        <div class="form-group col-xs-3">
+        <div class="form-group col-xs-2">
+            <label class="filter-form-label">Finished To</label>
+            @Html.TextBoxFor(model => model.ActualFinishDateTo, new { @class = "form-control date", @Value = Model.ActualFinishDateTo.ToString("yyyy-MM-dd") })
+        </div>
+        <div class="form-group col-xs-2">
+            <label class="filter-form-label">Started</label>
+            @Html.TextBoxFor(model => model.StartedDate, new { @class = "form-control date", @Value = Model.StartedDate.ToString("yyyy-MM-dd") })
+        </div>
+        <div class="form-group col-xs-2">
             @{List<SelectListItem> createdSelectList = new List<SelectListItem>();
                 createdSelectList.Add(new SelectListItem { Text = "", Value = "" });
                 createdSelectList.AddRange(Model.AllUsers.Select(user => new SelectListItem { Text = user.UserName, Value = user.Id }));}
@@ -30,19 +35,30 @@
         </div>
     </div>
         <div class="row">
-            <div class="form-group col-xs-3">
+            <div class="form-group col-xs-2">
                 <label class="filter-form-label">Task title</label>
                 @Html.TextBoxFor(model => model.TaskTitle, new { @class = "form-control text-box" })
             </div>
-            <div class="form-group col-xs-3">
+            <div class="form-group col-xs-2">
+                <label class="filter-form-label">Task description</label>
+                @Html.TextBoxFor(model => model.TaskDescription, new { @class = "form-control text-box" })
+            </div>
+            <div class="form-group col-xs-2">
                 <label class="filter-form-label">Estimated days taken</label>
                 @Html.TextBoxFor(model => model.EstimatedDaysTaken, new { @class = "form-control text-box" })
             </div>
-            <div class="form-group col-xs-3">
+            <div class="form-group col-xs-2">
                 <label class="filter-form-label">Actual days taken</label>
                 @Html.TextBoxFor(model => model.ActualDaysTaken, new { @class = "form-control text-box" })
             </div>
-            <div class="form-group col-xs-3">
+            <div class="form-group col-xs-2">
+                <label class="filter-form-label">Task priority</label>
+                @{List<SelectListItem> taskSelectList = new List<SelectListItem>();
+                taskSelectList.Add(new SelectListItem { Text = "", Value = "-1" });
+                taskSelectList.AddRange(ListControlHelper.TaskPriority); }
+                @Html.DropDownListFor(model => model.TaskPriority, taskSelectList, new { @class = "form-control", @Value = Model.TaskPriority })
+            </div>
+            <div class="form-group col-xs-2">
                 <label class="filter-form-label">Assigned to</label>
                 @{List<SelectListItem> assignedSelectList = new List<SelectListItem>();
                 assignedSelectList.Add(new SelectListItem { Text = "", Value = "" });
