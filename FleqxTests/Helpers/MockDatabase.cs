@@ -83,7 +83,7 @@ namespace FleqxTests.Helpers
                     TaskTitle            = "Test Title",
                     TaskDescription      = "Test Description",
                     TaskPriority         = 1,
-                    TaskState            = new TaskState(){ TaskStateID = 1 },
+                    TaskState            = new TaskState(){ TaskStateID = 1, TaskStateCurrent = "Open" },
                     ActualDaysTaken      = 7,
                     ActualFinishDate     = DateTime.Now,
                     AssignedUserId       = "1",
@@ -93,7 +93,8 @@ namespace FleqxTests.Helpers
                     LastRenewalDate      = DateTime.Now,
                     EstimatedDaysTaken   = 7,
                     OriginalCreationDate = DateTime.Now,
-                    TaskStateId          = 1
+                    TaskStateId          = 1,
+                    TaskStartedDate = DateTime.Now.AddDays(-1)
                 },
                 new Task
                 {
@@ -101,7 +102,7 @@ namespace FleqxTests.Helpers
                     TaskTitle            = "Custom Title",
                     TaskDescription      = "Test Description",
                     TaskPriority         = 1,
-                    TaskState            = new TaskState(){ TaskStateID = 1 },
+                    TaskState            = new TaskState(){ TaskStateID = 1, TaskStateCurrent = "Open" },
                     ActualDaysTaken      = 1,
                     ActualFinishDate     = DateTime.Now,
                     AssignedUserId       = "1",
@@ -112,7 +113,8 @@ namespace FleqxTests.Helpers
                     LastRenewalDate      = DateTime.Now,
                     EstimatedDaysTaken   = 7,
                     OriginalCreationDate = DateTime.Now,
-                    TaskStateId          = 1
+                    TaskStateId          = 1,
+                    TaskStartedDate = DateTime.Now.AddDays(-1)
                 },
                 new Task
                 {
@@ -120,7 +122,7 @@ namespace FleqxTests.Helpers
                     TaskTitle            = "Test Title Date",
                     TaskDescription      = "Test Description",
                     TaskPriority         = 2,
-                    TaskState            = new TaskState(){ TaskStateID = 1 },
+                    TaskState            = new TaskState(){ TaskStateID = 1, TaskStateCurrent = "Open" },
                     ActualDaysTaken      = 1,
                     ActualFinishDate     = DateTime.Now,
                     AssignedUserId       = "1",
@@ -130,7 +132,8 @@ namespace FleqxTests.Helpers
                     LastRenewalDate      = DateTime.Now,
                     EstimatedDaysTaken   = 3,
                     OriginalCreationDate = DateTime.Now.AddDays(-30),
-                    TaskStateId          = 1
+                    TaskStateId          = 1,
+                    TaskStartedDate = DateTime.Now.AddDays(-1)
                 },
                 new Task
                 {
@@ -138,7 +141,7 @@ namespace FleqxTests.Helpers
                     TaskTitle            = "Test Title Different User",
                     TaskDescription      = "Test Description",
                     TaskPriority         = 2,
-                    TaskState            = new TaskState(){ TaskStateID = 1 },
+                    TaskState            = new TaskState(){ TaskStateID = 1, TaskStateCurrent = "Open" },
                     ActualDaysTaken      = 1,
                     ActualFinishDate     = DateTime.Now,
                     AssignedUserId       = "2",
@@ -149,8 +152,32 @@ namespace FleqxTests.Helpers
                     LastRenewalDate      = DateTime.Now,
                     EstimatedDaysTaken   = 3,
                     OriginalCreationDate = DateTime.Now,
-                    TaskStateId          = 1
-                }}.AsQueryable();
+                    TaskStateId          = 1,
+                    TaskStartedDate = DateTime.Now.AddDays(-1)
+                },
+                                new Task
+                {
+                    TaskID               = 5,
+                    TaskTitle            = "Completed Task!",
+                    TaskDescription      = "Test Description",
+                    TaskPriority         = 5,
+                    TaskState            = new TaskState(){ TaskStateID = 3, TaskStateCurrent = "Closed" },
+                    ActualDaysTaken      = 19,
+                    ActualFinishDate     = DateTime.Now.AddDays(-5),
+                    AssignedUserId       = "2",
+                    CreatedUserId        = "2",
+                    CreatedUser          = users.ElementAt(1),
+                    AssignedUser         = users.ElementAt(1),
+                    CriticalFinishDate   = DateTime.Now,
+                    LastRenewalDate      = DateTime.Now,
+                    EstimatedDaysTaken   = 3,
+                    OriginalCreationDate = DateTime.Now,
+                    TaskStateId          = 3,
+                    TaskStartedDate = DateTime.Now.AddDays(-1)
+                }
+            }.AsQueryable();
+
+            users.ElementAt(0).AssignedTasks = data.ToList();
 
             var mockedDbSet = new Mock<DbSet<Task>>();
             mockedDbSet.As<IQueryable<Task>>().Setup(m => m.Provider).Returns(data.Provider);
@@ -162,13 +189,12 @@ namespace FleqxTests.Helpers
             mockedUserSet.As<IQueryable<User>>().Setup(m => m.Provider).Returns(users.Provider);
             mockedUserSet.As<IQueryable<User>>().Setup(m => m.Expression).Returns(users.Expression);
             mockedUserSet.As<IQueryable<User>>().Setup(m => m.ElementType).Returns(users.ElementType);
-            mockedUserSet.As<IQueryable<User>>().Setup(m => m.GetEnumerator()).Returns(users.GetEnumerator());
+            mockedUserSet.As<IQueryable<User>>().Setup(m => m.GetEnumerator()).Returns(() => users.GetEnumerator());
 
             mockedDb.Setup(db => db.Tasks).Returns(mockedDbSet.Object);
             mockedDb.Setup(db => db.Users).Returns(mockedUserSet.Object);
             return mockedDb.Object;
         }
-
         // Mocked a database for the chat tests.
         public static DatabaseContext MockChatDatabaseContext()
         {

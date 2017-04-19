@@ -16,14 +16,14 @@ using Newtonsoft.Json.Serialization;
 
 namespace Fleqx.Controllers
 {
-    public class GraphController : BaseController
+    public class ChartController : BaseController
     {
         private readonly UserManager<User> userManager;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountController"/> class.
         /// </summary>
-        public GraphController()
+        public ChartController()
             : this(new UserManager<User>(new UserStore<User>(new DatabaseContext())))
         {
         }
@@ -32,18 +32,19 @@ namespace Fleqx.Controllers
         /// Initializes a new instance of the <see cref="AccountController"/> class.
         /// </summary>
         /// <param name="userManager">The user manager.</param>
-        public GraphController(UserManager<User> userManager)
+        public ChartController(UserManager<User> userManager)
         {
             this.userManager = userManager;
         }
 
         /// <summary>
-        /// Get the graph view.
+        /// Get the chart view.
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult Graph()
+        public ActionResult Chart()
         {
+            ViewBag.Title = "Charts";
             return View();
         }
 
@@ -130,8 +131,18 @@ namespace Fleqx.Controllers
 
                 ChartDatasetModel chartDatasetModel = new ChartDatasetModel
                 {
+                    Label = "Created Per Day",
                     Data = new int[7],
                     BackgroundColor = new string[] { "#0078d7" },
+                    BorderColor = new string[] { "#FFFFFF" },
+                    BorderWidth = 1
+                };
+
+                ChartDatasetModel chartDatasetModelCumulative = new ChartDatasetModel
+                {
+                    Label = "Cumulative Total",
+                    Data = new int[7],
+                    BackgroundColor = new string[] { "#d70078" },
                     BorderColor = new string[] { "#FFFFFF" },
                     BorderWidth = 1
                 };
@@ -167,7 +178,19 @@ namespace Fleqx.Controllers
                     }
                 }
 
-                chartDataModel.Datasets = new List<ChartDatasetModel> { chartDatasetModel };
+                // Make the cumulative dataset.
+                int total;
+                for (int i = 0; i < 7; i++)
+                {
+                    total = 0;
+                    for (int j = 0; j <= i; j++)
+                    {
+                        total += chartDatasetModel.Data[j];
+                    }
+                    chartDatasetModelCumulative.Data[i] = total;
+                }
+
+                chartDataModel.Datasets = new List<ChartDatasetModel> { chartDatasetModel, chartDatasetModelCumulative };
                 chartModel.Data = chartDataModel;
                 chartModel.Title = "Tasks Created - Past Week";
                 return chartModel;
@@ -373,7 +396,7 @@ namespace Fleqx.Controllers
 
                 IEnumerable<User> users = dbContext.Users.ToList();
                 index = 0;
-                foreach (User user in users)
+                foreach (User user in users.Where(user => user.AssignedTasks != null))
                 {
                     int totalCompletedDays = user.AssignedTasks.Where(task => task.TaskStateId == 3 && task.ActualFinishDate >= filterModel.ActualFinishDateFrom
                          && task.ActualFinishDate <= filterModel.ActualFinishDateTo).Sum(task => task.ActualDaysTaken);

@@ -42,6 +42,7 @@ namespace Fleqx.Controllers
                         };
                     }).ToList();
 
+                ViewBag.Title = "Announcements";
                 return View(models);
             }
         }

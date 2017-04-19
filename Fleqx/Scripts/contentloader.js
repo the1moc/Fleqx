@@ -6,13 +6,16 @@ $(document).ready(function()
     // Link the chat
     createConnection();
 
-    // If the content is empty, load in the announcements content.
-    if ($("#content").is(":empty"))
+    setTimeout(function ()
     {
-        $("#content").load("/Announcement/Announcements", function() {
-            initialiseDates();
-        });
-    }
+        setupTime();
+    }, 500);
+
+    $(".navbar").css("width", window.innerWidth - 150);
+    $(window).on("resize", function ()
+    {
+        $(".navbar").css("width", window.innerWidth - 150);
+    });
 
     // On click of a section button, load the partial view from the controller.
     $(".standard-panel").click(function ()
@@ -21,6 +24,7 @@ $(document).ready(function()
         $(this).css({ "background-color": "#FFFFFF", "color": "#0078d7" });
         $("#content").load($(this).data("url"), function ()
         {
+            $(".content-title").text($(".section-title").text());
             if ($(".graph-container").length)
             {
                 var data = $.ajax({
@@ -31,10 +35,26 @@ $(document).ready(function()
                     })
                 });
             }
+
+            if ((".calendar-container").length)
+            {
+                var data = $.ajax({
+                    url: "Calendar/GetCalendarTasks",
+                    success: (function (data, status)
+                    {
+                        createCalendar(data);
+                    })
+                });
+            }
             // Hacky, but initialise the date controls
             initialiseDates();
         });
     });
+
+    // If the content is empty, load in the announcements content.
+    if ($("#content").is(":empty")) {
+        $(".announcements-panel").click();
+    }
 
     // When a modal is shown, make it draggable.
     $(document).on("shown.bs.modal", ".modal", function() {
@@ -56,4 +76,10 @@ function makeDraggableModal()
     $(".modal-dialog").draggable({
         handle: ".modal-header"
     });
+}
+
+function setupTime()
+{
+    var time = moment().format("dddd wo MMMM - HH:mm");
+    $(".time-display").text(time);
 }

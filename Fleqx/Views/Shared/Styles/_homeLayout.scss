@@ -2,9 +2,50 @@
     width: 100%;
     min-height: 100%;
 
+    .navbar {
+        max-height: 43px !important;
+        min-height: 43px !important;
+        border-radius: 0;
+        background-color: #0078d7;
+        border-style: none;
+        margin-left: 150px;
+        position: fixed;
+        top: 0;
+        padding-right: 10px;
+        z-index: 999;
+        margin-bottom: 0 !important;
+
+        .header-time {
+            color: #FFFFFF;
+            font-size: 20px;
+            text-align: right;
+            margin-top: 5px;
+            margin-right: 5px;
+            float: right;
+            display: flex;
+
+            i {
+                margin-left: 5px;
+                margin-top: 3px;
+            }
+        }
+
+        .content-title {
+            text-align: center;
+            color: #FFFFFF;
+            font-size: 20px;
+            margin-top: 5px;
+            float: left;
+            margin-left: 10px;
+        }
+
+        
+    }
+
     .content-container {
         margin-left: 150px;
         margin-right: 305px;
+        z-index: 0;
 
         .alert {
             margin: 0px;
@@ -15,10 +56,9 @@
     }
 
     #content {
-        z-index: 0;
         margin-left: 10px;
         margin-right: 10px;
-        margin-top: 10px;
+        margin-top: 55px;
         max-height: 100%;
         min-width: 400px;
         overflow: auto;
@@ -37,7 +77,6 @@
         .userinformation {
             position: relative;
             text-align: center;
-            margin-top: 5%;
             background-color: $sidebar-title-background;
             padding: 10px;
         }
@@ -48,6 +87,7 @@
             font-size: 16px;
             color: $sidebar-title-color;
         }
+
         hr {
             margin: 1px;
         }
@@ -71,10 +111,10 @@
                     margin-right: 10px;
                 }
 
-                    &:hover {
-                        background-color: $button-hover-background-color;
-                        color: $button-hover-color;
-                    }
+                &:hover {
+                    background-color: $button-hover-background-color;
+                    color: $button-hover-color;
+                }
 
                 &.logout-button {
                     bottom: 0;
@@ -91,6 +131,7 @@
             }
         }
     }
+
     .show-chat {
         position: fixed;
         bottom: 0;

@@ -214,6 +214,7 @@
   <ItemGroup>
     <Content Include="Assets\logo.png" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\calendar.js" />
     <Content Include="Scripts\charts.js" />
     <Content Include="Scripts\chat.js" />
     <Content Include="Scripts\contentloader.js" />
@@ -234,7 +235,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\GraphController.cs" />
+    <Compile Include="Controllers\CalendarController.cs" />
+    <Compile Include="Controllers\ChartController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
@@ -257,6 +259,7 @@
     </Compile>
     <Compile Include="Data\DatabaseModels\Announcement.cs" />
     <Compile Include="Hubs\ChatHub.cs" />
+    <Compile Include="Models\CalendarModel.cs" />
     <Compile Include="Models\ChartDatasetModel.cs" />
     <Compile Include="Models\ChartDataModel.cs" />
     <Compile Include="Models\ChartModel.cs" />
@@ -315,8 +318,10 @@
     <Content Include="Views\Announcement\Styles\_announcementForm.scss" />
     <Content Include="Views\Announcement\_AnnouncementFilterForm.cshtml" />
     <Content Include="Views\Announcement\_AnnouncementForm.cshtml" />
-    <Content Include="Views\Graph\Graph.cshtml" />
-    <Content Include="Views\Graph\Styles\_graph.scss" />
+    <Content Include="Views\Chart\Chart.cshtml" />
+    <Content Include="Views\Chart\Styles\_chart.scss" />
+    <Content Include="Views\Calendar\Calendar.cshtml" />
+    <Content Include="Views\Calendar\Styles\_calendar.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

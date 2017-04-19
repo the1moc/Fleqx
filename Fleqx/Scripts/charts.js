@@ -84,8 +84,8 @@ function createBarChart(parsedData)
 
 function createDoughnutChart(parsedData)
 {
-    $("#chart").css("max-height", "800px");
-    $("#chart").css("max-width", "800px");
+    $("#chart").css("max-height", "600px");
+    $("#chart").css("max-width", "600px");
     var ctx = document.getElementById('chart').getContext('2d');
     this.myChart = new Chart(ctx, {
         type: parsedData.type,
@@ -112,9 +112,6 @@ function createLineChart(parsedData)
         type: parsedData.type,
         data: parsedData.data,
         options: {
-            legend: {
-                display: false
-            },
             scales: {
                 xAxes: [{
                     ticks: {

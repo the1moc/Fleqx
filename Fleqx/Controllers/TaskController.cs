@@ -107,6 +107,7 @@ namespace Fleqx.Controllers
                 }).ToList();
 
                 ViewBag.filterModel = filterModel;
+                ViewBag.Title = "Tasks";
                 return PartialView(models);
             }
         }

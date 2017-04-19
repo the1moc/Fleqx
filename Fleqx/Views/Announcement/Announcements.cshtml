@@ -3,6 +3,7 @@
 @model List<Fleqx.Models.AnnouncementModel>
 
 <div class="filter-container">
+    <div class="section-title hidden">@ViewBag.Title</div>
     @if (ViewBag.filterModel == null)
     {
         Html.RenderAction("AnnouncementFilterForm", "Announcement");

@@ -29,7 +29,7 @@ namespace FleqxTests.Controllers
             controller.CallBase = true;
 
             var result = controller.Object.Tasks("mytasks") as PartialViewResult;
-            Assert.That(result.Model, Has.Count.EqualTo(2));
+            Assert.That(result.Model, Has.Count.EqualTo(3));
             Assert.AreEqual(((List<TaskModel>)result.Model).First().TaskTitle, "Test Title");
         }
 
@@ -43,7 +43,7 @@ namespace FleqxTests.Controllers
             controller.CallBase = true;
 
             var result = controller.Object.Tasks("alltasks") as PartialViewResult;
-            Assert.That(result.Model, Has.Count.EqualTo(3));
+            Assert.That(result.Model, Has.Count.EqualTo(4));
             Assert.AreEqual(((List<TaskModel>)result.Model).Last().TaskTitle, "Test Title Different User");
         }
 
@@ -57,7 +57,7 @@ namespace FleqxTests.Controllers
             controller.CallBase = true;
 
             var result = controller.Object.Tasks("alltasks") as PartialViewResult;
-            Assert.That(result.Model, Has.Count.EqualTo(3));
+            Assert.That(result.Model, Has.Count.EqualTo(4));
             Assert.AreEqual(((List<TaskModel>)result.Model).Last().TaskTitle, "Test Title Different User");
         }
 

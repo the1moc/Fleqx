@@ -83,6 +83,7 @@ input:-webkit-autofill:active {
         border-width: 1px;
         border-color: #0078d7;
         min-width: 800px;
+        z-index: 0;
 
         .row {
             max-height: 100px;
@@ -93,6 +94,7 @@ input:-webkit-autofill:active {
             max-height: 54px;
             margin: 0 !important;
             color: #ffffff;
+            z-index: 0;
 
             .form-control {
                 cursor: pointer;

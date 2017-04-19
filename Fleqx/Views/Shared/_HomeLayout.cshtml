@@ -4,6 +4,7 @@
 }
 
 @section Scripts {
+    <script type="text/javascript" src="~/Scripts/calendar.js"></script>
     <script type="text/javascript" src="~/Scripts/charts.js"></script>
     <script type="text/javascript" src="~/Scripts/announcements.js"></script>
     <script type="text/javascript" src="~/Scripts/contentloader.js"></script>
@@ -29,7 +30,7 @@
             }
             <ul>
                 <li>
-                    <button class="panel-button standard-panel" id="sectionbutton" data-url="@Url.Action("Announcements", "Announcement")"><i class="glyphicon glyphicon-check"></i> Announcements</button>
+                    <button class="panel-button standard-panel announcements-panel" id="sectionbutton" data-url="@Url.Action("Announcements", "Announcement")"><i class="glyphicon glyphicon-check"></i> Announcements</button>
                 </li>
                 <li>
                     <button class="panel-button standard-panel" id="sectionbutton" data-url="@Url.Action("Tasks", "Task", new { tasksDesired = "mytasks" })"><i class="glyphicon glyphicon-pushpin"></i> My Tasks</button>
@@ -41,7 +42,7 @@
                     <button class="panel-button standard-panel" id="sectionbutton" data-url="@Url.Action("Tasks", "Task", new { tasksDesired = "alltasks" })"><i class="glyphicon glyphicon-briefcase"></i> All Tasks</button>
                 </li>
                 <li>
-                    <button class="panel-button standard-panel" id="sectionbutton" data-url="@Url.Action("Graph", "Graph")"><i class="glyphicon glyphicon-stats"></i> Graphs</button>
+                    <button class="panel-button standard-panel" id="sectionbutton" data-url="@Url.Action("Chart", "Chart")"><i class="glyphicon glyphicon-stats"></i> Graphs</button>
                 </li>
                 <li>
                     <button class="panel-button standard-panel" id="sectionbutton" data-url="@Url.Action("Calendar", "Calendar")"><i class="glyphicon glyphicon-list"></i> Calendar</button>
@@ -68,6 +69,14 @@
     </div>
     <div class="modal-form-section"></div>
     @RenderPage("~/Views/Chat/Chat.cshtml")
+    <nav class="navbar navbar-default content-header">
+        <input type="hidden" value="@ViewBag.Title" id="user-title" />
+        <div class="content-header-item content-title"></div>
+        <div class="content-header-item header-time">
+            <div class="time-display"></div>
+            <i class="glyphicon glyphicon-time"></i>
+        </div>
+    </nav>
     @RenderBody()
     <button class="show-chat standard-button">C</button>
 </div>

@@ -1,0 +1,25 @@
+﻿.graph-container {
+    background-color: #ffffff;
+    padding: 5px;
+    border-radius: 5px;
+
+    .graph-title {
+        margin-top: 5px;
+        text-align: center;
+    }
+
+    .graph-subcontainer {
+        text-align: -webkit-center;
+    }
+    
+    #id {
+        max-height: 1000px;
+    }
+    .graph-selections {
+        margin-bottom: 10px;
+        text-align: -webkit-center;
+        .graphButton {
+            margin-bottom: 5px;
+        }
+    }
+}
