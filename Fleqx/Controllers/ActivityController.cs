@@ -42,7 +42,6 @@ namespace Fleqx.Controllers
         /// <exception cref="System.Exception">Invalid activity type</exception>
         public ActionResult SaveActivity(string activityType)
         {
-
             using (var dbContext = GetDatabaseContext())
             {
                 Activity activity;
