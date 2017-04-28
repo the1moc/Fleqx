@@ -2,7 +2,6 @@
 @{
     Layout = "~/Views/Shared/_BaseLayout.cshtml";
 }
-
 @section Scripts {
     <script type="text/javascript" src="~/Scripts/calendar.js"></script>
     <script type="text/javascript" src="~/Scripts/charts.js"></script>
@@ -14,49 +13,37 @@
     <script type="text/javascript" src="~/Scripts/chat.js"></script>
     <script type="text/javascript" src="~/Scripts/account.js"></script>
     <script type="text/javascript" src="~/Scripts/notifications.js"></script>
+    <script type="text/javascript" src="~/Scripts/activity.js"></script>
 }
-
 <div class="home">
     <div class="sidepanel-container">
         <div id="sidepanel" class="sidepanel">
-            @if (Context.User.Identity.IsAuthenticated)
-            {
-                string name = Context.User.Identity.Name;
-                name = Regex.Replace(name, @"\b\w", match => match.ToString().ToUpper());
-
-                <div class="userinformation">
-                    <a class="username" href="Account\Index">@name</a>
-                </div>
-            }
             <ul>
                 <li>
-                    <button class="panel-button standard-panel announcements-panel" id="sectionbutton" data-url="@Url.Action("Announcements", "Announcement")"><i class="glyphicon glyphicon-check"></i> Announcements</button>
+                    <button class="panel-button standard-panel announcements-panel hvr-bounce-to-right" id="sectionbutton" data-url="@Url.Action("Announcements", "Announcement")"><i class="glyphicon glyphicon-check"></i><div class="button-text">Announcements</div></button>
                 </li>
                 <li>
-                    <button class="panel-button standard-panel" id="sectionbutton" data-url="@Url.Action("Tasks", "Task", new { tasksDesired = "mytasks" })"><i class="glyphicon glyphicon-pushpin"></i> My Tasks</button>
+                    <button class="panel-button standard-panel hvr-bounce-to-right" id="sectionbutton" data-url="@Url.Action("Tasks", "Task", new { tasksDesired = "mytasks" })"><i class="glyphicon glyphicon-pushpin"></i><div class="button-text"> My Tasks</div></button>
                 </li>
                 <li>
-                    <button class="panel-button standard-panel" id="sectionbutton" data-url="@Url.Action("Tasks", "Task", new { tasksDesired = "teamtasks" })"><i class="glyphicon glyphicon-tasks"></i> Team Tasks</button>
+                    <button class="panel-button standard-panel hvr-bounce-to-right" id="sectionbutton" data-url="@Url.Action("Tasks", "Task", new { tasksDesired = "teamtasks" })"><i class="glyphicon glyphicon-tasks"></i><div class="button-text"> Team Tasks</div></button>
                 </li>
                 <li>
-                    <button class="panel-button standard-panel" id="sectionbutton" data-url="@Url.Action("Tasks", "Task", new { tasksDesired = "alltasks" })"><i class="glyphicon glyphicon-briefcase"></i> All Tasks</button>
+                    <button class="panel-button standard-panel hvr-bounce-to-right" id="sectionbutton" data-url="@Url.Action("Tasks", "Task", new { tasksDesired = "alltasks" })"><i class="glyphicon glyphicon-briefcase"></i><div class="button-text"> All Tasks</div></button>
                 </li>
                 <li>
-                    <button class="panel-button standard-panel" id="sectionbutton" data-url="@Url.Action("Chart", "Chart")"><i class="glyphicon glyphicon-stats"></i> Graphs</button>
+                    <button class="panel-button standard-panel hvr-bounce-to-right" id="sectionbutton" data-url="@Url.Action("Chart", "Chart")"><i class="glyphicon glyphicon-stats"></i><div class="button-text"> Charts</div></button>
                 </li>
                 <li>
-                    <button class="panel-button standard-panel" id="sectionbutton" data-url="@Url.Action("Calendar", "Calendar")"><i class="glyphicon glyphicon-list"></i> Calendar</button>
+                    <button class="panel-button standard-panel hvr-bounce-to-right" id="sectionbutton" data-url="@Url.Action("Calendar", "Calendar")"><i class="glyphicon glyphicon-list"></i><div class="button-text"> Calendar</div></button>
                 </li>
             </ul>
             <hr />
             <ul>
-                <li>
-                    <button class="panel-button account-details" data-toggle="modal" data-target="#accountEditForm"><i class="glyphicon glyphicon-cog"></i> Account Details</button>
-                </li>
                 @if (User.IsInRole("Admin"))
                 {
                     <li>
-                        <button class="panel-button account-new" data-toggle="modal" data-target="#registerModal"><i class="glyphicon glyphicon-plus"></i> Add user</button>
+                        <button class="panel-button account-new hvr-bounce-to-right" data-toggle="modal" data-target="#registerModal"><i class="glyphicon glyphicon-plus"></i><div class="button-text">Add user</div></button>
                     </li>
                 }
                 <li>
@@ -70,11 +57,39 @@
     <div class="modal-form-section"></div>
     @RenderPage("~/Views/Chat/Chat.cshtml")
     <nav class="navbar navbar-default content-header">
-        <input type="hidden" value="@ViewBag.Title" id="user-title" />
-        <div class="content-header-item content-title"></div>
-        <div class="content-header-item header-time">
-            <div class="time-display"></div>
-            <i class="glyphicon glyphicon-time"></i>
+        <div class="container-fluid">
+            <input type="hidden" value="@ViewBag.Title" id="user-title" />
+            <ul class="nav navbar-nav">
+                @if (Context.User.Identity.IsAuthenticated)
+            {
+                string name = Context.User.Identity.Name;
+                name = Regex.Replace(name, @"\b\w", match => match.ToString().ToUpper());
+                    <li class="header-list list-header-username hvr-pulse-grow account-details">
+                        <div class="userinformation">
+                            <p class="username">@name</p>
+                        </div>
+                    </li>
+                }
+                <li class="header-list list-header-title">
+                    <div class="content-header-item">
+                        <div class="content-title"></div>
+                    </div>
+                </li>
+                <li class="header-list list-header-activity hvr-bounce-to-right">
+                    <button class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Activity
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right animated fadeIn" aria-labelledby="dropdownMenu1">
+                        <li>Hey there</li>
+                    </ul>
+                </li>
+                <li class="header-list list-header-time">
+                    <div class="header-time">
+                        <div class="time-display"></div>
+                    </div>
+                </li>
+            </ul>
         </div>
     </nav>
     @RenderBody()

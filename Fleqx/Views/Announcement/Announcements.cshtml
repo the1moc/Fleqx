@@ -1,7 +1,6 @@
 ﻿@using Fleqx.Models
 @using Microsoft.AspNet.Identity
 @model List<Fleqx.Models.AnnouncementModel>
-
 <div class="filter-container">
     <div class="section-title hidden">@ViewBag.Title</div>
     @if (ViewBag.filterModel == null)
@@ -13,7 +12,7 @@
         Html.RenderPartial("_AnnouncementFilterForm", (AnnouncementFilterModel)ViewBag.filterModel);
     }
 </div>
-<div class="announcements">
+<div class="announcements animated bounceInLeft">
     <div class="announcement-cards">
         @if (Model != null)
         {
@@ -26,20 +25,25 @@
                                 <h1 class="card-title">@announcement.AnnouncementTitle</h1>
                                 <p class="card-text">@announcement.AnnouncementContent</p>
                             </li>
-                            <li class="list-group-item">
-                                <p>Created by @announcement.User.FirstName @announcement.User.LastName at @announcement.Created <i class="importance-@announcement.AnnouncementImportance importance-icon glyphicon glyphicon-fire"></i></p>
+                            <li class="list-group-item" id="@announcement.AnnouncementID">
+                                @if (announcement.CanEdit)
+                                {
+                                    <p>Created by @announcement.User.FirstName @announcement.User.LastName at @announcement.Created <button id=@announcement.AnnouncementID class="edit-announcement content-button hvr-fade" data-toggle="modal" data-target="#announcementEditModal"><i class="glyphicon glyphicon-wrench"></i> Edit</button><button id=@announcement.AnnouncementID class="delete-announcement content-button hvr-fade" data-toggle="modal" data-target="#announcementDeleteModal"><i class="glyphicon glyphicon-remove"></i> Delete</button> <i class="importance-@announcement.AnnouncementImportance importance-icon glyphicon glyphicon-fire"></i></p>
+                                }
+                                else
+                                {
+                                    <p>Created by @announcement.User.FirstName @announcement.User.LastName at @announcement.Created <i class="importance-@announcement.AnnouncementImportance importance-icon glyphicon glyphicon-fire"></i></p>
+                                }
                             </li>
                         </ul>
                     </div>
                 </div>}
         }
     </div>
-
     @if (User.IsInRole("Admin"))
     {
         <div class="add-button">
-            <button class="standard-button" data-toggle="modal" data-target="#announcementModal"><i class="glyphicon glyphicon-pencil"></i> Add Anouncement</button>
+            <button class="add-announcement content-button hvr-pop"><i class="glyphicon glyphicon-pencil"></i> Add Anouncement</button>
         </div>
     }
-    @Html.Partial("~/Views/Announcement/_AnnouncementForm.cshtml", new AnnouncementFormModel())
 </div>

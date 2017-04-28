@@ -448,7 +448,7 @@ namespace Fleqx.Controllers
                 ChartDatasetModel chartDatasetModel = new ChartDatasetModel
                 {
                     Data = new int[3],
-                    BackgroundColor = new string[] { "#FF6666", "#66FF66", "#C0C0C0" },
+                    BackgroundColor = new string[] { "#ffb6c1", "#98ff98", "#C0C0C0" },
                     BorderColor = new string[] { "#FFFFFF" }
                 };
 

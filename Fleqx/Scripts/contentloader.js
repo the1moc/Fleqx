@@ -6,7 +6,7 @@ $(document).ready(function()
     // Link the chat
     createConnection();
 
-    setTimeout(function ()
+    setInterval(function ()
     {
         setupTime();
     }, 500);
@@ -20,8 +20,6 @@ $(document).ready(function()
     // On click of a section button, load the partial view from the controller.
     $(".standard-panel").click(function ()
     {
-        $(".standard-panel").css({ "background-color": "#0078d7", "color": "#FFFFFF" });
-        $(this).css({ "background-color": "#FFFFFF", "color": "#0078d7" });
         $("#content").load($(this).data("url"), function ()
         {
             $(".content-title").text($(".section-title").text());
@@ -57,9 +55,16 @@ $(document).ready(function()
     }
 
     // When a modal is shown, make it draggable.
-    $(document).on("shown.bs.modal", ".modal", function() {
+    $(document).on("shown.bs.modal", ".modal", function()
+    {
         makeDraggableModal();
+    });
+
+    $(document).on("hidden.bs.modal", ".modal", function()
+    {
+        $(".modal-form-section").empty();
     })
+
 })
 
 // When hooking into the submit event, manually remove the bootstrap modal form.
@@ -67,6 +72,7 @@ function clearModal()
 {
     $('body').removeClass('modal');
     $('.modal-backdrop').remove();
+    $(".modal-form-section").empty();
 }
 
 // Make a modal form draggable.

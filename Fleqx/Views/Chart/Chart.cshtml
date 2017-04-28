@@ -1,19 +1,19 @@
 ﻿@using Fleqx.Models
 
-<div class="graph-container">
+<div class="graph-container animated bounceInLeft">
     <div class="section-title hidden">@ViewBag.Title</div>
     <div class="graph-selections">
-        <button class="graphMyTasks graphButton standard-button" data-url='@Url.Action("GetTaskChart", "Chart", new { tasksDesired = "mytasks" })'>My Tasks</button>
-        <button class="graphTeamTasks graphButton standard-button" data-url='@Url.Action("GetTaskChart", "Chart", new { tasksDesired = "teamtasks" })'>Team Tasks</button>
-        <button class="graphAllTasks graphButton standard-button" data-url='@Url.Action("GetTaskChart", "Chart", new { tasksDesired = "alltasks" })'>All Tasks</button>
-        <button class="chartEstimatedDays graphButton standard-button" data-url='@Url.Action("GetDaysChart", "Chart")'>User Estimated Days</button>
-        <button class="chartCompletedDays graphButton standard-button" data-url='@Url.Action("GetCompletedDays", "Chart")'>User Completed Days</button>
-        <button class="chartOpenTaskPriority graphButton standard-button" data-url='@Url.Action("GetOpenTasks", "Chart")'>Open Task Priority</button>
-        <button class="chartTasksCreated graphButton standard-button" data-url='@Url.Action("GetCreatedTasks", "Chart")'>Created Tasks</button>
-        <button class="graphLoggedIn graphButton standard-button" data-url='@Url.Action("GetUserChart", "Chart", new { tasksDesired = "loggedin" })'>Logged In Currently</button>
+        <button class="graphMyTasks graphButton content-button hvr-fade" data-url='@Url.Action("GetTaskChart", "Chart", new { tasksDesired = "mytasks" })'>My Tasks</button>
+        <button class="graphTeamTasks graphButton content-button hvr-fade" data-url='@Url.Action("GetTaskChart", "Chart", new { tasksDesired = "teamtasks" })'>Team Tasks</button>
+        <button class="graphAllTasks graphButton content-button hvr-fade" data-url='@Url.Action("GetTaskChart", "Chart", new { tasksDesired = "alltasks" })'>All Tasks</button>
+        <button class="chartEstimatedDays graphButton content-button hvr-fade" data-url='@Url.Action("GetDaysChart", "Chart")'>User Estimated Days</button>
+        <button class="chartCompletedDays graphButton content-button hvr-fade" data-url='@Url.Action("GetCompletedDays", "Chart")'>User Completed Days</button>
+        <button class="chartOpenTaskPriority graphButton content-button hvr-fade" data-url='@Url.Action("GetOpenTasks", "Chart")'>Open Task Priority</button>
+        <button class="chartTasksCreated graphButton content-button hvr-fade" data-url='@Url.Action("GetCreatedTasks", "Chart")'>Created Tasks</button>
+        <button class="graphLoggedIn graphButton content-button hvr-fade" data-url='@Url.Action("GetUserChart", "Chart", new { tasksDesired = "loggedin" })'>Logged In Currently</button>
     </div>
     <h1 class="graph-title"></h1>
     <div class="graph-subcontainer">
         <canvas id="chart"></canvas>
     </div>
-</div>
+</div>-

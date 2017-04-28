@@ -3,43 +3,114 @@
     min-height: 100%;
 
     .navbar {
-        max-height: 43px !important;
-        min-height: 43px !important;
+        max-height: 55px !important;
+        min-height: 55px !important;
+        min-width: 400px;
         border-radius: 0;
-        background-color: #0078d7;
+        background-color: #d700a2;
         border-style: none;
-        margin-left: 150px;
         position: fixed;
         top: 0;
         padding-right: 10px;
         z-index: 999;
         margin-bottom: 0 !important;
+        padding-right: 0 !important;
+        width: 100% !important;
+        float: none !important;
 
-        .header-time {
-            color: #FFFFFF;
-            font-size: 20px;
-            text-align: right;
-            margin-top: 5px;
-            margin-right: 5px;
-            float: right;
-            display: flex;
+        .container-fluid {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
 
-            i {
-                margin-left: 5px;
-                margin-top: 3px;
+        .navbar-nav {
+            float: none !important;
+            margin: 5px 0 0 0 !important;
+            text-align: center;
+                    min-width: 550px;
+        }
+
+        ul {
+            margin-top: 7px;
+            width: 100%;
+            font-size: 24px;
+
+            .header-list {
+                display: inline-block;
+                padding: 5px;
+                color: #FFFFFF;
+                background-color: #d700a2;
+                border-style: solid;
+                border-width: 1px;
+                border-color: #FFFFFF;
+            }
+
+            .list-header-username {
+                min-width: 150px;
+                max-width: 150px;
+                margin-right: 5px;
+                text-align: center;
+                background-color: #d700a2;
+                float: left;
+                border-style: solid;
+                border-width: 1px;
+                border-color: #FFFFFF;
+                cursor: pointer;
+            }
+
+            .list-header-title {
+                position: absolute;
+                left: 46%;
+                padding: 2px 50px 1px 50px;
+                font-size: 30px;
+                cursor: default;
+            }
+
+            .list-header-activity {
+                background-color: #d700a2;
+                border-style: solid;
+                border-width: 1px;
+                border-color: #FFFFFF;
+                float: right !important;
+                padding: 4px !important;
+
+                button {
+                    background-color: transparent;
+                    border-style: none;
+                }
+            }
+
+            .list-header-time {
+                float: right;
+                padding-right: 10px !important;
+                border-right-style: none;
+                cursor: default;
+            }
+
+            p {
+                margin: 0 !important;
+            }
+
+            .dropdown-menu {
+                width: 350px;
+                background-color: #e7e7e7;
+                color: #000000;
+                .dropdown-menu-item {
+                    padding: 10px;
+                    background-color: #ffffff;
+                    color: #d700a2;
+                    font-size: 16px;
+                    cursor: default;
+                    border-bottom-style: solid;
+                    border-width: 1px;
+                    width: 100%;
+
+                    &:hover {
+                        color: #FFFFFF;
+                    }
+                }
             }
         }
-
-        .content-title {
-            text-align: center;
-            color: #FFFFFF;
-            font-size: 20px;
-            margin-top: 5px;
-            float: left;
-            margin-left: 10px;
-        }
-
-        
     }
 
     .content-container {
@@ -56,36 +127,54 @@
     }
 
     #content {
-        margin-left: 10px;
+        margin-left: 20px;
         margin-right: 10px;
-        margin-top: 55px;
+        margin-top: 65px;
         max-height: 100%;
         min-width: 400px;
-        overflow: auto;
+        overflow: hidden;
     }
 
     .sidepanel {
         height: 100%;
         float: left;
-        top: 0;
+        top: 55px;
         left: 0;
         background-color: $sidepanel-background-color;
         position: fixed;
-        min-width: 150px;
-        max-width: 150px;
+        min-width: 160px;
+        max-width: 160px;
+        border-top-style: solid;
+        border-top-color: #FFFFFF;
+        border-top-width: 1px;
 
         .userinformation {
             position: relative;
             text-align: center;
             background-color: $sidebar-title-background;
             padding: 10px;
+            font-size: 24px;
         }
 
         .username {
-            position: relative;
-            text-align: center;
-            font-size: 16px;
-            color: $sidebar-title-color;
+            background-color: $sidepanel-background-color;
+            color: #FFFFFF;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #FFFFFF;
+            margin: 0 !important;
+            width: 100%;
+            cursor: pointer !important;
+
+            .hvr-shutter-out-horizontal {
+                &:hover {
+                    background-color: #FFFFFF;
+                    color: $sidepanel-background-color;
+                    border-style: solid;
+                    border-width: 1px;
+                    border-color: $sidepanel-background-color;
+                }
+            }
         }
 
         hr {
@@ -95,30 +184,24 @@
         ul {
             list-style: none;
             padding-left: 0;
+            margin-bottom: 0 !important;
 
             .panel-button {
-                margin: 10px 0 0 0;
-                text-align: left;
-                font-size: 12px;
+                margin: 0;
+                font-size: 14px;
                 width: 100%;
                 border: none;
                 color: $button-color;
                 background-color: $button-background-color;
-                padding: 10px 10px 10px 10px;
+                padding: 20px 10px 20px 10px;
+                display: inline;
 
                 .glyphicon {
-                    margin-left: 1px;
-                    margin-right: 10px;
-                }
-
-                &:hover {
-                    background-color: $button-hover-background-color;
-                    color: $button-hover-color;
+                    font-size: 24px;
                 }
 
                 &.logout-button {
-                    bottom: 0;
-                    position: absolute;
+                    bottom: 100px;
                     text-align: center;
                     margin-bottom: 0;
                     padding: 15px 0 10px 0 !important;

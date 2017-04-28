@@ -48,7 +48,6 @@ namespace Fleqx.Models
 		/// <value>
 		/// The user identifier.
 		/// </value>
-		[Required]
 		[DataType(DataType.Text)]
 		public string UserId { get; set; }
 	}

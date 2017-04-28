@@ -108,7 +108,7 @@ namespace Fleqx.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(500, "The form was not filled out correctly, please check again");
+                return new HttpStatusCodeResult(500, "The form was not filled out correctly. Please check the inputs.");
             }
 
             // Create the user model.

@@ -7,9 +7,12 @@ input:-webkit-autofill:active {
 
 .modal {
     .modal-header {
-        background-color: $modal-header-background-color;
+        background-color: #464646;
         color: $modal-header-color;
 
+        &:hover {
+            cursor: pointer;
+        }
         .modal-title {
             position: absolute;
         }
@@ -42,21 +45,36 @@ input:-webkit-autofill:active {
         margin-top: 1%;
         margin-bottom: 1%;
         width: 95%;
-        background-color: $button-background-color;
-        color: $button-color;
+        background-color: $content-button-background-color;
+        color: $content-button-color;
         border-color: transparent;
         border-radius: 5px;
 
         &:hover {
-            background-color: $button-hover-background-color;
-            color: $button-hover-color;
+            background-color: #ffffff;
+            color: #464646;
             border-style: solid;
-            border-color: $button-hover-color;
+            border-color: #464646;
         }
     }
 
     label {
         margin-bottom: 0;
+    }
+}
+
+.content-button {
+    background-color: $content-button-background-color;
+    color: $content-button-color;
+    border-radius: 5px;
+    border: none;
+    font-size: 20px;
+    outline: 0;
+    padding: 5px;
+
+    &:hover {
+        background-color: #FFFFFF;
+        color: #464646;
     }
 }
 
@@ -81,7 +99,7 @@ input:-webkit-autofill:active {
         text-align: center;
         border-style: solid;
         border-width: 1px;
-        border-color: #0078d7;
+        border-color: #464646;
         min-width: 800px;
         z-index: 0;
 
@@ -112,7 +130,7 @@ input:-webkit-autofill:active {
         .standard-button {
             margin-bottom: 5px;
             background-color: #FFFFFF;
-            color: #0078d7;
+            color: #464646;
 
             &:hover {
                 color: #4CAF50;

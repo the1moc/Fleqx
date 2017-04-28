@@ -4,6 +4,10 @@
     // Show the modal edit form for a task.
     $(document).on("click", ".task-item", function()
     {
+        // Quick fix.
+        if (this.id == "")
+            return;
+
         $(".modal-form-section").load("/Task/GetEditModalView", { taskId: this.id }, function()
         {
             $("#editTaskModal").modal();
@@ -75,6 +79,7 @@
             data: $(this).serialize(),
             success: function()
             {
+                updateActivity("2");
                 // Reload the tasks with the refreshed data
                 $("#content").empty();
                 $("#content").load("/Task/Tasks", function ()
@@ -83,7 +88,7 @@
                 });
                 $("#editTaskModal").modal("hide");
 
-                displayPopup("Task has been changed.");
+                displayPopup("Task has been changed.", "success");
             },
             error: function(jqXHR, textStatus, errorThrown)
             {
@@ -104,6 +109,7 @@
             data: $(this).serialize(),
             success: function()
             {
+                updateActivity("1");
                 // Reload the tasks with the refreshed data
                 $("#content").empty();
                 $("#content").load("/Task/Tasks", function ()
@@ -112,7 +118,7 @@
                 });
                 $("#addTaskModal").modal("hide");
 
-                displayPopup("New task has been added.");
+                displayPopup("New task has been added.", "success");
             },
             error: function(jqXHR, textStatus, errorThrown)
             {
@@ -138,7 +144,7 @@
                 $("#content").html(data);
                 initialiseDates();
 
-                displayPopup("Filter has been applied.");
+                displayPopup("Filter has been applied.", "success");
             }
         })
     });

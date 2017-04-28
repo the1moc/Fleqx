@@ -29,13 +29,15 @@
             data: $(this).serialize(),
             success: function ()
             {
+                updateActivity("6");
                 // Reload the tasks with the refreshed data
                 $("#registerModal").modal("hide");
-                displayPopup("The user has been added to the application.");
+                displayPopup("The user has been added to the application.", "success");
+                clearModal();
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
-                alert(errorThrown);
+                displayPopup(errorThrown, "danger");
             }
         })
     });
@@ -51,13 +53,15 @@
             data: $(this).serialize(),
             success: function ()
             {
+                updateActivity("7");
                 // Reload the tasks with the refreshed data
                 $("#accountEditModal").modal("hide");
                 displayPopup("Your information has been updated.");
+                clearModal();
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
-                alert(errorThrown);
+                displayPopup(errorThrown, "danger");
             }
         })
     });

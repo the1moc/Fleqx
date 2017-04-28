@@ -6,14 +6,14 @@
     @{Html.RenderPartial("_TaskFilterForm", (TaskFilterModel)ViewBag.filterModel); }
 </div>
 
-<div class="tasks-container">
+<div class="tasks-container animated bounceInLeft">
     <div class="section-title hidden">@ViewBag.Title</div>
     <div class="open-container">
         <h4 class="task-heading task-section">Open</h4>
-        <button class="standard-button add-task add-open" id="1"><i class="glyphicon glyphicon-plus"></i></button>
+        <button class="content-button add-task add-open hvr-fade" id="1"><i class="glyphicon glyphicon-plus"></i></button>
         @foreach (TaskModel taskModel in Model.Where(model => model.TaskState.TaskStateCurrent == "Open"))
             {
-            <div class="open task-item" id="@taskModel.TaskID">
+            <div class="open task-item hvr-pop" id="@taskModel.TaskID">
                 <div class="task-heading">
                     <h5 class="task-heading task-item">@taskModel.TaskID - <span class="title">@taskModel.TaskTitle</span></h5>
                 </div>
@@ -25,10 +25,10 @@
     </div>
     <div class="active-container">
         <h4 class="task-heading task-section">Active</h4>
-        <button class="standard-button add-task add-active" id="2"><i class="glyphicon glyphicon-plus"></i></button>
+        <button class="content-button add-task add-active hvr-fade" id="2"><i class="glyphicon glyphicon-plus"></i></button>
         @foreach (TaskModel taskModel in Model.Where(model => model.TaskState.TaskStateCurrent == "Active"))
             {
-            <div class="active task-item" id="@taskModel.TaskID">
+            <div class="active task-item hvr-pop" id="@taskModel.TaskID">
                 <div class="task-heading">
                     <h5 class="task-heading task-item">@taskModel.TaskID - <span class="title">@taskModel.TaskTitle</span></h5>
                 </div>
@@ -40,10 +40,10 @@
     </div>
     <div class="closed-container">
         <h4 class="task-heading task-section">Closed</h4>
-        <button class="standard-button add-task add-closed" id="3"><i class="glyphicon glyphicon-plus"></i></button>
+        <button class="content-button add-task add-closed hvr-fade" id="3"><i class="glyphicon glyphicon-plus"></i></button>
         @foreach (TaskModel taskModel in Model.Where(model => model.TaskState.TaskStateCurrent == "Closed"))
             {
-            <div class="closed task-item" id="@taskModel.TaskID">
+            <div class="closed task-item hvr-pop" id="@taskModel.TaskID">
                 <div class="task-heading">
                     <h5 class="task-heading task-item">@taskModel.TaskID - <span class="title">@taskModel.TaskTitle</span></h5>
                 </div>

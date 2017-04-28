@@ -26,6 +26,11 @@
                         margin-top: 1px !important;
                     }
 
+                    .edit-announcement, .delete-announcement {
+                        margin-left: 5px;
+                        font-size: 16px;
+                    }
+
                     .importance-icon {
                         font-size: 30px;
                         float: right;
@@ -58,8 +63,8 @@
     .add-button {
         text-align: center;
 
-        .standard-button {
-            margin-bottom: 5px;
+        .content-button {
+            margin-bottom: 5px !important;
             padding: 5px;
             position: center;
         }

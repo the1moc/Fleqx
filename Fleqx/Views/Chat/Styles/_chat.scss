@@ -2,9 +2,8 @@
     z-index: 3;
     height: 100%;
     float: right;
-    top: 5px;
+    top: 13px;
     right: 0;
-    position: fixed;
     position: fixed;
     margin-right: 5px;
     background-color: #FFFFFF;
@@ -30,6 +29,10 @@
             text-align: center;
             border: none;
             margin-bottom: 5px;
+
+            &:hover {
+                cursor: pointer;
+            }
         }
 
         .panel-body {
@@ -57,7 +60,8 @@
         }
 
         .messageusername {
-            color: #000000;;
+            color: #000000;
+            ;
             font-weight: bold;
             font-size: 16px;
         }
@@ -66,13 +70,14 @@
     .inputs-container {
         z-index: 2;
         position: absolute;
-        bottom: 0;
-        padding: 10px 10px 10px 10px;
-        margin-bottom: 50px;
+        bottom: 5px;
+        padding: 5px;
+        margin-bottom: 55px;
         width: 100%;
         background-color: transparent;
         border-top: solid;
-        border-color: $modal-header-background-color;
+        border-color: #d700a2;
+        border-width: 1px;
 
         #message {
             width: 100%;
@@ -80,6 +85,8 @@
             border-radius: 10px;
             border-style: solid;
             padding: 10px !important;
+            border-width: 1px;
+
             &:focus {
                 outline: none;
             }

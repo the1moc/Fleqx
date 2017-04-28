@@ -241,3 +241,4 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /Fleqx/bower_components/chart.js
+/Fleqx/bower_components

@@ -20,7 +20,9 @@ namespace Fleqx.Data
 		public virtual DbSet<TaskState> TaskStates { get; set; }
 		public virtual DbSet<Team> Teams { get; set; }
 
-		protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        public virtual DbSet<Activity> Activity { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			// Setup relationships for creating and assigning user for tasks.
 			modelBuilder.Entity<Task>().HasRequired(t => t.CreatedUser)

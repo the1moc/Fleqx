@@ -46,6 +46,31 @@ namespace Fleqx.Data
 
                 context.SaveChanges();
 
+                List<Activity> activities = new List<Activity>
+                {
+                    new Activity
+                    {
+                        ActivityContent = "Created an Announcement",
+                        User = context.Users.Find("1"),
+                        Date = DateTime.Now
+                    },
+                    new Activity
+                    {
+                        ActivityContent = "Created a Task",
+                        User = context.Users.Find("1"),
+                        Date = DateTime.Now
+                    },
+                     new Activity
+                    {
+                        ActivityContent = "Added a new user",
+                        User = context.Users.Find("1"),
+                        Date = DateTime.Now
+                    }
+                };
+
+                activities.ForEach(activity => context.Activity.Add(activity));
+                context.SaveChanges();
+
                 // Add the roles.
                 List<IdentityRole> roles = new List<IdentityRole>
                 {
@@ -171,6 +196,25 @@ namespace Fleqx.Data
                     CreatedUserId = "1",
                     AssignedUserId = "1",
                     TaskStateId = 1,
+                    TaskStartedDate = DateTime.Now.AddDays(1)
+                });
+
+                // Add the tasks.
+                context.Tasks.Add(new Task
+                {
+                    TaskID = 5,
+                    TaskTitle = "Eat some food",
+                    TaskDescription = "Go help eat food!",
+                    TaskPriority = 4,
+                    OriginalCreationDate = DateTime.Now,
+                    CriticalFinishDate = DateTime.Now.AddDays(4),
+                    ActualFinishDate = DateTime.Now.AddDays(5),
+                    LastRenewalDate = DateTime.Now,
+                    EstimatedDaysTaken = 19,
+                    ActualDaysTaken = 2,
+                    CreatedUserId = "1",
+                    AssignedUserId = "1",
+                    TaskStateId = 2,
                     TaskStartedDate = DateTime.Now.AddDays(1)
                 });
 
