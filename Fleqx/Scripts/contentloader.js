@@ -86,6 +86,6 @@ function makeDraggableModal()
 
 function setupTime()
 {
-    var time = moment().format("dddd wo MMMM - HH:mm");
+    var time = moment().format("dddd Do MMMM - HH:mm");
     $(".time-display").text(time);
 }

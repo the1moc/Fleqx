@@ -1,6 +1,4 @@
 ﻿/// <reference path="~/bower_components/jquery/dist/jquery.js
-/// 
-/// 
 /// <reference path="~/Scripts/jquery.signalR-2.2.1.min.js
 
 $(function()

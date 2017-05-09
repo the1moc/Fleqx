@@ -27,7 +27,7 @@
             float: none !important;
             margin: 5px 0 0 0 !important;
             text-align: center;
-                    min-width: 550px;
+            min-width: 550px;
         }
 
         ul {
@@ -61,6 +61,7 @@
             .list-header-title {
                 position: absolute;
                 left: 46%;
+                height: 46px;
                 padding: 2px 50px 1px 50px;
                 font-size: 30px;
                 cursor: default;
@@ -95,6 +96,7 @@
                 width: 350px;
                 background-color: #e7e7e7;
                 color: #000000;
+
                 .dropdown-menu-item {
                     padding: 10px;
                     background-color: #ffffff;
@@ -201,7 +203,9 @@
                 }
 
                 &.logout-button {
-                    bottom: 100px;
+                    bottom: 0;
+                    position: fixed;
+                    width: 160px;
                     text-align: center;
                     margin-bottom: 0;
                     padding: 15px 0 10px 0 !important;

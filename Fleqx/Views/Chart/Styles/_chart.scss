@@ -24,6 +24,12 @@
         text-align: -webkit-center;
         .graphButton {
             margin-bottom: 5px;
+                            border-style: solid;
+                border-width: 1px;
+            &:hover {
+                border-style: solid;
+                border-width: 1px;
+            }
         }
     }
 }

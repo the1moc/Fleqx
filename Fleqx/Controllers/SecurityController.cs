@@ -16,7 +16,7 @@ using System.Web.Caching;
 namespace Fleqx.Controllers
 {
     [AllowAnonymous]
-    public class SecurityController : Controller
+    public class SecurityController : BaseController
     {
         private readonly UserManager<User> userManager;
 

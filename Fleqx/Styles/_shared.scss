@@ -31,8 +31,8 @@ input:-webkit-autofill:active {
     background-color: $panel-background-color;
 
     .panel-heading {
-        background-color: transparent !important;
-        color: $panel-heading-color !important;
+        background-color: #d700a2 !important;
+        color: #FFFFFF;
     }
 }
 
@@ -42,13 +42,13 @@ input:-webkit-autofill:active {
     outline: 0;
 
     .form-button {
-        margin-top: 1%;
-        margin-bottom: 1%;
+        margin-top: 2%;
         width: 95%;
         background-color: $content-button-background-color;
         color: $content-button-color;
         border-color: transparent;
         border-radius: 5px;
+        border-width: 1px;
 
         &:hover {
             background-color: #ffffff;

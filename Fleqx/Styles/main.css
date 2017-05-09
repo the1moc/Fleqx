@@ -1,6 +1,8 @@
 ﻿.login-logo {
-  margin-top: 40px;
-  margin-bottom: 40px; }
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 500px;
+  width: 500px; }
 
 .login-panel .panel-heading {
   font-weight: normal;
@@ -9,7 +11,7 @@
 .login-panel .login-form {
   position: relative;
   height: auto;
-  padding-bottom: 5px; }
+  padding-bottom: 10px; }
   .login-panel .login-form .input-group {
     margin-left: 1%;
     margin-right: 1%; }
@@ -165,7 +167,12 @@
     margin-bottom: 10px;
     text-align: -webkit-center; }
     .graph-container .graph-selections .graphButton {
-      margin-bottom: 5px; }
+      margin-bottom: 5px;
+      border-style: solid;
+      border-width: 1px; }
+      .graph-container .graph-selections .graphButton:hover {
+        border-style: solid;
+        border-width: 1px; }
 
 .calendar-container {
   background-color: #ffffff;
@@ -228,6 +235,7 @@
       .home .navbar ul .list-header-title {
         position: absolute;
         left: 46%;
+        height: 46px;
         padding: 2px 50px 1px 50px;
         font-size: 30px;
         cursor: default; }
@@ -330,7 +338,9 @@
         .home .sidepanel ul .panel-button .glyphicon {
           font-size: 24px; }
         .home .sidepanel ul .panel-button.logout-button {
-          bottom: 100px;
+          bottom: 0;
+          position: fixed;
+          width: 160px;
           text-align: center;
           margin-bottom: 0;
           padding: 15px 0 10px 0 !important; }
@@ -450,21 +460,21 @@ input:-webkit-autofill:active {
   margin-top: 1%;
   background-color: #585656; }
   .login-panel .panel-heading {
-    background-color: transparent !important;
-    color: #FFFFFF !important; }
+    background-color: #d700a2 !important;
+    color: #FFFFFF; }
 
 .form {
   max-width: 100%;
   background-color: #fbfbfb;
   outline: 0; }
   .form .form-button {
-    margin-top: 1%;
-    margin-bottom: 1%;
+    margin-top: 2%;
     width: 95%;
     background-color: #464646;
     color: #FFFFFF;
     border-color: transparent;
-    border-radius: 5px; }
+    border-radius: 5px;
+    border-width: 1px; }
     .form .form-button:hover {
       background-color: #ffffff;
       color: #464646;
