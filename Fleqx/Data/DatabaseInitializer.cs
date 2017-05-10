@@ -68,7 +68,7 @@ namespace Fleqx.Data
                     }
                 };
 
-                activities.ForEach(activity => context.Activity.Add(activity));
+                activities.ForEach(activity => context.Activities.Add(activity));
                 context.SaveChanges();
 
                 // Add the roles.
@@ -219,6 +219,16 @@ namespace Fleqx.Data
                 });
 
                 context.SaveChanges();
+
+                context.Files.Add(
+                    new DataFile
+                    {
+                        DataFileId = 1,
+                        UserId = "1",
+                        FilePath = "Files/Test.txt",
+                        FileName = "Test.txt"
+                    }
+                );
             }
             catch (Exception e)
             {

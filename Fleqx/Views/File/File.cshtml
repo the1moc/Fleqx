@@ -1,0 +1,25 @@
+﻿@using Fleqx.Models
+@using Microsoft.AspNet.Identity
+
+@model List<Fleqx.Models.FileModel>
+
+<div class="files animated bounceInLeft">
+    <div class="section-title hidden">@ViewBag.Title</div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h2 class="upload-title">Uploaded File List</h2>
+            <ul class="list-group">
+                @foreach (FileModel m in Model)
+                {
+                    <li class="list-group-item file-list-item hvr-fade">
+                        <span class="file-item file-info-header file-info-header-id"><span class="file-id">File Id: </span><span class="file-info">@m.FileId</span></span>
+                        <span class="file-item file-info-header file-info-header-name"><span class="file-name">File Name: </span><span class="file-info">@m.FileName</span></span>
+                        <span class="file-item file-info-header file-info-header-username"><span class="file-username">Created by: </span><span class="file-info">@m.Username</span></span>
+                        @Html.ActionLink(" Download", "DownloadFile", "File", new { @m.FileId }, null)
+                    </li>
+                }
+            </ul>
+            <input id="fileUpload" type="file">
+        </div>
+    </div>
+</div>

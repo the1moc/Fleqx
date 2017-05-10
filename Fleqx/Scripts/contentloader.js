@@ -46,6 +46,7 @@ $(document).ready(function()
             }
             // Hacky, but initialise the date controls
             initialiseDates();
+            initialiseUploads();
         });
     });
 

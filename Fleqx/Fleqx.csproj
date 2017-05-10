@@ -214,6 +214,7 @@
   <ItemGroup>
     <Content Include="Assets\logo.png" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\upload.js" />
     <Content Include="Scripts\calendar.js" />
     <Content Include="Scripts\charts.js" />
     <Content Include="Scripts\chat.js" />
@@ -236,6 +237,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\ChartController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -249,6 +251,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Data\DatabaseContext.cs" />
     <Compile Include="Data\DatabaseInitializer.cs" />
+    <Compile Include="Data\DatabaseModels\DataFile.cs" />
     <Compile Include="Data\DatabaseModels\Activity.cs" />
     <Compile Include="Data\DatabaseModels\Team.cs" />
     <Compile Include="Data\DatabaseModels\TaskState.cs" />
@@ -269,6 +272,7 @@
     <Compile Include="Models\ChartDataModel.cs" />
     <Compile Include="Models\ChartModel.cs" />
     <Compile Include="Models\AccountModel.cs" />
+    <Compile Include="Models\FileModel.cs" />
     <Compile Include="Models\TaskFilterModel.cs" />
     <Compile Include="Models\AnnouncementFilterModel.cs" />
     <Compile Include="Models\AnnouncementFormModel.cs" />
@@ -330,6 +334,8 @@
     <Content Include="Views\Calendar\Styles\_calendar.scss" />
     <Content Include="Views\Announcement\_AnnouncementEditForm.cshtml" />
     <Content Include="Views\Announcement\_AnnouncementDeleteForm.cshtml" />
+    <Content Include="Views\File\File.cshtml" />
+    <Content Include="Views\File\Styles\_file.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -338,7 +344,10 @@
     </None>
     <Content Include="WebEssentials2015-Settings.json" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\Files\" />
+    <Folder Include="Files\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -102,7 +102,7 @@ namespace Fleqx.Controllers
                 }
                 activity.Date = DateTime.Now;
 
-                dbContext.Activity.Add(activity);
+                dbContext.Activities.Add(activity);
                 dbContext.SaveChanges();
                 return new HttpStatusCodeResult(200, "Activity logged");
             }
@@ -116,7 +116,7 @@ namespace Fleqx.Controllers
         {
             using (var dbContext = GetDatabaseContext())
             {
-                List<Activity> activities = dbContext.Activity.OrderBy(a => a.ActivityId).Take(10).ToList();
+                List<Activity> activities = dbContext.Activities.OrderBy(a => a.ActivityId).Take(10).ToList();
                 List<ActivityModel> viewModels = activities.Select(a => new ActivityModel
                 {
                     ActivityContent = a.ActivityContent,

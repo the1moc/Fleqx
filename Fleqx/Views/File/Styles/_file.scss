@@ -1,0 +1,56 @@
+﻿.files {
+    z-index: -1;
+
+    .panel-body {
+        background-color: #454545 !important;
+        color: #FFFFFF;
+
+        .upload-title {
+            margin-top: 0 !important;
+            text-align: center;
+        }
+
+        .btn {
+            background-color: #d700a2 !important;
+            border: none !important;
+            color: #FFFFFF !important;
+        }
+
+        .glyphicon {
+            color: #FFFFFF !important;
+        }
+
+        .file-footer-caption {
+            color: #FFFFFF !important;
+        }
+
+        .list-group {
+            color: #454545;
+
+            .list-group-item {
+                width: 100%;
+                border: none !important;
+                font-size: 16px;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+
+            .file-info-header {
+                font-weight: 600;
+            }
+
+            .file-info-header-id {
+                margin-right: 5%;
+            }
+
+            .file-info-header-name {
+            }
+
+            .file-info-header-username {
+                float: right;
+            }
+        }
+    }
+}

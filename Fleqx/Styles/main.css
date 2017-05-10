@@ -183,6 +183,37 @@
     background-color: #464646;
     text-align: center; }
 
+.files {
+  z-index: -1; }
+  .files .panel-body {
+    background-color: #454545 !important;
+    color: #FFFFFF; }
+    .files .panel-body .upload-title {
+      margin-top: 0 !important;
+      text-align: center; }
+    .files .panel-body .btn {
+      background-color: #d700a2 !important;
+      border: none !important;
+      color: #FFFFFF !important; }
+    .files .panel-body .glyphicon {
+      color: #FFFFFF !important; }
+    .files .panel-body .file-footer-caption {
+      color: #FFFFFF !important; }
+    .files .panel-body .list-group {
+      color: #454545; }
+      .files .panel-body .list-group .list-group-item {
+        width: 100%;
+        border: none !important;
+        font-size: 16px; }
+        .files .panel-body .list-group .list-group-item:hover {
+          cursor: pointer; }
+      .files .panel-body .list-group .file-info-header {
+        font-weight: 600; }
+      .files .panel-body .list-group .file-info-header-id {
+        margin-right: 5%; }
+      .files .panel-body .list-group .file-info-header-username {
+        float: right; }
+
 .home {
   width: 100%;
   min-height: 100%; }
