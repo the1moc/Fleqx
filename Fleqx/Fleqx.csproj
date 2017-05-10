@@ -319,6 +319,7 @@
     <Content Include="Views\Task\Styles\_tasks.scss" />
     <Content Include="Views\Task\_TaskEditForm.cshtml" />
     <Content Include="Views\Task\_TaskAddForm.cshtml" />
+    <Content Include="package.json" />
     <None Include="Properties\PublishProfiles\Fleqx.pubxml" />
     <None Include="Properties\PublishProfiles\Test.pubxml" />
     <Content Include="Views\Task\_TaskFilterForm.cshtml" />

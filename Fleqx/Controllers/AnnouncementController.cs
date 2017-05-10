@@ -251,6 +251,7 @@ namespace Fleqx.Controllers
             }
             catch (Exception e)
             {
+                Console.WriteLine(e);
                 return new HttpStatusCodeResult(500, "There was an error deleting the announcement");
             }
         }

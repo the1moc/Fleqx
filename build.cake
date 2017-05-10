@@ -56,8 +56,7 @@ Task("Bower")
 	foreach(var solution in solutions)
 	{
 		Information("Restoring {0}...", solution);
-		var settings = new ProcessSettings{ Arguments = "install", WorkingDirectory = "./Fleqx" };
-		StartProcess("./Fleqx/.bin/bower.cmd", "install");
+        StartProcess("cmd npm install");
 	}
 })
 .OnError(exception => 
@@ -69,7 +68,6 @@ Task("Build")
 	.Description("Builds all the different parts of the project.")
 	.IsDependentOn("Clean")
 	.IsDependentOn("Restore")
-	.IsDependentOn("Bower")
 	.Does(() =>
 {
 	// Build all solutions.
