@@ -5,7 +5,7 @@
         $(".dropdown-menu").empty();
 
         $.ajax({
-            url: "Activity/GetRecentActivity",
+            url: "/Fleqx/Activity/GetRecentActivity",
             success: function(data)
             {
                 var parsedData = JSON.parse(data);
@@ -25,11 +25,10 @@ function updateActivity(activityType)
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "/Activity/SaveActivity",
+        url: "/Fleqx/Activity/SaveActivity",
         data: JSON.stringify({activityType: activityType }),
         success: function()
         {
-            console.log("test");
         }
     });
 }

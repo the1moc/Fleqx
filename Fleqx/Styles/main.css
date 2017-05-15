@@ -181,7 +181,8 @@
   text-align: center; }
   .calendar-container .fc-event {
     background-color: #464646;
-    text-align: center; }
+    text-align: center;
+    padding: 15px !important; }
 
 .files {
   z-index: -1; }

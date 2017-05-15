@@ -97,6 +97,13 @@ namespace Fleqx.Controllers
                             UserId = User.Identity.GetUserId()
                         };
                         break;
+                    case ActivityType.UploadedFile:
+                        activity = new Activity
+                        {
+                            ActivityContent = "Uploaded a file",
+                            UserId = User.Identity.GetUserId()
+                        };
+                        break;
                     default:
                         throw new Exception("Invalid activity type");
                 }
@@ -116,13 +123,13 @@ namespace Fleqx.Controllers
         {
             using (var dbContext = GetDatabaseContext())
             {
-                List<Activity> activities = dbContext.Activities.OrderBy(a => a.ActivityId).Take(10).ToList();
+                List<Activity> activities = dbContext.Activities.OrderByDescending(a => a.ActivityId).Take(10).ToList();
                 List<ActivityModel> viewModels = activities.Select(a => new ActivityModel
                 {
                     ActivityContent = a.ActivityContent,
                     UserName = a.User.UserName,
                     Date = a.Date.ToString("yyyy-MM-dd H:mm:ss")
-                }).ToList();
+                }).Reverse().ToList();
 
                 return JsonConvert.SerializeObject(viewModels);
             }

@@ -8,7 +8,7 @@
         if (this.id == "")
             return;
 
-        $(".modal-form-section").load("/Task/GetEditModalView", { taskId: this.id }, function()
+        $(".modal-form-section").load("/Fleqx/Task/GetEditModalView", { taskId: this.id }, function()
         {
             $("#editTaskModal").modal();
 
@@ -44,7 +44,7 @@
                 state = 3;
                 break;
         }
-        $(".modal-form-section").load("/Task/GetAddModalView", function()
+        $(".modal-form-section").load("/Fleqx/Task/GetAddModalView", function()
         {
             $("#addTaskModal").modal();
 
@@ -75,14 +75,14 @@
 
         $.ajax({
             type: "POST",
-            url: "/Task/Edit",
+            url: "/Fleqx/Task/Edit",
             data: $(this).serialize(),
             success: function()
             {
                 updateActivity("2");
                 // Reload the tasks with the refreshed data
                 $("#content").empty();
-                $("#content").load("/Task/Tasks", function ()
+                $("#content").load("/Fleqx/Task/Tasks", function()
                 {
                     initialiseDates();
                 });
@@ -105,14 +105,14 @@
 
         $.ajax({
             type: "POST",
-            url: "/Task/Add",
+            url: "/Fleqx/Task/Add",
             data: $(this).serialize(),
             success: function()
             {
                 updateActivity("1");
                 // Reload the tasks with the refreshed data
                 $("#content").empty();
-                $("#content").load("/Task/Tasks", function ()
+                $("#content").load("/Fleqx/Task/Tasks", function()
                 {
                     initialiseDates();
                 });
@@ -135,7 +135,7 @@
 
         $.ajax({
             type: "POST",
-            url: "/Task/FilterTasks",
+            url: "/Fleqx/Task/FilterTasks",
             data: $(this).serialize(),
             success: function(data, status)
             {

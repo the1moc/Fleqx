@@ -11,7 +11,7 @@ namespace Fleqx
 
 			routes.MapRoute(
 				"Default",
-				"{controller}/{action}/{id}",
+				"Fleqx/{controller}/{action}/{id}",
 				new {controller = "Home", action = "Home", id = UrlParameter.Optional}
 			);
 		}

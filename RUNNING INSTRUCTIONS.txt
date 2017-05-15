@@ -1,0 +1,23 @@
+BUILD INSTRUCTIONS
+
+Open powershell, navigate to the folder these instructions are contained in, and run the following commands
+
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+Select "A"
+
+./build.ps1
+
+If error is encountered, navigate from the root folder to "tools/Cake/" and for each .dll, right click -> properties -> unblock -> apply
+
+Open the cmd in the root application directory (Fleqx), and run the following commands:
+
+npm install
+bower install
+
+After finishing this, navigate to IISEXPRESS (C:\Program Files (x86)\IIS Express for me) or install
+
+In CMD, navigate to the iisexpress installation folder, and run the following command
+
+iisexpress /path:(path to project Fleqx folder, containing build files) /port:8080
+
+This will run the project on port 8080

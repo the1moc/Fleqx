@@ -1,7 +1,4 @@
-﻿/// <reference path="~/bower_components/jquery/dist/jquery.js
-/// <reference path="~/Scripts/jquery.signalR-2.2.1.min.js
-
-$(function()
+﻿$(function()
 {
     $(".chat-container").hide();
     $(".content-container").css("margin-right", 0);
@@ -55,7 +52,8 @@ function createConnection() {
 
 // Get all the current chat messages.
 function getMessages() {
-    $(".messages-container").load("/Chat/ChatMessages", { call: "chat" }, function(response, status, xhr) {
+    $(".messages-container").load("/Fleqx/Chat/ChatMessages", { call: "chat" }, function(response, status, xhr)
+    {
         if (status == "error")
         {
             alert("There was a problem refreshing the chat, make sure the client is connected");

@@ -12,6 +12,7 @@ namespace Fleqx.Data.DatabaseModels
         AnnouncementEdited = 4,
         AnnouncementDeleted = 5,
         UserCreated = 6,
-        UserEdited = 7
+        UserEdited = 7,
+        UploadedFile = 8
     }
 }

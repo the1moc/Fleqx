@@ -3,7 +3,7 @@
     // Show the modal edit for account details.
     $(document).on("click", ".account-details", function ()
     {
-        $(".modal-form-section").load("/Account/Edit", function()
+        $(".modal-form-section").load("/Fleqx/Account/Edit", function()
         {
             $("#accountEditModal").modal();
         });
@@ -12,7 +12,7 @@
     // Show the modal add form for a new user.
     $(document).on("click", ".account-new", function ()
     {
-        $(".modal-form-section").load("/Account/Signup", function ()
+        $(".modal-form-section").load("/Fleqx/Account/Signup", function()
         {
             $("#registerModal").modal();
         });
@@ -25,7 +25,7 @@
 
         $.ajax({
             type: "POST",
-            url: "/Security/Signup",
+            url: "/Fleqx/Security/Signup",
             data: $(this).serialize(),
             success: function ()
             {
@@ -49,7 +49,7 @@
 
         $.ajax({
             type: "POST",
-            url: "/Account/Edit",
+            url: "/Fleqx/Account/Edit",
             data: $(this).serialize(),
             success: function ()
             {

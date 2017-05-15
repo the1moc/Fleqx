@@ -1,7 +1,4 @@
-﻿/// <reference path="../bower_components/jquery/dist/jquery.js" />
-/// <reference path="~/bower_components/jquery-ui/jquery-ui.min.js
-
-$(document).ready(function()
+﻿$(document).ready(function()
 {
     // Link the chat
     createConnection();
@@ -9,7 +6,7 @@ $(document).ready(function()
     setInterval(function ()
     {
         setupTime();
-    }, 500);
+    }, 5000);
 
     $(".navbar").css("width", window.innerWidth - 150);
     $(window).on("resize", function ()
@@ -37,7 +34,7 @@ $(document).ready(function()
             if ((".calendar-container").length)
             {
                 var data = $.ajax({
-                    url: "Calendar/GetCalendarTasks",
+                    url: "/Fleqx/Calendar/GetCalendarTasks",
                     success: (function (data, status)
                     {
                         createCalendar(data);

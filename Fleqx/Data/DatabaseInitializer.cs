@@ -32,7 +32,10 @@ namespace Fleqx.Data
                 // Add the admin user.
                 PasswordHasher pHasher = new PasswordHasher();
                 string hashedPassword = pHasher.HashPassword("password");
-                context.Users.Add(new User
+
+                List<User> userList = new List<User>
+                {
+                    new User
                 {
                     Id = "1",
                     UserName = "admin",
@@ -42,7 +45,42 @@ namespace Fleqx.Data
                     SecurityStamp = Guid.NewGuid().ToString(),
                     TeamId = 1,
                     IsLoggedIn = 0
-                });
+                },
+                new User
+                {
+                    Id = "2",
+                    UserName = "tucker",
+                    FirstName = "Malcolm",
+                    LastName = "Tucker",
+                    PasswordHash = hashedPassword,
+                    SecurityStamp = Guid.NewGuid().ToString(),
+                    TeamId = 1,
+                    IsLoggedIn = 0
+                },
+                new User
+                {
+                    Id = "3",
+                    UserName = "terri",
+                    FirstName = "Terri",
+                    LastName = "Coveley",
+                    PasswordHash = hashedPassword,
+                    SecurityStamp = Guid.NewGuid().ToString(),
+                    TeamId = 3,
+                    IsLoggedIn = 0
+                },
+                new User
+                {
+                    Id = "4",
+                    UserName = "reeder",
+                    FirstName = "Olli",
+                    LastName = "Reeder",
+                    PasswordHash = hashedPassword,
+                    SecurityStamp = Guid.NewGuid().ToString(),
+                    TeamId = 2,
+                    IsLoggedIn = 0
+                } };
+
+                userList.ForEach(user => context.Users.Add(user));
 
                 context.SaveChanges();
 
@@ -57,13 +95,25 @@ namespace Fleqx.Data
                     new Activity
                     {
                         ActivityContent = "Created a Task",
-                        User = context.Users.Find("1"),
+                        User = context.Users.Find("3"),
                         Date = DateTime.Now
                     },
                      new Activity
                     {
                         ActivityContent = "Added a new user",
-                        User = context.Users.Find("1"),
+                        User = context.Users.Find("2"),
+                        Date = DateTime.Now
+                    },
+                    new Activity
+                    {
+                        ActivityContent = "Uploaded a file",
+                        User = context.Users.Find("4"),
+                        Date = DateTime.Now
+                    },
+                    new Activity
+                    {
+                        ActivityContent = "Create an Announcement",
+                        User = context.Users.Find("3"),
                         Date = DateTime.Now
                     }
                 };
@@ -85,6 +135,9 @@ namespace Fleqx.Data
                 // Add the first user to the admin role.
                 UserManager<User> userManager = new UserManager<User>(new UserStore<User>(context));
                 userManager.AddToRole("1", "Admin");
+                userManager.AddToRole("2", "Admin");
+                userManager.AddToRole("3", "Guest");
+                userManager.AddToRole("4", "Standard");
 
                 // Add the first announcement.
                 List<Announcement> announcements = new List<Announcement>
@@ -96,9 +149,29 @@ namespace Fleqx.Data
                         AnnouncementTitle   = "Welcome",
                         AnnouncementContent =
                             "This is the first announcement in the database. Please add further announcements through the add announcement button.",
-                        Created                = DateTime.Now,
+                        Created                = DateTime.Now.AddDays(-3),
                         AnnouncementImportance = 5
-                    }
+                    },
+                    new Announcement
+                    {
+                        AnnouncementID      = 2,
+                        UserId              = context.Users.Find("2").Id,
+                        AnnouncementTitle   = "Birthday!",
+                        AnnouncementContent =
+                            "There is cake in the kitchen for Olli's birthday!",
+                        Created                = DateTime.Now,
+                        AnnouncementImportance = 1
+                    },
+                    new Announcement
+                    {
+                        AnnouncementID      = 3,
+                        UserId              = context.Users.Find("4").Id,
+                        AnnouncementTitle   = "Minutes updated",
+                        AnnouncementContent =
+                            "The minutes for the last quarter have been updated, so let me know if you need a copy.",
+                        Created                = DateTime.Now.AddDays(-2),
+                        AnnouncementImportance = 1
+                    },
                 };
 
                 announcements.ForEach(announcement => context.Announcements.Add(announcement));
@@ -174,8 +247,8 @@ namespace Fleqx.Data
                     LastRenewalDate = DateTime.Now,
                     EstimatedDaysTaken = 1,
                     ActualDaysTaken = 1,
-                    CreatedUserId = "1",
-                    AssignedUserId = "1",
+                    CreatedUserId = "2",
+                    AssignedUserId = "2",
                     TaskStateId = 3,
                     TaskStartedDate = DateTime.Now.AddDays(6)
                 });
@@ -214,6 +287,79 @@ namespace Fleqx.Data
                     ActualDaysTaken = 2,
                     CreatedUserId = "1",
                     AssignedUserId = "1",
+                    TaskStateId = 2,
+                    TaskStartedDate = DateTime.Now.AddDays(1)
+                });
+
+                context.Tasks.Add(new Task
+                {
+                    TaskID = 6,
+                    TaskTitle = "New printer",
+                    TaskDescription = "Pickup the new printer",
+                    TaskPriority = 2,
+                    OriginalCreationDate = DateTime.Now.AddDays(-4),
+                    CriticalFinishDate = DateTime.Now.AddDays(7),
+                    ActualFinishDate = new DateTime(2050, 1, 1),
+                    LastRenewalDate = DateTime.Now,
+                    EstimatedDaysTaken = 6,
+                    ActualDaysTaken = 0,
+                    CreatedUserId = "3",
+                    AssignedUserId = "3",
+                    TaskStateId = 2,
+                    TaskStartedDate = DateTime.Now.AddDays(-1)
+                });
+
+
+                context.Tasks.Add(new Task
+                {
+                    TaskID = 7,
+                    TaskTitle = "Create meeting for admins",
+                    TaskDescription = "Schedule a meeting",
+                    TaskPriority = 4,
+                    OriginalCreationDate = DateTime.Now,
+                    CriticalFinishDate = DateTime.Now.AddDays(4),
+                    ActualFinishDate = new DateTime(2050, 1, 1),
+                    LastRenewalDate = DateTime.Now,
+                    EstimatedDaysTaken = 1,
+                    ActualDaysTaken = 0,
+                    CreatedUserId = "2",
+                    AssignedUserId = "4",
+                    TaskStateId = 1,
+                    TaskStartedDate = DateTime.Now.AddDays(1)
+                });
+
+                context.Tasks.Add(new Task
+                {
+                    TaskID = 8,
+                    TaskTitle = "Send out surveys",
+                    TaskDescription = "Distribute the surveys to all clients",
+                    TaskPriority = 3,
+                    OriginalCreationDate = DateTime.Now,
+                    CriticalFinishDate = DateTime.Now.AddDays(4),
+                    ActualFinishDate = new DateTime(2050, 1, 1),
+                    LastRenewalDate = DateTime.Now,
+                    EstimatedDaysTaken = 1,
+                    ActualDaysTaken = 0,
+                    CreatedUserId = "2",
+                    AssignedUserId = "2",
+                    TaskStateId = 2,
+                    TaskStartedDate = DateTime.Now.AddDays(1)
+                });
+
+                context.Tasks.Add(new Task
+                {
+                    TaskID = 9,
+                    TaskTitle = "Send out surveys",
+                    TaskDescription = "Distribute the surveys to all clients",
+                    TaskPriority = 3,
+                    OriginalCreationDate = DateTime.Now,
+                    CriticalFinishDate = DateTime.Now.AddDays(4),
+                    ActualFinishDate = new DateTime(2050, 1, 1),
+                    LastRenewalDate = DateTime.Now,
+                    EstimatedDaysTaken = 1,
+                    ActualDaysTaken = 0,
+                    CreatedUserId = "2",
+                    AssignedUserId = "2",
                     TaskStateId = 2,
                     TaskStartedDate = DateTime.Now.AddDays(1)
                 });

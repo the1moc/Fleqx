@@ -14,7 +14,7 @@ namespace Fleqx
 			app.UseCookieAuthentication(new CookieAuthenticationOptions
 			{
 				AuthenticationType = "ApplicationCookie",
-				LoginPath = new PathString("/Security/Login")
+				LoginPath = new PathString("/Fleqx/Security/Login")
 			});
 
 			app.MapSignalR();
